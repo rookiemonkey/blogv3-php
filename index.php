@@ -13,12 +13,12 @@
             <div class="col-md-8">
 
                 <h1 class="page-header">
-                    Page Heading
+                    Page Heading    
                     <small>Secondary Text</small>
                 </h1>
 
-                <!-- blog -->
-                <?php include "./includes/blog.php" ?>
+                <!-- Post -->
+                <?php include "./includes/posts.php" ?>
 
                 <!-- Pager -->
                 <ul class="pager">
