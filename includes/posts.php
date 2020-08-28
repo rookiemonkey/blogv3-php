@@ -9,6 +9,7 @@
         $post_author = $row["post_author"];
         $post_date = $row["post_date"];
         $post_content = $row["post_content"];
+        $post_image = $row["post_image"];   
     
     ?>
 
@@ -26,7 +27,8 @@
         </p>
 
         <hr>
-            <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+            <!-- the image name on database should match the one on the file system -->
+            <img class="img-responsive" src="./images/<?php echo $post_image ?>.png" alt="<?php echo $post_title ?>">
         <hr>
 
         <p><?php echo $post_content ?></p>
