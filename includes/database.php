@@ -18,8 +18,8 @@
     $driver = new mysqli_driver();
     $driver->report_mode = MYSQLI_REPORT_STRICT;
 
-    /* commented this one since it show if there is no error in the conenction */
-    echo "Success: A proper connection to MySQL was made! The my_db database is great." . PHP_EOL;
-    echo "Host information: " . mysqli_get_host_info($mysqli) . PHP_EOL;
+    // // commented this one since it show if there is no error in the conenction
+    // echo "Success: A proper connection to MySQL was made! The my_db database is great." . PHP_EOL;
+    // echo "Host information: " . mysqli_get_host_info($mysqli) . PHP_EOL;
 
 ?>

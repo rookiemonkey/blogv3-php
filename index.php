@@ -1,3 +1,4 @@
+<?php include "./includes/database.php"; ?>
 <?php include "./includes/header.php" ?>
 
     <!-- Navigation -->
@@ -35,7 +36,7 @@
             <?php include "./includes/sidebar.php" ?>
 
         </div>
-        
+
     <hr>
 
 <?php include "./includes/footer.php" ?>
