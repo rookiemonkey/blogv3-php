@@ -3,14 +3,16 @@
     <!-- Blog Search Well -->
     <div class="well">
         <h4>Blog Search</h4>
-        <div class="input-group">
-            <input type="text" class="form-control">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
-                    <span class="glyphicon glyphicon-search"></span>
-            </button>
-            </span>
-        </div>
+        <form action="./search.php" method="POST">
+            <div class="input-group">
+                <input name="search" type="text" class="form-control">
+                <span class="input-group-btn">
+                    <button name="submit" type="submit" class="btn btn-default" >
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+            </div>
+        </form>
     </div>
 
     <!-- Blog Categories Well -->

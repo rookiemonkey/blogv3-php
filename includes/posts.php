@@ -43,4 +43,6 @@
 
 <?php 
     } 
+    
+    $query->close();
 ?>
