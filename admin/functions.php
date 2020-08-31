@@ -206,15 +206,23 @@
         $query = $mysqli->prepare("SELECT * FROM posts");
         $query->execute();
         $posts = $query->get_result();
+        $query->close();
         
         // loop into the results and render
         while($row = $posts->fetch_assoc()) {  
+
+            $query = $mysqli->prepare("SELECT * FROM categories WHERE cat_id = ?");
+            $query->bind_param('s', $row['post_category_id']);
+            $query->execute();
+            $categories = $query->get_result();
+            $post_category_row = $categories->fetch_assoc();
+
             echo "<tr>";
             echo "<td>{$row['post_id']}</td>";
             echo "<td>{$row['post_date']}</td>";
             echo "<td>{$row['post_author']}</td>";
             echo "<td>{$row['post_title']}</td>";
-            echo "<td>{$row['post_category_id']}</td>";
+            echo "<td>{$post_category_row['cat_title']}</td>";
             echo "<td>{$row['post_status']}</td>";
             echo "<td><img src='../images/{$row['post_image']}' 
             alt='{$row['post_title']}' width='100' /></td>";
@@ -223,10 +231,9 @@
             echo "<td><a href='./posts.php?delete={$row['post_id']}'>Delete</a></td>";
             echo "<td><a href='./posts.php?source=edit_post&p_id={$row['post_id']}'>Edit</a></td>";
             echo "</tr>";
-        }
 
-        // close the connection to the database
-        $query->close();
+            $query->close();
+        }
     }
 
 
