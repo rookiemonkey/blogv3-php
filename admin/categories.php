@@ -29,6 +29,15 @@
                             </form>
                         </div>
 
+        <?php
+
+            // query the database
+            $query = $mysqli->prepare("SELECT * FROM categories");
+            $query->execute();
+            $catogories = $query->get_result();
+
+        ?>
+
                         <div class='col-xs-6'>
                             <table class='table table-hover table-bordered'>
                                 <thead>
@@ -38,22 +47,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Baseball</td>
-                                        <td>Basketball</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Baseball</td>
-                                        <td>Basketball</td>
-                                    </tr>
-                                                                        <tr>
-                                        <td>Baseball</td>
-                                        <td>Basketball</td>
-                                    </tr>
-                                                                        <tr>
-                                        <td>Baseball</td>
-                                        <td>Basketball</td>
-                                    </tr>
+
+
+        <?php 
+        
+            // table rows
+            while($row = $catogories->fetch_assoc()) {
+                $category_id = $row["cat_id"];
+                $category_title = $row["cat_title"];
+                echo "<tr>";
+                echo "<td>{$category_id}</td>";     
+                echo "<td>{$category_title}</td>";   
+                echo "</tr>";
+            }
+
+        ?>   
+
                                 </tbody>
                             </table>
                         </div>
