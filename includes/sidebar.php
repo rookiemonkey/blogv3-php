@@ -18,12 +18,12 @@
     <!-- Blog Categories Well -->
     <div class="well">
 
-                <?php
-                    $query = $mysqli->prepare("SELECT * FROM categories");
-                    $query->execute();
-                    $catogories = $query->get_result();
+                    <?php
+                        $query = $mysqli->prepare("SELECT * FROM categories");
+                        $query->execute();
+                        $catogories = $query->get_result();
 
-                ?>
+                    ?>
 
         <h4>Blog Categories</h4>
         <div class="row">

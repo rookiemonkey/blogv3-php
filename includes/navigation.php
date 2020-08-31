@@ -26,6 +26,8 @@
                         echo "<li><a href='#'>{$category_title}</a></li>";     
                     }
                 ?>
+
+                <li><a href='/_PHP_blog/admin'>Admin</a></li>
                 
             </ul>
         </div>
