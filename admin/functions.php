@@ -197,7 +197,7 @@
 
 
     /**
-     * read all posts
+     * read all posts and render them as a table
      */
     function read_posts() {
         global $mysqli;
