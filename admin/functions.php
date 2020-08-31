@@ -220,6 +220,7 @@
             alt='{$row['post_title']}' width='100' /></td>";
             echo "<td>{$row['post_tags']}</td>";
             echo "<td>{$row['post_comment_count']}</td>";
+            echo "<td><a href='./posts.php?delete={$row['post_id']}'>Delete</a></td>";
             echo "</tr>";
         }
 
@@ -289,5 +290,44 @@
         }
     }
 
+
+
+
+
+
+
+
+
+    /**
+     * delete a post
+     */
+    function delete_post() {
+        global $mysqli;
+
+        if(isset($_GET['delete'])) {
+            $post_id = $_GET['delete'];
+            $post_id = mysqli_real_escape_string($mysqli, $post_id);
+            $stmnt = "DELETE FROM posts WHERE post_id = ?";
+            $query = $mysqli->prepare($stmnt); 
+            $query->bind_param("s", $post_id);
+            $result = $query->execute();
+
+            // check if query is successfull
+            if($result) { 
+                // refresh the page
+                header("Location: posts.php");
+            }
+            else { 
+                echo "<div class='panel panel-danger'>";
+                echo "<div class='panel-heading'>";
+                echo "<h3 class='panel-title'>Something went wrong. Please try again later</h3>";
+                echo "</div>";
+                echo "</div>";
+                die(); 
+            }
+
+            $query->close();
+        }
+    }
 
 ?>

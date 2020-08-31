@@ -14,6 +14,7 @@
     </thead>
     <tbody>
 
+        <?php delete_post(); ?>
         <?php read_posts(); ?>
 
     </tbody>
