@@ -169,6 +169,8 @@
 
 
     function update_renderForm() {
+        global $mysqli;
+
         if(isset($_GET['update']) && $_GET['update'] === '') {
             echo "<div class='panel panel-danger'>";
             echo "<div class='panel-heading'>";

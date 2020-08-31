@@ -3,8 +3,8 @@
                                     <label for="cat_title">Update Category</label>
         <?php
             // query the database - get a category upon click of the update button
-            global $mysqli;
-            
+
+
             if(isset($_GET['update'])) {
                 $category_id = $_GET['update'];
                 $category_id = mysqli_real_escape_string($mysqli, $category_id);
