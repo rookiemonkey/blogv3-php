@@ -62,6 +62,9 @@
         <!-- create a category -->
         <?php create_category(); ?>
 
+         <!-- delete a category -->
+        <?php delete_category() ?>
+
                             <form action='' method='POST'>
                                 <div class="form-group">
                                     <label for="cat_title">Add Category</label>
@@ -100,35 +103,6 @@
 
                                 <!-- read all categories. render as table -->
                                 <?php read_categories() ?>
-
-        <?php
-        
-            // deleting a category
-            // href='categories.php?delete={$category_id}
-            if(isset($_GET['delete'])) {
-                $category_id = $_GET['delete'];
-                $category_id = mysqli_real_escape_string($mysqli, $category_id);
-                $stmnt = "DELETE FROM categories WHERE cat_id = ?";
-                $query = $mysqli->prepare($stmnt); 
-                $query->bind_param("s", $category_id);
-                $result = $query->execute();
-
-                // check if query is successfull
-                if($result) { 
-                    // refresh the page
-                    header("Location: categories.php");
-                }
-                else { 
-                    echo "<div class='panel panel-danger'>";
-                    echo "<div class='panel-heading'>";
-                    echo "<h3 class='panel-title'>Something went wrong. Please try again later</h3>";
-                    echo "</div>";
-                    echo "</div>";
-                    die(); 
-                }
-            }
-
-        ?>
 
                                 </tbody>
                             </table>
