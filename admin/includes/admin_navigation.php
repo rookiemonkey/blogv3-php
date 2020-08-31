@@ -56,7 +56,7 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo2"><i class="fa fa-fw fa-arrows-v"></i> Posts <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo2" class="collapse">
                     <li>
-                        <a href="#">All Posts</a>
+                        <a href="./posts.php"">All Posts</a>
                     </li>
                     <li>
                         <a href="#">Add Post</a>
@@ -64,7 +64,7 @@
                 </ul>
             </li>
             <li>
-                <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Categories</a>
+                <a href="./categories.php"><i class="fa fa-fw fa-wrench"></i> Categories</a>
             </li>
             <li class="active">
                 <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Comments</a>
