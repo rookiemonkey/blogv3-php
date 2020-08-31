@@ -29,6 +29,35 @@
                             </form>
                         </div>
 
+                        <div class='col-xs-6'>
+                            <table class='table table-hover table-bordered'>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Category Title</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Baseball</td>
+                                        <td>Basketball</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Baseball</td>
+                                        <td>Basketball</td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>Baseball</td>
+                                        <td>Basketball</td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>Baseball</td>
+                                        <td>Basketball</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
                 </div>
 
