@@ -120,7 +120,9 @@
 
 
 
-
+    /**
+     * update a category
+     */
 
     function update_category() {
         global $mysqli;
@@ -167,7 +169,9 @@
 
 
 
-
+    /**
+     * conditional render of the update form
+     */
     function update_renderForm() {
         global $mysqli;
 
@@ -183,5 +187,52 @@
             include './includes/update_category.php'; 
         }
     }
+
+
+
+
+
+
+
+
+
+    /**
+     * read all posts
+     */
+    function read_posts() {
+        global $mysqli;
+
+        // prepare statement and query
+        $query = $mysqli->prepare("SELECT * FROM posts");
+        $query->execute();
+        $posts = $query->get_result();
+        
+        // loop into the results and render
+        while($row = $posts->fetch_assoc()) {  
+            echo "<tr>";
+            echo "<td>{$row['post_id']}</td>";
+            echo "<td>{$row['post_date']}</td>";
+            echo "<td>{$row['post_author']}</td>";
+            echo "<td>{$row['post_title']}</td>";
+            echo "<td>{$row['post_category_id']}</td>";
+            echo "<td>{$row['post_status']}</td>";
+            echo "<td><img src='../images/{$row['post_image']}.png' 
+            alt='{$row['post_title']}' width='100' /></td>";
+            echo "<td>{$row['post_tags']}</td>";
+            echo "<td>{$row['post_comment_count']}</td>";
+            echo "</tr>";
+        }
+
+        // close the connection to the database
+        $query->close();
+    }
+
+
+
+
+
+
+
+
 
 ?>

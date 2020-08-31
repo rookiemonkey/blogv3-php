@@ -32,61 +32,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>10</td>
-                                    <td>Aug 30, 2020</td>
-                                    <td>Kevin Basina</td>
-                                    <td>Test Title</td>
-                                    <td>Test Category</td>
-                                    <td>Test Status</td>
-                                    <td>Test Image</td>
-                                    <td>Test Tags</td>
-                                    <td>Test Comments</td>
-                                </tr>
-                                                                <tr>
-                                    <td>10</td>
-                                    <td>Aug 30, 2020</td>
-                                    <td>Kevin Basina</td>
-                                    <td>Test Title</td>
-                                    <td>Test Category</td>
-                                    <td>Test Status</td>
-                                    <td>Test Image</td>
-                                    <td>Test Tags</td>
-                                    <td>Test Comments</td>
-                                </tr>
-                                                                <tr>
-                                    <td>10</td>
-                                    <td>Aug 30, 2020</td>
-                                    <td>Kevin Basina</td>
-                                    <td>Test Title</td>
-                                    <td>Test Category</td>
-                                    <td>Test Status</td>
-                                    <td>Test Image</td>
-                                    <td>Test Tags</td>
-                                    <td>Test Comments</td>
-                                </tr>
-                                                                <tr>
-                                    <td>10</td>
-                                    <td>Aug 30, 2020</td>
-                                    <td>Kevin Basina</td>
-                                    <td>Test Title</td>
-                                    <td>Test Category</td>
-                                    <td>Test Status</td>
-                                    <td>Test Image</td>
-                                    <td>Test Tags</td>
-                                    <td>Test Comments</td>
-                                </tr>
-                                                                <tr>
-                                    <td>10</td>
-                                    <td>Aug 30, 2020</td>
-                                    <td>Kevin Basina</td>
-                                    <td>Test Title</td>
-                                    <td>Test Category</td>
-                                    <td>Test Status</td>
-                                    <td>Test Image</td>
-                                    <td>Test Tags</td>
-                                    <td>Test Comments</td>
-                                </tr>
+
+        <?php read_posts(); ?>
+
                             </tbody>
                         </table>
                       
