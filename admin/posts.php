@@ -24,13 +24,15 @@
 
                                 switch($source) {
                                     case 'add_post':
-                                        include './includes/add_post.php';
+                                        include './includes/post_add.php';
                                         break;
 
                                     default:
-                                        include './includes/view_all_posts.php';
+                                        include './includes/posts_read.php';
                                 }
                             }
+
+                            else { include './includes/posts_read.php'; }
                         ?>
 
                     </div>
