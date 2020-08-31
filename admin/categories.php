@@ -20,9 +20,49 @@
                         <div class='col-xs-6'>
 
         <?php
+            // update category
+            if(isset($_POST['update_category'])) {
+                $category_title = $_POST['cat_title'];
+                $category_id = $_GET['update'];
+
+                // validation
+                if(empty($category_title)) { 
+                    echo "<div class='panel panel-danger'>";
+                    echo "<div class='panel-heading'>";
+                    echo "<h3 class='panel-title'>Category field is requied</h3>";
+                    echo "</div>";
+                    echo "</div>";
+                }
+
+                else {
+                    // prepare statement and query
+                    $category_title = mysqli_real_escape_string($mysqli, $category_title);
+                    $statement = "UPDATE categories SET cat_title = ? WHERE cat_id = ?";
+                    $query = $mysqli->prepare($statement);
+                    $query->bind_param("ss", $category_title, $category_id);
+                    $result = $query->execute();
+
+                    // check if query is successfull
+                    if($result) { 
+                        // refresh the page
+                        header("Location: categories.php");
+                    }
+                    else { 
+                        echo "<div class='panel panel-danger'>";
+                        echo "<div class='panel-heading'>";
+                        echo "<h3 class='panel-title'>Something went wrong. Please try again later</h3>";
+                        echo "</div>";
+                        echo "</div>";
+                        die(); 
+                    }
+                }
+            }
+        ?>
+
+        <?php
         
-            // check if the form is submitted
-            if(isset($_POST['submit'])) {
+            // add category
+            if(isset($_POST['add_category'])) {
                 $category_title = $_POST['cat_title'];
 
                 // validation
@@ -66,21 +106,70 @@
 
                             <form action='' method='POST'>
                                 <div class="form-group">
-                                    <label for="cat_title">Category</label>
+                                    <label for="cat_title">Add Category</label>
                                     <input type="text" class="form-control"  name="cat_title" id="cat_title"/>
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" class="btn btn-primary" name="submit" value="Add Category"/>
+                                    <input type="submit" class="btn btn-primary" name="add_category" value="Add"/>
+                                </div>
+                            </form>
+
+                            <form action='' method='POST'>
+                                <div class="form-group">
+                                    <label for="cat_title">Update Category</label>
+        <?php
+            // query the database - get a category upon click of the update button
+            if(isset($_GET['update'])) {
+                $category_id = $_GET['update'];
+                $category_id = mysqli_real_escape_string($mysqli, $category_id);
+                $statement = "SELECT * FROM categories WHERE cat_id = ?";
+                $query = $mysqli->prepare($statement);
+                $query->bind_param("s", $category_id);
+                $query->execute();
+                $categories = $query->get_result();
+
+                while($row = $categories->fetch_assoc()) {  
+                    $category_id =  $row["cat_id"];
+                    $category_title = $row["cat_title"];
+
+        ?>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    name="cat_title" 
+                    id="cat_title" 
+                    value="<?php if(isset($category_title)) { echo $category_title; } ?>"
+                />
+        <?php
+                }
+            }
+        ?>
+
+        <?php
+            // display an empty input field on initial load
+            if(!isset($_GET['update'])) {
+                echo '<input 
+                    type="text" 
+                    class="form-control" 
+                    name="cat_title" 
+                    id="cat_title" 
+                />';
+            }
+        ?>
+
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary" name="update_category" value="Update"/>
                                 </div>
                             </form>
                         </div>
 
         <?php
 
-            // query the database
+            // query the database - get all categories to render the table
             $query = $mysqli->prepare("SELECT * FROM categories");
             $query->execute();
-            $catogories = $query->get_result();
+            $categories = $query->get_result();
 
         ?>
 
@@ -97,14 +186,15 @@
 
         <?php 
         
-            // table rows
-            while($row = $catogories->fetch_assoc()) {  
+            // rendering the table of categories
+            while($row = $categories->fetch_assoc()) {  
                 $category_id = $row["cat_id"];
                 $category_title = $row["cat_title"];
                 echo "<tr>";
                 echo "<td>{$category_id}</td>";     
                 echo "<td>{$category_title}</td>";   
-                echo "<td><a href='categories.php?delete={$category_id}'>Delete</a></td>";   
+                echo "<td><a href='categories.php?delete={$category_id}'>Delete</a></td>"; 
+                echo "<td><a href='categories.php?update={$category_id}'>Update</a></td>";    
                 echo "</tr>";
             }
 
