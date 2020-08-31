@@ -1,5 +1,8 @@
 <?php
 
+    /**
+     * create a new category
+     */
     function create_category() {
 
         global $mysqli;
@@ -46,5 +49,39 @@
             }
         }
     }
+
+
+
+
+
+    /**
+     * read all categories and 
+     * render it as a table
+     */
+    function read_categories() {
+        global $mysqli;
+
+        $query = $mysqli->prepare("SELECT * FROM categories");
+        $query->execute();
+        $categories = $query->get_result();
+
+        while($row = $categories->fetch_assoc()) {  
+            $category_id = $row["cat_id"];
+            $category_title = $row["cat_title"];
+            echo "<tr>";
+            echo "<td>{$category_id}</td>";     
+            echo "<td>{$category_title}</td>";   
+            echo "<td><a href='categories.php?delete={$category_id}'>Delete</a></td>"; 
+            echo "<td><a href='categories.php?update={$category_id}'>Update</a></td>";    
+            echo "</tr>";
+        }
+    }
+
+
+
+
+
+
+    
 
 ?>

@@ -88,15 +88,6 @@
 
                         </div>
 
-        <?php
-
-            // query the database - get all categories to render the table
-            $query = $mysqli->prepare("SELECT * FROM categories");
-            $query->execute();
-            $categories = $query->get_result();
-
-        ?>
-
                         <div class='col-xs-6'>
                             <table class='table table-hover table-bordered'>
                                 <thead>
@@ -107,23 +98,8 @@
                                 </thead>
                                 <tbody>
 
-
-        <?php 
-        
-            // rendering the table of categories
-            while($row = $categories->fetch_assoc()) {  
-                $category_id = $row["cat_id"];
-                $category_title = $row["cat_title"];
-                echo "<tr>";
-                echo "<td>{$category_id}</td>";     
-                echo "<td>{$category_title}</td>";   
-                echo "<td><a href='categories.php?delete={$category_id}'>Delete</a></td>"; 
-                echo "<td><a href='categories.php?update={$category_id}'>Update</a></td>";    
-                echo "</tr>";
-            }
-
-        ?>   
-
+                                <!-- read all categories. render as table -->
+                                <?php read_categories() ?>
 
         <?php
         
