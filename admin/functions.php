@@ -216,11 +216,12 @@
             echo "<td>{$row['post_title']}</td>";
             echo "<td>{$row['post_category_id']}</td>";
             echo "<td>{$row['post_status']}</td>";
-            echo "<td><img src='../images/{$row['post_image']}.png' 
+            echo "<td><img src='../images/{$row['post_image']}' 
             alt='{$row['post_title']}' width='100' /></td>";
             echo "<td>{$row['post_tags']}</td>";
             echo "<td>{$row['post_comment_count']}</td>";
             echo "<td><a href='./posts.php?delete={$row['post_id']}'>Delete</a></td>";
+            echo "<td><a href='./posts.php?source=edit_post&p_id={$row['post_id']}'>Edit</a></td>";
             echo "</tr>";
         }
 
@@ -324,6 +325,68 @@
                 echo "</div>";
                 echo "</div>";
                 die(); 
+            }
+
+            $query->close();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * update a category
+     */
+
+    function update_post() {
+        global $mysqli;
+
+        if(isset($_POST['update_post'])) {
+            $post_title = $_POST["post_title"];
+            $post_category_id = $_POST['post_category_id'];
+            $post_author = $_POST['post_author'];
+            $post_status = $_POST['post_status'];
+            $post_tags = $_POST['post_tags'];
+            $post_content = $_POST['post_content'];
+
+            // escape string
+            $post_title = mysqli_real_escape_string($mysqli, $post_title);
+            $post_category_id = mysqli_real_escape_string($mysqli, $post_category_id);
+            $post_author = mysqli_real_escape_string($mysqli, $post_author);
+            $post_status = mysqli_real_escape_string($mysqli, $post_status);
+            $post_tags = mysqli_real_escape_string($mysqli, $post_tags);
+            $post_content = mysqli_real_escape_string($mysqli, $post_content);
+
+            // prepare statement
+            $statement = "UPDATE posts SET post_title = ?, post_category_id = ?, post_author = ?, post_status = ?, post_tags = ?, post_content = ? WHERE post_id = ?";
+            $query = $mysqli->prepare($statement);
+
+            // bind parameters
+            $query->bind_param("sisssss", $post_title, $post_category_id, $post_author, $post_status, $post_tags, $post_content, $_GET['p_id']);
+
+            // execute the query
+            $result = $query->execute();
+
+            var_dump($query);
+
+            // check if query is successfull
+            if($result) { 
+                // refresh the page
+                header("Location: posts.php");
+            }
+            else { 
+                echo "<div class='panel panel-danger'>";
+                echo "<div class='panel-heading'>";
+                echo "<h3 class='panel-title'>Something went wrong. Please try again later</h3>";
+                echo "</div>";
+                echo "</div>";
             }
 
             $query->close();

@@ -26,12 +26,14 @@
                                     case 'add_post':
                                         include './includes/post_add.php';
                                         break;
-
+                                    case 'edit_post':
+                                        include './includes/post_edit.php';
+                                        break;
                                     default:
                                         include './includes/posts_read.php';
                                 }
                             }
-
+                            
                             else { include './includes/posts_read.php'; }
                         ?>
 
