@@ -98,16 +98,47 @@
         <?php 
         
             // table rows
-            while($row = $catogories->fetch_assoc()) {
+            while($row = $catogories->fetch_assoc()) {  
                 $category_id = $row["cat_id"];
                 $category_title = $row["cat_title"];
                 echo "<tr>";
                 echo "<td>{$category_id}</td>";     
                 echo "<td>{$category_title}</td>";   
+                echo "<td><a href='categories.php?delete={$category_id}'>Delete</a></td>";   
                 echo "</tr>";
             }
 
         ?>   
+
+
+        <?php
+        
+            // deleting a category
+            // href='categories.php?delete={$category_id}
+            if(isset($_GET['delete'])) {
+                $category_id = $_GET['delete'];
+                $category_id = mysqli_real_escape_string($mysqli, $category_id);
+                $stmnt = "DELETE FROM categories WHERE cat_id = ?";
+                $query = $mysqli->prepare($stmnt); 
+                $query->bind_param("s", $category_id);
+                $result = $query->execute();
+
+                // check if query is successfull
+                if($result) { 
+                    // refresh the page
+                    header("Location: categories.php");
+                }
+                else { 
+                    echo "<div class='panel panel-danger'>";
+                    echo "<div class='panel-heading'>";
+                    echo "<h3 class='panel-title'>Something went wrong. Please try again later</h3>";
+                    echo "</div>";
+                    echo "</div>";
+                    die(); 
+                }
+            }
+
+        ?>
 
                                 </tbody>
                             </table>
