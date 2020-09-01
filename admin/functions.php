@@ -259,9 +259,9 @@
 
             $post_image        = $_FILES['image']['name'];
             $post_image_temp   = $_FILES['image']['tmp_name'];
+            $post_comment_count = 0;
 
             $post_date         = date("Y-m-d");
-            $post_comment_count = '4';
 
             // upload the image to the server
             define("UPLOAD_LOCATION", $_SERVER['DOCUMENT_ROOT'] . "/_PHP_blog/images/$post_image");
@@ -272,7 +272,7 @@
             $query = $mysqli->prepare($statement);
 
             // bind the parameters
-            $query->bind_param("sssssssss", $post_category_id, $post_title, $post_author, $post_date, $post_image, $post_content, $post_tags, $post_comment_count, $post_status);
+            $query->bind_param("sssssssis", $post_category_id, $post_title, $post_author, $post_date, $post_image, $post_content, $post_tags, $post_comment_count, $post_status);
 
             // execute the query
             $result = $query->execute();

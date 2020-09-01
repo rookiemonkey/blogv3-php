@@ -116,6 +116,16 @@
 
                             // close the connection to the database
                             $query->close();
+
+
+
+                            // increment the comment count on post
+                            $statement = "UPDATE posts SET post_comment_count  = post_comment_count + 1 WHERE post_id = ?";
+                            $query = $mysqli->prepare($statement);
+                            $query->bind_param("s", $comment_post);
+                            $result = $query->execute();
+                            $query->close();
+
                         }
 
                     ?>
