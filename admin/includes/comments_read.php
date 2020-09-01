@@ -10,6 +10,7 @@
             <th>Approved</th>
             <th>Unapproved</th>
             <th>Delete</th>
+            <th>Update</th>
         </tr>
     </thead>
     <tbody>

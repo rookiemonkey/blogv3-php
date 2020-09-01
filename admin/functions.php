@@ -440,7 +440,7 @@
             echo "<td>{$row['comment_author']}</td>";
             echo "<td>{$row['comment_content']}</td>";
             echo "<td>{$row['comment_email']}</td>";
-            echo "<td>{$post_category_row['post_title']}</td>";
+            echo "<td><a href='../post.php?p_id={$post_category_row['post_id']}'>{$post_category_row['post_title']}</a></td>";
             echo "<td><a href='posts.php?source=read_comments&approve={$row['comment_id']}'>Approve</a></td>"; 
             echo "<td><a href='posts.php?source=read_comments&unapprove={$row['comment_id']}'>Unapprove</a></td>"; 
             echo "<td><a href='posts.php?source=read_comments&delete={$row['comment_id']}'>Delete</a></td>"; 
