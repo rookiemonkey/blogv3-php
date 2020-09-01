@@ -43,7 +43,7 @@
                             // for the category currently saved on the database
                             // for that post
                             if($post_row['post_category_id'] == $category_row['cat_id']) {
-                                echo "<option value='{$category_row['cat_title']}' selected='selected'>{$category_row['cat_title']}</option>";
+                                echo "<option value='{$category_row['cat_id']}' selected='selected'>{$category_row['cat_title']}</option>";
                             }
 
                             else {
