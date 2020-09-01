@@ -2,6 +2,17 @@
 <?php include 'functions.php'; ?>
 <?php session_start();  ?>
 
+<?php 
+
+    if(isset($_SESSION['role'])) {
+        $current_user_role = $_SESSION['role'];
+        if($current_user_role !== 'admin') {
+            header('Location: ../index.php');
+        }
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
