@@ -34,7 +34,8 @@
                     
                         while($row = $catogories->fetch_assoc()) {
                             $category_title = $row["cat_title"];
-                            echo "<li><a href='#'>{$category_title}</a></li>";     
+                            $category_id = $row["cat_id"];
+                            echo "<li><a href='/_PHP_blog/category.php?c_id={$category_id}'>{$category_title}</a></li>";     
                         }
 
                     ?>    

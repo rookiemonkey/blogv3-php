@@ -5,6 +5,7 @@
     $posts = $query->get_result();
 
     while($row = $posts->fetch_assoc()) {
+        $post_id = $row["post_id"];
         $post_title = $row["post_title"];
         $post_author = $row["post_author"];
         $post_date = $row["post_date"];
@@ -14,7 +15,7 @@
     ?>
 
         <h2>
-            <a href="#"><?php echo $post_title ?></a>
+            <a href="/_PHP_blog/post.php?p_id=<?php echo $post_id ?>"><?php echo $post_title ?></a>
         </h2>
 
         <p class="lead">
@@ -28,7 +29,9 @@
 
         <hr>
             <!-- the image name on database should match the one on the file system -->
-            <img class="img-responsive" src="./images/<?php echo $post_image ?>.png" alt="<?php echo $post_title ?>">
+            <a href="/_PHP_blog/post.php?p_id=<?php echo $post_id ?>">
+                <img class="img-responsive" src="./images/<?php echo $post_image ?>" alt="<?php echo $post_title ?>">
+            </a>
         <hr>
 
         <p><?php echo $post_content ?></p>

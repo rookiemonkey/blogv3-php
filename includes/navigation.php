@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Logo</a>
+            <a class="navbar-brand" href="/_PHP_blog/">Logo</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -22,6 +22,7 @@
                     $catogories = $query->get_result();
 
                     while($row = $catogories->fetch_assoc()) {
+                        $category_id = $row["cat_id"];
                         $category_title = $row["cat_title"];
                         echo "<li><a href='#'>{$category_title}</a></li>";     
                     }
