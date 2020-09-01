@@ -603,8 +603,10 @@
             echo "<td>{$row['user_email']}</td>";
             echo "<td>{$row['user_avatar']}</td>";
             echo "<td>{$row['user_role']}</td>";
+            echo "<td><a href='./users.php?admin={$row['user_id']}'>To Admin</a></td>";
+            echo "<td><a href='./users.php?subscriber={$row['user_id']}'>To Subscriber</a></td>";
             echo "<td><a href='./users.php?delete={$row['user_id']}'>Delete</a></td>";
-            echo "<td><a href='./users.php?delete=={$row['user_id']}'>Edit</a></td>";
+            echo "<td><a href='./users.php?update=={$row['user_id']}'>Edit</a></td>";
             echo "</tr>";
         }
     }
@@ -679,6 +681,62 @@
             $query = $mysqli->prepare("DELETE FROM users WHERE user_id = ?");
             $query->bind_param('i', $user_id);
             $query->execute();
+            $query->close();
+            
+            // refresh the page
+            header("Location: users.php");
+        }
+    }
+
+
+
+
+
+
+
+
+    /**
+     * change role to admin
+     */
+    function update_user_toAdmin() {
+        global $mysqli;
+
+        if(isset($_GET['admin'])) {
+            // prepare statement and query
+            $user_id = intval($_GET['admin']);
+            $user_role = 'admin';
+            $query = $mysqli->prepare("UPDATE users SET user_role = ? WHERE user_id = ?");
+            $query->bind_param('si', $user_role, $user_id);
+            $query->execute();  
+            $query->close();
+            
+            // refresh the page
+            header("Location: users.php");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+    /**
+     * change role to subscriber
+     */
+    function update_user_toSubscriber() {
+        global $mysqli;
+
+        if(isset($_GET['subscriber'])) {
+            // prepare statement and query
+            $user_id = intval($_GET['subscriber']);
+            $user_role = 'subscriber';
+            $query = $mysqli->prepare("UPDATE users SET user_role = ? WHERE user_id = ?");
+            $query->bind_param('si', $user_role, $user_id);
+            $query->execute();  
             $query->close();
             
             // refresh the page

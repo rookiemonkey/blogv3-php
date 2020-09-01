@@ -8,6 +8,8 @@
             <th>Email</th>
             <th>Avatar</th>
             <th>Role</th>
+            <th>Change Role</th>
+            <th>Change Role</th>   
             <th>Delete</th>
             <th>Update</th>
         </tr>
@@ -16,6 +18,8 @@
 
         <?php read_users(); ?>
         <?php delete_user(); ?>
+        <?php update_user_toAdmin(); ?>
+        <?php update_user_toSubscriber(); ?>
 
     </tbody>
 </table>
