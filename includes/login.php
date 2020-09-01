@@ -10,6 +10,7 @@
         $query->bind_param('s', $username);
         $query->execute();
         $users = $query->get_result();
+        $query->close();
         
         if($users->num_rows === 0) {
             echo "Invalid username and password";
@@ -29,11 +30,13 @@
         }
 
         else {
+            session_start();
+            $_SESSION['username'] = $db_user_username;
+            $_SESSION['firstname'] = $db_user_firstname;
+            $_SESSION['lastname'] = $db_user_lastname;
+            $_SESSION['role'] = $db_user_role;
             header('Location: ../admin');
         }
-
-        $query->close();
     }
-
 
 ?>
