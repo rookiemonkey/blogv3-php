@@ -11,7 +11,20 @@
         <div class="form-group">
             <label for="category">Category</label>
             <select name="post_category_id" id="">
-                <option>100</option>
+                    <?php
+
+                    $query = $mysqli->prepare("SELECT * FROM categories");
+                    $query->execute();
+                    $categories = $query->get_result();
+
+                    
+                    while($row = $categories->fetch_assoc()) {
+                        echo "<option value='{$row['cat_id']}'>{$row['cat_title']}</option>";
+                    }
+
+                    $query->close();
+
+                    ?>
             </select>
         </div>
 
@@ -19,11 +32,12 @@
         <div class="form-group">
             <label for="users">Users</label>
             <select name="post_author" id="">
-                <option>Kevin Basina<option>
+                <option>Kevin Basina</option>
             </select> 
         </div>
 
         <div class="form-group">
+            <label for="post_status">Post Status</label>
             <select name="post_status" id="">
                 <option value="draft">Post Status</option>
                 <option value="published">Published</option>
