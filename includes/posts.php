@@ -9,7 +9,7 @@
         $post_title = $row["post_title"];
         $post_author = $row["post_author"];
         $post_date = $row["post_date"];
-        $post_content = $row["post_content"];
+        $post_content = substr($row["post_content"], 0, 200);
         $post_image = $row["post_image"];   
     
     ?>
@@ -34,7 +34,7 @@
             </a>
         <hr>
 
-        <p><?php echo $post_content ?></p>
+        <p><?php echo $post_content . '...' ?></p>
 
         <a class="btn btn-primary" href="#">
             Read More 

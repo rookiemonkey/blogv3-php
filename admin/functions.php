@@ -381,8 +381,6 @@
             // execute the query
             $result = $query->execute();
 
-            var_dump($query);
-
             // check if query is successfull
             if($result) { 
                 // refresh the page
