@@ -4,12 +4,9 @@
 
 <?php 
 
-    if(isset($_SESSION['role'])) {
-        $current_user_role = $_SESSION['role'];
-        if($current_user_role !== 'admin') {
-            header('Location: ../index.php');
-        }
-    }
+    if(!isset($_SESSION['role'])) {
+        header('Location: ../index.php');
+    }   
 
 ?>
 
