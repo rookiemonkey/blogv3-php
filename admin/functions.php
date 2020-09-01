@@ -398,4 +398,57 @@
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * read all comments and render them as a table
+     */
+    function read_comments() {
+        global $mysqli;
+
+        // prepare statement and query
+        $query = $mysqli->prepare("SELECT * FROM comments");
+        $query->execute();
+        $comments = $query->get_result();
+        $query->close();
+        
+        // loop into the results and render
+        while($row = $comments->fetch_assoc()) {  
+
+            $query = $mysqli->prepare("SELECT * FROM posts WHERE post_id = ?");
+            $query->bind_param('s', $row['comment_post']);
+            $query->execute();
+            $post = $query->get_result();
+            $post_category_row = $post->fetch_assoc();
+
+            echo "<tr>";
+            echo "<td>{$row['comment_id']}</td>";
+            echo "<td>{$row['comment_date']}</td>";
+            echo "<td>{$row['comment_author']}</td>";
+            echo "<td>{$row['comment_content']}</td>";
+            echo "<td>{$row['comment_email']}</td>";
+            echo "<td>{$post_category_row['post_title']}</td>";
+            echo "<td><a href='posts.php?source=read_comments&approve={$row['comment_id']}'>Approve</a></td>"; 
+            echo "<td><a href='posts.php?source=read_comments&unapprove={$row['comment_id']}'>Unapprove</a></td>"; 
+            echo "<td><a href='posts.php?source=read_comments&delete={$row['comment_id']}'>Delete</a></td>"; 
+            echo "<td><a href='posts.php?source=read_comments&update={$row['comment_id']}'>Update</a></td>";    
+            echo "</tr>";
+
+            $query->close();
+        }
+    }
+
 ?>

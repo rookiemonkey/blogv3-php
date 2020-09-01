@@ -29,6 +29,9 @@
                                     case 'edit_post':
                                         include './includes/post_edit.php';
                                         break;
+                                    case 'read_comments';
+                                        include './includes/comments_read.php';
+                                        break;
                                     default:
                                         include './includes/posts_read.php';
                                 }
