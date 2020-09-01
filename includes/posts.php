@@ -1,6 +1,8 @@
 <?php
 
-    $query = $mysqli->prepare("SELECT * FROM posts");
+    $post_status = 'published';
+    $query = $mysqli->prepare("SELECT * FROM posts WHERE post_status = ?");
+    $query->bind_param('s', $post_status);
     $query->execute();
     $posts = $query->get_result();
 
