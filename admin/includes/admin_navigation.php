@@ -67,7 +67,7 @@
                 <a href="./categories.php"><i class="fa fa-fw fa-wrench"></i> Categories</a>
             </li>
             <li class="active">
-                <a href="./posts.php?source=read_comments"><i class="fa fa-fw fa-file"></i> Comments</a>
+                <a href="./comments.php"><i class="fa fa-fw fa-file"></i> Comments</a>
             </li>
         </ul>
     </div>

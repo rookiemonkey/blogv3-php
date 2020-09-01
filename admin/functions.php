@@ -443,11 +443,39 @@
             echo "<td><a href='../post.php?p_id={$post_category_row['post_id']}'>{$post_category_row['post_title']}</a></td>";
             echo "<td><a href='posts.php?source=read_comments&approve={$row['comment_id']}'>Approve</a></td>"; 
             echo "<td><a href='posts.php?source=read_comments&unapprove={$row['comment_id']}'>Unapprove</a></td>"; 
-            echo "<td><a href='posts.php?source=read_comments&delete={$row['comment_id']}'>Delete</a></td>"; 
-            echo "<td><a href='posts.php?source=read_comments&update={$row['comment_id']}'>Update</a></td>";    
+            echo "<td><a href='comments.php?delete={$row['comment_id']}'>Delete</a></td>"; 
+            echo "<td><a href='comments.php?update={$row['comment_id']}'>Update</a></td>";    
             echo "</tr>";
 
             $query->close();
+        }
+    }
+
+
+
+
+
+
+
+
+
+    /**
+     * delete a comment
+     * admin/posts.php?source=read_comments&delete=2
+     */
+    function delete_comment() {
+        global $mysqli;
+
+        if(isset($_GET['delete'])) {
+            // prepare statement and query
+            $comment_id = intval($_GET['delete']);
+            $query = $mysqli->prepare("DELETE FROM comments WHERE comment_id = ?");
+            $query->bind_param('i', $comment_id);
+            $query->execute();
+            $query->close();
+            
+            // refresh the page
+            header("Location: comments.php");
         }
     }
 

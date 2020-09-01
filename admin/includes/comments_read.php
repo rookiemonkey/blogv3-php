@@ -16,6 +16,7 @@
     <tbody>
 
         <?php read_comments(); ?>
+        <?php delete_comment(); ?>
 
     </tbody>
 </table>
