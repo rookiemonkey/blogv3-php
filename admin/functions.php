@@ -603,6 +603,8 @@
             echo "<td>{$row['user_email']}</td>";
             echo "<td>{$row['user_avatar']}</td>";
             echo "<td>{$row['user_role']}</td>";
+            echo "<td><a href='./users.php?delete={$row['user_id']}'>Delete</a></td>";
+            echo "<td><a href='./users.php?delete=={$row['user_id']}'>Edit</a></td>";
             echo "</tr>";
         }
     }
@@ -636,10 +638,6 @@
             $query->bind_param('ssssssss', $user_firstname, $user_lastname, $user_username, $user_role, $user_email, $user_password, $user_avatar, $user_randSalt);
             $result = $query->execute();
 
-                        echo "<pre>";
-            var_dump($query);
-            echo "</pre>";
-
             // check if query is successfull
             if($result) { 
                 echo "<div class='panel panel-success'>";
@@ -658,6 +656,33 @@
             
             $query->close();
             
+        }
+    }
+
+
+
+
+
+
+
+
+
+    /**
+     * delete a user
+     */
+    function delete_user() {
+        global $mysqli;
+
+        if(isset($_GET['delete'])) {
+            // prepare statement and query
+            $user_id = intval($_GET['delete']);
+            $query = $mysqli->prepare("DELETE FROM users WHERE user_id = ?");
+            $query->bind_param('i', $user_id);
+            $query->execute();
+            $query->close();
+            
+            // refresh the page
+            header("Location: users.php");
         }
     }
 ?>

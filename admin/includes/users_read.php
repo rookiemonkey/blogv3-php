@@ -8,12 +8,14 @@
             <th>Email</th>
             <th>Avatar</th>
             <th>Role</th>
+            <th>Delete</th>
+            <th>Update</th>
         </tr>
     </thead>
     <tbody>
 
         <?php read_users(); ?>
-        
+        <?php delete_user(); ?>
 
     </tbody>
 </table>
