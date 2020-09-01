@@ -607,4 +607,57 @@
         }
     }
 
+
+
+
+
+
+
+
+
+    /**
+     * create a user
+     */
+    function create_user() {
+        global $mysqli;
+
+        if(isset($_POST['create_user'])) {
+            $user_firstname = $_POST['user_firstname'];
+            $user_lastname = $_POST['user_lastname'];
+            $user_username = $_POST['user_username'];
+            $user_role = $_POST['user_role'];
+            $user_email = $_POST['user_email'];
+            $user_password = $_POST['user_password'];
+            $user_avatar = "test+image+page";
+            $user_randSalt = "test+random+salt";
+            
+            // prepare statement and query
+            $query = $mysqli->prepare("INSERT INTO users (user_firstname, user_lastname, user_username, user_role, user_email, user_password, user_avatar, user_randSalt) VALUES (?,?,?,?,?,?,?,?)");
+            $query->bind_param('ssssssss', $user_firstname, $user_lastname, $user_username, $user_role, $user_email, $user_password, $user_avatar, $user_randSalt);
+            $result = $query->execute();
+
+                        echo "<pre>";
+            var_dump($query);
+            echo "</pre>";
+
+            // check if query is successfull
+            if($result) { 
+                echo "<div class='panel panel-success'>";
+                echo "<div class='panel-heading'>";
+                echo "<h3 class='panel-title'>Succesfully added a post</h3>";
+                echo "</div>";
+                echo "</div>";
+            }
+            else { 
+                echo "<div class='panel panel-danger'>";
+                echo "<div class='panel-heading'>";
+                echo "<h3 class='panel-title'>Something went wrong. Please try again later</h3>";
+                echo "</div>";
+                echo "</div>";
+            }
+            
+            $query->close();
+            
+        }
+    }
 ?>
