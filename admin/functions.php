@@ -606,7 +606,7 @@
             echo "<td><a href='./users.php?admin={$row['user_id']}'>To Admin</a></td>";
             echo "<td><a href='./users.php?subscriber={$row['user_id']}'>To Subscriber</a></td>";
             echo "<td><a href='./users.php?delete={$row['user_id']}'>Delete</a></td>";
-            echo "<td><a href='./users.php?update=={$row['user_id']}'>Edit</a></td>";
+            echo "<td><a href='./users.php?source=edit_user&u_id={$row['user_id']}'>Edit</a></td>";
             echo "</tr>";
         }
     }
@@ -741,6 +741,56 @@
             
             // refresh the page
             header("Location: users.php");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * update a user
+     */
+    function update_user() {
+        global $mysqli;
+
+        if(isset($_POST['update_user'])) {
+            $user_id = intval($_GET['u_id']);
+            $user_firstname = $_POST['user_firstname'];
+            $user_lastname = $_POST['user_lastname'];
+            $user_username = $_POST['user_username'];
+            $user_role = $_POST['user_role'];
+            $user_email = $_POST['user_email'];
+            $user_password = $_POST['user_password'];
+            $user_avatar = "test+image+page";
+            $user_randSalt = "test+random+salt";
+            
+            // prepare statement and query
+            $query = $mysqli->prepare("UPDATE users SET user_firstname = ?, user_lastname = ?, user_username = ?, user_role = ?, user_email = ?, user_password = ?, user_avatar = ?, user_randSalt = ? WHERE user_id = ?");
+            $query->bind_param('sssssssss', $user_firstname, $user_lastname, $user_username, $user_role, $user_email, $user_password, $user_avatar, $user_randSalt, $user_id);
+            $result = $query->execute();
+
+            // check if query is successfull
+            if($result) { 
+                header('Location: users.php');
+            }
+            else { 
+                echo "<div class='panel panel-danger'>";
+                echo "<div class='panel-heading'>";
+                echo "<h3 class='panel-title'>Something went wrong. Please try again later</h3>";
+                echo "</div>";
+                echo "</div>";
+            }
+            
+            $query->close();
+            
         }
     }
 ?>

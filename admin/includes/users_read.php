@@ -18,6 +18,7 @@
 
         <?php read_users(); ?>
         <?php delete_user(); ?>
+        <?php update_user(); ?>
         <?php update_user_toAdmin(); ?>
         <?php update_user_toSubscriber(); ?>
 
