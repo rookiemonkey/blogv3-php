@@ -7,6 +7,7 @@
             <th>Comment</th>
             <th>Email</th>
             <th>In Response to</th>
+            <th>Status</th>
             <th>Approved</th>
             <th>Unapproved</th>
             <th>Delete</th>
@@ -17,6 +18,8 @@
 
         <?php read_comments(); ?>
         <?php delete_comment(); ?>
+        <?php unapprove_comment(); ?>
+        <?php approve_comment(); ?>
 
     </tbody>
 </table>

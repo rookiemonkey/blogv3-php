@@ -441,8 +441,9 @@
             echo "<td>{$row['comment_content']}</td>";
             echo "<td>{$row['comment_email']}</td>";
             echo "<td><a href='../post.php?p_id={$post_category_row['post_id']}'>{$post_category_row['post_title']}</a></td>";
-            echo "<td><a href='posts.php?source=read_comments&approve={$row['comment_id']}'>Approve</a></td>"; 
-            echo "<td><a href='posts.php?source=read_comments&unapprove={$row['comment_id']}'>Unapprove</a></td>"; 
+            echo "<td>{$row['comment_status']}</td>";
+            echo "<td><a href='comments.php?approve={$row['comment_id']}'>Approve</a></td>"; 
+            echo "<td><a href='comments.php?unapprove={$row['comment_id']}'>Unapprove</a></td>"; 
             echo "<td><a href='comments.php?delete={$row['comment_id']}'>Delete</a></td>"; 
             echo "<td><a href='comments.php?update={$row['comment_id']}'>Update</a></td>";    
             echo "</tr>";
@@ -461,7 +462,7 @@
 
     /**
      * delete a comment
-     * admin/posts.php?source=read_comments&delete=2
+     * admin/comments.php?delete=2
      */
     function delete_comment() {
         global $mysqli;
@@ -476,6 +477,95 @@
             
             // refresh the page
             header("Location: comments.php");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * unapproved a comment
+     * admin/comments.php?unapprove=2
+     */
+    function unapprove_comment() {
+        global $mysqli;
+
+        if(isset($_GET['unapprove'])) {
+            // prepare statement and query
+            $comment_id = intval($_GET['unapprove']);
+            $comment_status = 'unapproved';
+            $query = $mysqli->prepare("UPDATE comments SET comment_status = ? WHERE comment_id = ?");
+            $query->bind_param('si', $comment_status, $comment_id);
+
+            // execute the query
+            $result = $query->execute();
+
+            // check if query is successfull
+            if($result) { 
+                // refresh the page
+                header("Location: comments.php");
+            }
+            else { 
+                echo "<div class='panel panel-danger'>";
+                echo "<div class='panel-heading'>";
+                echo "<h3 class='panel-title'>Something went wrong. Please try again later</h3>";
+                echo "</div>";
+                echo "</div>";
+            }
+
+            $query->close();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+    /**
+     * approve a comment
+     * admin/comments.php?approve=2
+     */
+    function approve_comment() {
+        global $mysqli;
+
+        if(isset($_GET['approve'])) {
+            // prepare statement and query
+            $comment_id = intval($_GET['approve']);
+            $comment_status = 'approved';
+            $query = $mysqli->prepare("UPDATE comments SET comment_status = ? WHERE comment_id = ?");
+            $query->bind_param('si', $comment_status, $comment_id);
+
+            // execute the query
+            $result = $query->execute();
+
+            // check if query is successfull
+            if($result) { 
+                // refresh the page
+                header("Location: comments.php");
+            }
+            else { 
+                echo "<div class='panel panel-danger'>";
+                echo "<div class='panel-heading'>";
+                echo "<h3 class='panel-title'>Something went wrong. Please try again later</h3>";
+                echo "</div>";
+                echo "</div>";
+            }
+
+            $query->close();
         }
     }
 
