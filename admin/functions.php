@@ -221,7 +221,7 @@
             echo "<td>{$row['post_id']}</td>";
             echo "<td>{$row['post_date']}</td>";
             echo "<td>{$row['post_author']}</td>";
-            echo "<td>{$row['post_title']}</td>";
+            echo "<td><a href='../post.php?p_id={$row['post_id']}'>{$row['post_title']}</a></td>";
             echo "<td>{$post_category_row['cat_title']}</td>";
             echo "<td>{$row['post_status']}</td>";
             echo "<td><img src='../images/{$row['post_image']}' 
