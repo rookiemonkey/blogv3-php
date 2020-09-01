@@ -569,4 +569,42 @@
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * read all users and render them as a table
+     */
+    function read_users() {
+        global $mysqli;
+
+        // prepare statement and query
+        $query = $mysqli->prepare("SELECT * FROM users");
+        $query->execute();
+        $users = $query->get_result();
+        $query->close();
+        
+        // loop into the results and render
+        while($row = $users->fetch_assoc()) {  
+            echo "<tr>";
+            echo "<td>{$row['user_id']}</td>";
+            echo "<td>{$row['user_username']}</td>";
+            echo "<td>{$row['user_firstname']}</td>";
+            echo "<td>{$row['user_lastname']}</td>";
+            echo "<td>{$row['user_email']}</td>";
+            echo "<td>{$row['user_avatar']}</td>";
+            echo "<td>{$row['user_role']}</td>";
+            echo "</tr>";
+        }
+    }
+
 ?>
