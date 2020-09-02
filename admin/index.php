@@ -159,7 +159,7 @@
                     $query->close();
                     $draft_posts_count = $draft_posts->num_rows;
 
-                    $published = 'draft';
+                    $published = 'published';
                     $query = $mysqli->prepare("SELECT * FROM posts WHERE post_status = ?");
                     $query->bind_param('s', $published);
                     $query->execute();

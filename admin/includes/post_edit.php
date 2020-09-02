@@ -67,12 +67,20 @@
             </div>
 
             <div class="form-group">
-                <input 
-                    type="text" 
-                    class="form-control" 
-                    name="post_status" 
-                    value="<?php echo $post_row["post_status"]; ?>"
-                >
+                <label for="post_status">Post Status</label>    
+                <select name="post_status" id="post_status">
+                    <?php
+                        if($post_row["post_status"] === 'draft') {
+                            echo '<option value="draft" selected="selected">Draft</option>';
+                            echo '<option value="published">Published</option>';
+                        }
+
+                        else if ($post_row["post_status"] === 'published') {
+                            echo '<option value="published" selected="selected">Publised</option>';
+                            echo '<option value="draft">Draft</option>';
+                        }
+                    ?>
+                </select>
             </div>
         
             <div class="form-group">
