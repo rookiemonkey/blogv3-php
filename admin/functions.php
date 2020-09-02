@@ -4,11 +4,16 @@
 
     // categories
     include './controllers/category_create.php';
-    include './controllers/category_delete.php';
-    include './controllers/category_update.php';
     include './controllers/category_renderAll.php';
+    include './controllers/category_update.php';
+    include './controllers/category_delete.php';
 
 
+    // posts
+    include './controllers/posts_create.php';
+    include './controllers/posts_renderAll.php';
+    include './controllers/posts_update.php';
+    include './controllers/posts_delete.php';
 
 
 
@@ -55,152 +60,6 @@
 
 
 
-    /**
-     * read all posts and render them as a table
-     */
-    function read_posts() {
-        global $mysqli;
-
-        // prepare statement and query
-        $query = $mysqli->prepare("SELECT * FROM posts");
-        $query->execute();
-        $posts = $query->get_result();
-        $query->close();
-        
-        // loop into the results and render
-        while($row = $posts->fetch_assoc()) {  
-
-            $query = $mysqli->prepare("SELECT * FROM categories WHERE cat_id = ?");
-            $query->bind_param('s', $row['post_category_id']);
-            $query->execute();
-            $categories = $query->get_result();
-            $post_category_row = $categories->fetch_assoc();
-
-            echo "<tr>";
-            echo "<th><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='{$row['post_id']}'></th>";
-            echo "<td>{$row['post_id']}</td>";
-            echo "<td>{$row['post_date']}</td>";
-            echo "<td>{$row['post_author']}</td>";
-            echo "<td><a href='../post.php?p_id={$row['post_id']}'>{$row['post_title']}</a></td>";
-            echo "<td>{$post_category_row['cat_title']}</td>";
-            echo "<td>{$row['post_status']}</td>";
-            echo "<td><img src='../images/{$row['post_image']}' 
-            alt='{$row['post_title']}' width='100' /></td>";
-            echo "<td>{$row['post_tags']}</td>";
-            echo "<td>{$row['post_comment_count']}</td>";
-            echo "<td><a href='./posts.php?delete={$row['post_id']}'>Delete</a></td>";
-            echo "<td><a href='./posts.php?source=edit_post&p_id={$row['post_id']}'>Edit</a></td>";
-            echo "</tr>";
-
-            $query->close();
-        }
-    }
-
-
-
-
-
-
-
-
-    /**
-     * create a post
-     */
-    function create_post() {
-        global $mysqli;
-
-        if(isset($_POST['create_post'])) {
-            $post_title        = $_POST['post_title'];
-            $post_author       = $_POST['post_author'];
-            $post_category_id  = $_POST['post_category_id'];
-            $post_status       = $_POST['post_status'];
-            $post_tags         = $_POST['post_tags'];
-            $post_content      = $_POST['post_content'];
-
-            $post_image        = $_FILES['image']['name'];
-            $post_image_temp   = $_FILES['image']['tmp_name'];
-            $post_comment_count = 0;
-
-            $post_date         = date("Y-m-d");
-
-            // upload the image to the server
-            define("UPLOAD_LOCATION", $_SERVER['DOCUMENT_ROOT'] . "/_PHP_blog/images/$post_image");
-            move_uploaded_file($post_image_temp, UPLOAD_LOCATION);
-
-            // prepare the statement
-            $statement = "INSERT INTO posts (post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status) VALUES (?,?,?,?,?,?,?,?,?)";
-            $query = $mysqli->prepare($statement);
-
-            // bind the parameters
-            $query->bind_param("sssssssis", $post_category_id, $post_title, $post_author, $post_date, $post_image, $post_content, $post_tags, $post_comment_count, $post_status);
-
-            // execute the query
-            $result = $query->execute();
-
-
-            // d=id of the newly created post
-            $p_id = mysqli_insert_id($mysqli);
-
-            // check if query is successfull
-            if($result) { 
-                echo "<div class='panel panel-success'>";
-                echo "<div class='panel-heading'>";
-                echo "<h3 class='panel-title'>Succesfully added a post. See the post <a href=/_PHP_blog/post.php?p_id={$p_id}' style='font-weight: bold'>here.<a/></h3>";
-                echo "</div>";
-                echo "</div>";
-            }
-            else { 
-                echo "<div class='panel panel-danger'>";
-                echo "<div class='panel-heading'>";
-                echo "<h3 class='panel-title'>Something went wrong. Please try again later</h3>";
-                echo "</div>";
-                echo "</div>";
-            }
-
-            // close the connection to the database
-            $query->close();
-        }
-    }
-
-
-
-
-
-
-
-
-
-    /**
-     * delete a post
-     */
-    function delete_post() {
-        global $mysqli;
-
-        if(isset($_GET['delete'])) {
-            $post_id = $_GET['delete'];
-            $post_id = mysqli_real_escape_string($mysqli, $post_id);
-            $stmnt = "DELETE FROM posts WHERE post_id = ?";
-            $query = $mysqli->prepare($stmnt); 
-            $query->bind_param("s", $post_id);
-            $result = $query->execute();
-
-            // check if query is successfull
-            if($result) { 
-                // refresh the page
-                header("Location: posts.php");
-            }
-            else { 
-                echo "<div class='panel panel-danger'>";
-                echo "<div class='panel-heading'>";
-                echo "<h3 class='panel-title'>Something went wrong. Please try again later</h3>";
-                echo "</div>";
-                echo "</div>";
-                die(); 
-            }
-
-            $query->close();
-        }
-    }
 
 
 
@@ -212,59 +71,24 @@
 
 
 
-    /**
-     * update a category
-     */
 
-    function update_post() {
-        global $mysqli;
 
-        if(isset($_POST['update_post'])) {
-            $post_title = $_POST["post_title"];
-            $post_category_id = $_POST['post_category_id'];
-            $post_author = $_POST['post_author'];
-            $post_status = $_POST['post_status'];
-            $post_tags = $_POST['post_tags'];
-            $post_content = $_POST['post_content'];
 
-            // escape string
-            $post_title = mysqli_real_escape_string($mysqli, $post_title);
-            $post_category_id = mysqli_real_escape_string($mysqli, $post_category_id);
-            $post_author = mysqli_real_escape_string($mysqli, $post_author);
-            $post_status = mysqli_real_escape_string($mysqli, $post_status);
-            $post_tags = mysqli_real_escape_string($mysqli, $post_tags);
-            $post_content = mysqli_real_escape_string($mysqli, $post_content);
 
-            // prepare statement
-            $statement = "UPDATE posts SET post_title = ?, post_category_id = ?, post_author = ?, post_status = ?, post_tags = ?, post_content = ? WHERE post_id = ?";
-            $query = $mysqli->prepare($statement);
 
-            // bind parameters
-            $query->bind_param("sisssss", $post_title, $post_category_id, $post_author, $post_status, $post_tags, $post_content, $_GET['p_id']);
 
-            // execute the query
-            $result = $query->execute();
 
-            // check if query is successfull
-            if($result) { 
-                echo "<div class='panel panel-success'>";
-                echo "<div class='panel-heading'>";
-                echo "<h3 class='panel-title'>Post Updated succesfully. See the post ";
-                echo "<a href=/_PHP_blog/post.php?p_id={$_GET['p_id']}' style='font-weight: bold'>here.<a/></h3>";
-                echo "</div>";
-                echo "</div>";
-            }
-            else { 
-                echo "<div class='panel panel-danger'>";
-                echo "<div class='panel-heading'>";
-                echo "<h3 class='panel-title'>Something went wrong. Please try again later</h3>";
-                echo "</div>";
-                echo "</div>";
-            }
 
-            $query->close();
-        }
-    }
+
+
+
+
+
+
+
+
+
+
 
 
 
