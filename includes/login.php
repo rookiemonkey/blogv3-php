@@ -16,7 +16,6 @@
             echo "Invalid username and password";
             die();
         }
-
         $row = $users->fetch_assoc();
         $db_user_id = $row['user_id'];
         $db_user_password = $row['user_password'];
@@ -24,6 +23,8 @@
         $db_user_firstname = $row['user_firstname'];
         $db_user_lastname = $row['user_lastname'];
         $db_user_role = $row['user_role'];
+
+        $password = crypt($password, $db_user_password);
 
         if($password !== $db_user_password) {
             header('Location: ../index.php');

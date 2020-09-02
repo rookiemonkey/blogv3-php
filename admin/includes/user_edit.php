@@ -57,7 +57,7 @@
 
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" id="password" class="form-control" name="user_password" value="<?php echo $user_row['user_password'] ?>">
+            <input type="password" id="password" class="form-control" name="user_password" value="<?php echo $user_row['user_password'] ?>" readonly>
         </div>
 
         <div class="form-group">
