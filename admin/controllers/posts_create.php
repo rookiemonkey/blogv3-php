@@ -17,6 +17,7 @@
             $post_image        = $_FILES['image']['name'];
             $post_image_temp   = $_FILES['image']['tmp_name'];
             $post_comment_count = 0;
+            $post_views         = 0;
 
             $post_date         = date("Y-m-d");
 
@@ -25,11 +26,11 @@
             move_uploaded_file($post_image_temp, UPLOAD_LOCATION);
 
             // prepare the statement
-            $statement = "INSERT INTO posts (post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status) VALUES (?,?,?,?,?,?,?,?,?)";
+            $statement = "INSERT INTO posts (post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status) VALUES (?,?,?,?,?,?,?,?,?,?)";
             $query = $mysqli->prepare($statement);
 
             // bind the parameters
-            $query->bind_param("sssssssis", $post_category_id, $post_title, $post_author, $post_date, $post_image, $post_content, $post_tags, $post_comment_count, $post_status);
+            $query->bind_param("sssssssisi", $post_category_id, $post_title, $post_author, $post_date, $post_image, $post_content, $post_tags, $post_comment_count, $post_status, $post_views);
 
             // execute the query
             $result = $query->execute();

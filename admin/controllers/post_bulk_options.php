@@ -55,14 +55,14 @@
                             $post_image        = $row['post_image'];
                             $post_date         = date("Y-m-d");
                             $post_comment_count = 0;
+                            $post_views         = 0;
 
-
-                            $statement = "INSERT INTO posts (post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status) VALUES (?,?,?,?,?,?,?,?,?)";
+                            $statement = "INSERT INTO posts (post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status, post_views) VALUES (?,?,?,?,?,?,?,?,?,?)";
                             $query = $mysqli->prepare($statement);
-                                        
-                            $query->bind_param("sssssssis", $post_category_id, $post_title, $post_author, $post_date, $post_image, $post_content, $post_tags, $post_comment_count, $post_status);
+     
+                            $query->bind_param("sssssssisi", $post_category_id, $post_title, $post_author, $post_date, $post_image, $post_content, $post_tags, $post_comment_count, $post_status, $post_views);
 
-                            $result = $query->execute();
+                            $query->execute();
                         }  
                         break;
 
