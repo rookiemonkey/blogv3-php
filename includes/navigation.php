@@ -30,6 +30,8 @@
 
                 <li><a href='/_PHP_blog/admin'>Admin</a></li>
 
+                <li><a href='/_PHP_blog/registration.php'>Register</a></li>
+
                 <?php
                     if(isset($_SESSION['role'])) {
 
