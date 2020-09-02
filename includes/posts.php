@@ -21,7 +21,7 @@
         </h2>
 
         <p class="lead">
-            by <a href="index.php"><?php echo $post_author ?></a>
+            by <a href="/_PHP_blog/author.php?author='<?php echo $post_author ?>'><?php echo $post_author ?></a>
         </p>
 
         <p>

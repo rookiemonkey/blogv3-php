@@ -20,7 +20,7 @@
 
 
     // posts
-    include './controllers/posts_create.php';
+    include './controllers/posts_create.php';   
     include './controllers/posts_renderAll.php';
     include './controllers/posts_update.php';
     include './controllers/posts_delete.php';
