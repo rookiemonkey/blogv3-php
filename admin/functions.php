@@ -383,8 +383,12 @@
 
             // check if query is successfull
             if($result) { 
-                // refresh the page
-                header("Location: posts.php");
+                echo "<div class='panel panel-success'>";
+                echo "<div class='panel-heading'>";
+                echo "<h3 class='panel-title'>Post Updated succesfully. See the post ";
+                echo "<a href=/_PHP_blog/post.php?p_id={$_GET['p_id']}' style='font-weight: bold'>here.<a/></h3>";
+                echo "</div>";
+                echo "</div>";
             }
             else { 
                 echo "<div class='panel panel-danger'>";
