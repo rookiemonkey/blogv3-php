@@ -137,11 +137,15 @@
             // execute the query
             $result = $query->execute();
 
+
+            // d=id of the newly created post
+            $p_id = mysqli_insert_id($mysqli);
+
             // check if query is successfull
             if($result) { 
                 echo "<div class='panel panel-success'>";
                 echo "<div class='panel-heading'>";
-                echo "<h3 class='panel-title'>Succesfully added a post</h3>";
+                echo "<h3 class='panel-title'>Succesfully added a post. See the post <a href=/_PHP_blog/post.php?p_id={$p_id}' style='font-weight: bold'>here.<a/></h3>";
                 echo "</div>";
                 echo "</div>";
             }
