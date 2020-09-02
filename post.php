@@ -76,50 +76,58 @@
                     <?php
                 
                         if(isset($_POST['create_comment'])) {
-                            $comment_post = $_GET['p_id'];
-                            $comment_author = $_POST['comment_author'];
-                            $comment_email = $_POST['comment_email'];
-                            $comment_content = $_POST['comment_content'];
-                            $comment_date = date("Y-m-d");
-                            $comment_status = "unapproved";
+                            
+                            if($_POST['comment_author'] !== '' || $_POST['comment_email'] !== '' || 
+                            $_POST['comment_content'] !== ''
+                            ) { 
 
-                            if($comment_author === '' || $comment_email === '' || 
-                            $comment_content === ''
-                            ) { die(); }
+                                $comment_post = $_GET['p_id'];
+                                $comment_author = $_POST['comment_author'];
+                                $comment_email = $_POST['comment_email'];
+                                $comment_content = $_POST['comment_content'];
+                                $comment_date = date("Y-m-d");
+                                $comment_status = "unapproved";
 
-                            $statement = "INSERT INTO comments (comment_post, comment_author, comment_email, comment_content, comment_status, comment_date) VALUES (?,?,?,?,?,?)";
-                            $query = $mysqli->prepare($statement);
-                            $query->bind_param("ssssss", $comment_post, $comment_author, $comment_email, $comment_content, $comment_status, $comment_date);
-                            $result = $query->execute();
+                                $statement = "INSERT INTO comments (comment_post, comment_author, comment_email, comment_content, comment_status, comment_date) VALUES (?,?,?,?,?,?)";
+                                $query = $mysqli->prepare($statement);
+                                $query->bind_param("ssssss", $comment_post, $comment_author, $comment_email, $comment_content, $comment_status, $comment_date);
+                                $result = $query->execute();
 
-                            // check if query is successfull
-                            if($result) { 
-                                echo "<div class='panel panel-success'>";
-                                echo "<div class='panel-heading'>";
-                                echo "<h3 class='panel-title'>Succesfully added a comment</h3>";
-                                echo "</div>";
-                                echo "</div>";
+                                // check if query is successfull
+                                if($result) { 
+                                    echo "<div class='panel panel-success'>";
+                                    echo "<div class='panel-heading'>";
+                                    echo "<h3 class='panel-title'>Succesfully added a comment</h3>";
+                                    echo "</div>";
+                                    echo "</div>";
+                                }
+                                else { 
+                                    echo "<div class='panel panel-danger'>";
+                                    echo "<div class='panel-heading'>";
+                                    echo "<h3 class='panel-title'>Something went wrong. Please try again later</h3>";
+                                    echo "</div>";
+                                    echo "</div>";
+                                }
+
+                                // close the connection to the database
+                                $query->close();
+
+                                // increment the comment count on post
+                                $statement = "UPDATE posts SET post_comment_count  = post_comment_count + 1 WHERE post_id = ?";
+                                $query = $mysqli->prepare($statement);
+                                $query->bind_param("s", $comment_post);
+                                $result = $query->execute();
+                                $query->close();
+
                             }
-                            else { 
+
+                            else {
                                 echo "<div class='panel panel-danger'>";
                                 echo "<div class='panel-heading'>";
-                                echo "<h3 class='panel-title'>Something went wrong. Please try again later</h3>";
+                                echo "<h3 class='panel-title'>Please provide your comment details</h3>";
                                 echo "</div>";
                                 echo "</div>";
                             }
-
-                            // close the connection to the database
-                            $query->close();
-
-
-
-                            // increment the comment count on post
-                            $statement = "UPDATE posts SET post_comment_count  = post_comment_count + 1 WHERE post_id = ?";
-                            $query = $mysqli->prepare($statement);
-                            $query->bind_param("s", $comment_post);
-                            $result = $query->execute();
-                            $query->close();
-
                         }
 
                     ?>
