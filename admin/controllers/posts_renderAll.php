@@ -29,6 +29,7 @@
                 </th>
                 <td><?php echo $row['post_id']; ?></td>
                 <td><?php echo $row['post_date']; ?></td>
+                <td><?php echo $row['post_views']; ?></td>
                 <td><?php echo $row['post_author']; ?></td>
                 <td>
                     <a href='../post.php?p_id=<?php echo $row['post_id'] ?>'>

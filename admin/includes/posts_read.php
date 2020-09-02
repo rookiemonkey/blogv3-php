@@ -23,6 +23,7 @@
                 <th><input id="selectAllBoxes" type="checkbox"></th>
                 <th>Post ID</th>
                 <th>Date</th>
+                <th>Views</th>
                 <th>Author</th>
                 <th>Title</th>
                 <th>Category</th>

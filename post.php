@@ -23,6 +23,12 @@
                     if(isset($_GET['p_id'])) {
                         $post_id = $_GET['p_id'];
 
+                        // update view count on database
+                        $views_query = $mysqli->prepare("UPDATE posts SET post_views = post_views + 1 WHERE post_id = ?");
+                        $views_query->bind_param('s', $post_id);
+                        $views_query->execute();
+                        $views_query->close();
+
                         $query = $mysqli->prepare("SELECT * FROM posts WHERE post_id = ?");
                         $query->bind_param('s', $post_id);
                         $query->execute();
