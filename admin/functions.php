@@ -644,7 +644,7 @@
             if($result) { 
                 echo "<div class='panel panel-success'>";
                 echo "<div class='panel-heading'>";
-                echo "<h3 class='panel-title'>Succesfully added a post</h3>";
+                echo "<h3 class='panel-title'>Succesfully added a user</h3>";
                 echo "</div>";
                 echo "</div>";
             }
