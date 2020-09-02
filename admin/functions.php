@@ -1,5 +1,7 @@
 <?php
 
+    include './controllers/post_bulk_options.php';
+
     /**
      * create a new category
      */
@@ -218,6 +220,7 @@
             $post_category_row = $categories->fetch_assoc();
 
             echo "<tr>";
+            echo "<th><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='{$row['post_id']}'></th>";
             echo "<td>{$row['post_id']}</td>";
             echo "<td>{$row['post_date']}</td>";
             echo "<td>{$row['post_author']}</td>";
