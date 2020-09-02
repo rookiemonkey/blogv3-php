@@ -66,6 +66,14 @@
                         }  
                         break;
 
+                    case 'reset views':
+                        $reset = 0;
+                        $query = $mysqli->prepare("UPDATE posts SET post_views = ? WHERE post_id = ?");
+                        $query->bind_param("ii", $reset, $post_id);
+                        $query->execute();
+                        $query->close();
+                        break;
+
                     default:
                         die();
                 }

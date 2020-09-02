@@ -9,6 +9,7 @@
             <option value="published">Published</option>
             <option value="delete">Delete</option>
             <option value="clone">Clone</option>
+            <option value="reset views">Reset Views</option>
         </select>
     </div>
 
