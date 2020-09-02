@@ -13,7 +13,7 @@
 
     <div id="bulkOptionsContainer" class="col-xs-4">
         <input type="submit" class="btn btn-success" value="Apply">
-        <a href="post_add.php" class="btn btn-primary">Add Post</a>
+        <a href="posts.php?source=add_post" class="btn btn-primary">Add Post</a>
     </div>
 
     <table class='table table-hover table-bordered'>
