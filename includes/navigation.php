@@ -29,6 +29,17 @@
                 ?>
 
                 <li><a href='/_PHP_blog/admin'>Admin</a></li>
+
+                <?php
+                    if(isset($_SESSION['role'])) {
+
+                        if(isset($_GET['p_id'])) {
+                            $post_id = $_GET['p_id'];
+
+                            echo "<li><a href='/_PHP_blog/admin/posts.php?source=edit_post&p_id={$post_id}'>Edit Post</a></li>";
+                        }
+                    }
+                ?>
                 
             </ul>
         </div>
