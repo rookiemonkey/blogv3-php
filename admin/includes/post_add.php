@@ -1,4 +1,4 @@
-<?php create_post(); ?>
+<?php Posts::create(); ?>
 
 
 <form action="" method="post" enctype="multipart/form-data">    

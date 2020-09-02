@@ -1,6 +1,6 @@
 <?php
 
-    update_post();
+    Posts::update();
 
     if(isset($_GET['p_id'])) {
         // prepare statement and query

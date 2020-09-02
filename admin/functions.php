@@ -8,12 +8,29 @@
     include './controllers/category_update.php';
     include './controllers/category_delete.php';
 
+    class Categories {
+        public static function create() { create_category(); }
+        public static function read() { read_categories(); }
+        public static function update() { update_category(); }
+        public static function delete() { delete_category(); }
+    }
+
+
+
+
 
     // posts
     include './controllers/posts_create.php';
     include './controllers/posts_renderAll.php';
     include './controllers/posts_update.php';
     include './controllers/posts_delete.php';
+
+    class Posts {
+        public static function create() { create_post(); }
+        public static function read() { read_posts(); }
+        public static function update() { update_post(); }
+        public static function delete() { delete_post(); }
+    }
 
 
 

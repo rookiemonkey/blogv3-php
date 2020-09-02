@@ -33,8 +33,8 @@
         </thead>
         <tbody>
 
-            <?php delete_post(); ?>
-            <?php read_posts(); ?>
+            <?php Posts::delete(); ?>
+            <?php Posts::read(); ?>
 
         </tbody>
     </table>

@@ -19,9 +19,9 @@
 
                         <div class='col-xs-6'>
 
-        <?php create_category(); ?>
-        <?php delete_category(); ?>
-        <?php update_category(); ?>
+        <?php Categories::create(); ?>
+        <?php Categories::delete(); ?>
+        <?php Categories::update(); ?>
 
                             <form action='' method='POST'>
                                 <div class="form-group">
@@ -47,7 +47,7 @@
                                 </thead>
                                 <tbody>
 
-        <?php read_categories(); ?>
+        <?php Categories::read(); ?>
 
                                 </tbody>
                             </table>
