@@ -211,15 +211,15 @@
                         var data = google.visualization.arrayToDataTable([
                         ['Data', 'Count'],
                         <?php
-                            echo "['Posts (All', $posts->num_rows],";
-                            echo "['Posts (Published)', $published_posts_count],";
-                            echo "['Posts (Draft)', $draft_posts_count],";
+                            echo "['Posts (All)', $posts->num_rows],";
+                            echo "['Published Post', $published_posts_count],";
+                            echo "['Draft Post', $draft_posts_count],";
                             echo "['Comments (All)', $comments->num_rows],";
-                            echo "['Comments (Approved)', $aprroved_comments_count],";
-                            echo "['Comments (Unapproved)', $unapproved_comments_count],";
+                            echo "['Approved', $aprroved_comments_count],";
+                            echo "['Unapproved', $unapproved_comments_count],";
                             echo "['Users (All)', $users->num_rows],";
-                            echo "['Users (Admin)', $admin_users_count],";
-                            echo "['Users (Subscriber)', $subscriber_users_count],";
+                            echo "['Admins', $admin_users_count],";
+                            echo "['Subscribers', $subscriber_users_count],";
                             echo "['Categories', $categories->num_rows],";
                         ?>
                         ]);
