@@ -15,19 +15,15 @@
     </thead>
     <tbody>
 
-
         <?php 
-            if(isset($_GET['comments_of_post'])) {
-                read_comments_ofpost();
-            }
 
-            else {            
-                read_comments();
-            }
+            Comments::read();
+            Comments::read_ofPost();
+            Comments::delete();
+            Comments::unapprove();
+            Comments::approve();
+
         ?>
-        <?php delete_comment(); ?>
-        <?php unapprove_comment(); ?>
-        <?php approve_comment(); ?>
 
     </tbody>
 </table>

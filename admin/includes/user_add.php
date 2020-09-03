@@ -2,7 +2,7 @@
 
 <form action="" method="POST">    
 
-    <?php create_user(); ?>
+    <?php Users::create(); ?>
      
     <div class="form-group">
         <label for="firstname">First Name</label>

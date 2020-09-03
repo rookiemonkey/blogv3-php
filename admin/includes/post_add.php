@@ -11,19 +11,9 @@
         <div class="form-group">
             <label for="category" style="display: block;">Category</label>
             <select name="post_category_id" id="">
-                    <?php
 
-                        $query = $mysqli->prepare("SELECT * FROM categories");
-                        $query->execute();
-                        $categories = $query->get_result();
+                <?php render_categoryOptions_create(); ?>
 
-                        while($row = $categories->fetch_assoc()) {
-                            echo "<option value='{$row['cat_id']}'>{$row['cat_title']}</option>";
-                        }
-
-                        $query->close();
-
-                    ?>
             </select>
         </div>
 
@@ -31,19 +21,9 @@
         <div class="form-group">
             <label for="users" style="display: block;">Users</label>
             <select name="post_author" id="">
-                    <?php
 
-                        $query = $mysqli->prepare("SELECT * FROM users");
-                        $query->execute();
-                        $users = $query->get_result();
-                        
-                        while($row = $users->fetch_assoc()) {
-                            echo "<option value='{$row['user_username']}'>{$row['user_username']}</option>";
-                        }
+                <?php render_authorOptions_create(); ?>
 
-                        $query->close();
-
-                    ?>
             </select> 
         </div>
 

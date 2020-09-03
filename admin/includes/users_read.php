@@ -16,11 +16,15 @@
     </thead>
     <tbody>
 
-        <?php read_users(); ?>
-        <?php delete_user(); ?>
-        <?php update_user(); ?>
-        <?php update_user_toAdmin(); ?>
-        <?php update_user_toSubscriber(); ?>
+        <?php
+        
+            Users::read();
+            Users::delete();
+            Users::update();
+            Users::update_toAdmin();
+            Users::update_toSubscriber();
+
+        ?>
 
     </tbody>
 </table>

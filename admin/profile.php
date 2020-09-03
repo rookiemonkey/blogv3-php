@@ -16,7 +16,7 @@
                             <small><?php echo $_SESSION['username']; ?></small>
                         </h1>
 
-                        <?php update_current_user() ?> 
+                <?php Users::updateCurrent(); ?> 
 
                 <?php
 
@@ -25,8 +25,7 @@
                         $query = $mysqli->prepare("SELECT * FROM users WHERE user_username = ?");
                         $query->bind_param('s', $username);
                         $query->execute();
-                        $user = $query->get_result();
-                        
+                        $user = $query->get_result();   
                         $query->close();
                         
                         while($user_row = $user->fetch_assoc()) {
@@ -52,20 +51,10 @@
 
                             <div class="form-group">
                                 <label for="role" style="display: block;">Role</label>
-                                <select name="user_role">
-                                    <?php
+                                <select name="user_ro   le">
 
-                                        if($user_row['user_role'] === 'subscriber') {
-                                            echo '<option value="subscriber" selected="selected">Subscriber</option>';
-                                            echo '<option value="admin">Admin</option>';
-                                        }
+                <?php render_roleOptions_edit($user_row); ?>
 
-                                        else if ($user_row['user_role'] === 'admin') {
-                                            echo '<option value="admin" selected="selected">Admin</option>';
-                                            echo '<option value="subscriber">Subscriber</option>';
-                                        }
-
-                                    ?>
                                 </select>
                             </div>
 

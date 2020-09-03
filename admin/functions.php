@@ -7,8 +7,12 @@
     include './utilities/renderAlert_failed.php';
     include './utilities/renderAlert_tablenoresult.php';
     include './utilities/renderForm_updateCategory.php';
-
-
+    include './utilities/renderOptions_author_create.php';
+    include './utilities/renderOptions_author_edit.php';
+    include './utilities/renderOptions_category_create.php';
+    include './utilities/renderOptions_category_edit.php';
+    include './utilities/renderOptions_poststatus_edit.php';
+    include './utilities/renderOptions_role_edit.php';
 
 
 

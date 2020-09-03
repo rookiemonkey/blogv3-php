@@ -11,7 +11,7 @@
         $post_row = $post->fetch_assoc();
         $query->close();
         
-        if(!$post_row ) { header('Location: posts.php'); die(); }
+        if(!$post_row ) { header('Location: posts.php'); }
 
 ?>
 
@@ -30,28 +30,9 @@
             <div class="form-group">
                 <label for="category" style="display: block;">Category</label>
                 <select name="post_category_id">
-                    <?php
-                    
-                        $statement = "SELECT * FROM categories";
-                        $query = $mysqli->prepare($statement);
-                        $query->execute();
-                        $categories = $query->get_result();
-                    
-                        while($category_row = $categories->fetch_assoc()) {
 
-                            // echo an option tag with selected attribute
-                            // for the category currently saved on the database
-                            // for that post
-                            if($post_row['post_category_id'] == $category_row['cat_id']) {
-                                echo "<option value='{$category_row['cat_id']}' selected='selected'>{$category_row['cat_title']}</option>";
-                            }
+                    <?php render_categoryOptions_edit($post_row); ?>
 
-                            else {
-                                echo "<option value='{$category_row['cat_id']}'>{$category_row['cat_title']}</option>";
-                            }
-                        }
-
-                    ?>
                 </select>
             </div>
 
@@ -59,39 +40,18 @@
             <div class="form-group">
                 <label for="users" style="display: block;">Author</label>    
                 <select name="post_author">
-                    <?php
 
-                        echo "<option value='{$post_row['post_author']}'>{$post_row['post_author']}</option>";
-
-                        $query = $mysqli->prepare("SELECT * FROM users");
-                        $query->execute();
-                        $users = $query->get_result();
-                        
-                        while($row = $users->fetch_assoc()) {
-                            if($row !== $post_row['post_author']) {
-                                echo "<option value='{$row['user_username']}'>{$row['user_username']}</option>";
-                            }
-                        }
-
-                        $query->close();    
-                    ?>
+                    <?php render_authorOptions_edit($post_row); ?>
+  
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="post_status" style="display: block;">Post Status</label>    
                 <select name="post_status" id="post_status">
-                    <?php
-                        if($post_row["post_status"] === 'draft') {
-                            echo '<option value="draft" selected="selected">Draft</option>';
-                            echo '<option value="published">Published</option>';
-                        }
 
-                        else if ($post_row["post_status"] === 'published') {
-                            echo '<option value="published" selected="selected">Publised</option>';
-                            echo '<option value="draft">Draft</option>';
-                        }
-                    ?>
+                    <?php render_poststatusOptions_edit($post_row); ?>
+
                 </select>
             </div>
         
@@ -129,5 +89,4 @@
 
 <?php
     }
-
 ?>
