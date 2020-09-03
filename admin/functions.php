@@ -430,6 +430,8 @@
             $user_password = $_POST['user_password'];
             $user_avatar = "test+image+page";
             $user_randSalt = "test+random+salt";
+
+            $user_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
             
             // prepare statement and query
             $query = $mysqli->prepare("INSERT INTO users (user_firstname, user_lastname, user_username, user_role, user_email, user_password, user_avatar, user_randSalt) VALUES (?,?,?,?,?,?,?,?)");
