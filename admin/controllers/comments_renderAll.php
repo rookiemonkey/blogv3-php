@@ -15,7 +15,7 @@
 
         // render a message if no available post
         if($comments->num_rows === 0) {
-            render_alert("However, here are no comments for this post");
+            render_alert_tablenoresult("However, there are no comments for all the posts");
         }
         
         // loop into the results and render

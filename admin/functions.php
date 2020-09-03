@@ -3,7 +3,9 @@
     // utilities
     include './utilities/isAdmin.php';
     include './utilities/setOnlineUsers.php';
-    include './utilities/renderAlert.php';
+    include './utilities/renderAlert_success.php';
+    include './utilities/renderAlert_failed.php';
+    include './utilities/renderAlert_tablenoresult.php';
 
 
 

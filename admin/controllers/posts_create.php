@@ -1,7 +1,8 @@
 <?php
 
     /**
-     * create a post
+     * ROUTE: POST posts.php?source=add_post
+     * DESC: create a post
      */
     function create_post() {
         global $mysqli;
@@ -35,34 +36,19 @@
             // execute the query
             $result = $query->execute();
 
+            // close the connection to the database
+            $query->close();
+
             // d=id of the newly created post
             $p_id = mysqli_insert_id($mysqli);
 
             // check if query is successfull
             if($result) { 
-?>
-                <div class='panel panel-success'>
-                    <div class='panel-heading'>
-                        <h3 class='panel-title'>
-                            Succesfully added a post. See the post <a href=/_PHP_blog/post.php?p_id=<?php echo $p_id; ?>' style='font-weight: bold'>here.</a>
-                        </h3>
-                    </div>
-                </div>
-<?php
+                render_alert_success("Succesfully added a post");
             }
             else { 
-?>
-                <div class='panel panel-danger'>
-                    <div class='panel-heading'>
-                        <h3 class='panel-title'>Something went wrong. Please try again later</h3>
-                    </div>
-                </div>
-<?php
+                render_alert_failed();
             }
-
-            // close the connection to the database
-            $query->close();
         }
     }
-
 ?>

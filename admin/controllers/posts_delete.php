@@ -1,7 +1,8 @@
 <?php
 
     /**
-     * delete a post
+     * ROUTE: GET admin/posts.php?delete=COMMENTID
+     * DESC: delete a post
      */
     function delete_post() {
         global $mysqli;
@@ -13,6 +14,7 @@
             $query = $mysqli->prepare($stmnt); 
             $query->bind_param("s", $post_id);
             $result = $query->execute();
+            $query->close();
 
             // check if query is successfull
             if($result) { 
@@ -20,18 +22,8 @@
                 header("Location: posts.php");
             }
             else { 
-?>
-                <div class='panel panel-danger'>
-                    <div class='panel-heading'>
-                        <h3 class='panel-title'>Something went wrong. Please try again later</h3>
-                    </div>
-                </div>
-<?php
-                die(); 
+                render_alert_failed();
             }
-
-            $query->close();
         }
     }
-
 ?>

@@ -1,7 +1,8 @@
 <?php
 
     /**
-     * read all posts and render them as a table
+     * ROUTE: GET admin/posts.php
+     * DESC: read all the posts and render them as a table
      */
     function read_posts() {
         global $mysqli;
@@ -11,18 +12,21 @@
         $query->execute();
         $posts = $query->get_result();
         $query->close();
+
+        // render a message if no available post
+        if($posts->num_rows === 0) {
+            render_alert_tablenoresult("However, there are no available posts");
+        }
         
         // loop into the results and render
         while($row = $posts->fetch_assoc()) {  
-
             $query = $mysqli->prepare("SELECT * FROM categories WHERE cat_id = ?");
             $query->bind_param('s', $row['post_category_id']);
             $query->execute();
             $categories = $query->get_result();
             $post_category_row = $categories->fetch_assoc();
-
+            $query->close();
 ?>
-
             <tr>
                 <th>
                     <input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='<?php echo $row['post_id']; ?>'>
@@ -59,10 +63,7 @@
                     </a>
                 </td>
             </tr>
-
 <?php
-            $query->close();
         }
     }
-
 ?>

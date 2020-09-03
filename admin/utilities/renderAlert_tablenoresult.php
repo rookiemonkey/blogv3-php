@@ -1,6 +1,6 @@
 <?php
 
-    function render_alert($message_parameter) {
+    function render_alert_tablenoresult($message_parameter) {
         $message = $message_parameter;
 ?>
             <div class="jumbotron">

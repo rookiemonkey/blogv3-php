@@ -24,32 +24,16 @@
             // execute the query
             $result = $query->execute();
 
+            // close the connection to the database
+            $query->close();
+
             // check if query is successfull
             if($result) { 
-?>
-                <div class='panel panel-success'>
-                    <div class='panel-heading'>
-                        <h3 class='panel-title'>Post Updated succesfully. See the post 
-                            <a href=/_PHP_blog/post.php?p_id=<?echo $_GET['p_id']; ?>' style='font-weight: bold'>
-                                here.
-                            <a/>
-                        </h3>
-                    </div>
-                </div>
-<?php
+                render_alert_success("Post Updated succesfully");
             }
             else { 
-?>
-                <div class='panel panel-danger'>
-                    <div class='panel-heading'>
-                        <h3 class='panel-title'>Something went wrong. Please try again later</h3>
-                    </div>
-                </div>
-<?php
+                render_alert_failed();
             }
-
-            $query->close();
         }
     }
-
 ?>
