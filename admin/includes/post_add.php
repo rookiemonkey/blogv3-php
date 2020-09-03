@@ -9,20 +9,19 @@
         </div>
 
         <div class="form-group">
-            <label for="category">Category</label>
+            <label for="category" style="display: block;">Category</label>
             <select name="post_category_id" id="">
                     <?php
 
-                    $query = $mysqli->prepare("SELECT * FROM categories");
-                    $query->execute();
-                    $categories = $query->get_result();
+                        $query = $mysqli->prepare("SELECT * FROM categories");
+                        $query->execute();
+                        $categories = $query->get_result();
 
-                    
-                    while($row = $categories->fetch_assoc()) {
-                        echo "<option value='{$row['cat_id']}'>{$row['cat_title']}</option>";
-                    }
+                        while($row = $categories->fetch_assoc()) {
+                            echo "<option value='{$row['cat_id']}'>{$row['cat_title']}</option>";
+                        }
 
-                    $query->close();
+                        $query->close();
 
                     ?>
             </select>
@@ -30,14 +29,26 @@
 
 
         <div class="form-group">
-            <label for="users">Users</label>
+            <label for="users" style="display: block;">Users</label>
             <select name="post_author" id="">
-                <option>Kevin Basina</option>
+                    <?php
+
+                        $query = $mysqli->prepare("SELECT * FROM users");
+                        $query->execute();
+                        $users = $query->get_result();
+                        
+                        while($row = $users->fetch_assoc()) {
+                            echo "<option value='{$row['user_username']}'>{$row['user_username']}</option>";
+                        }
+
+                        $query->close();
+
+                    ?>
             </select> 
         </div>
 
         <div class="form-group">
-            <label for="post_status">Post Status</label>
+            <label for="post_status" style="display: block;">Post Status</label>
             <select name="post_status" id="">
                 <option value="draft">Select Options</option>
                 <option value="published">Published</option>

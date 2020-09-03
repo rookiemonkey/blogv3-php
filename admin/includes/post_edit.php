@@ -28,7 +28,7 @@
             </div>
 
             <div class="form-group">
-                <label for="category">Category</label>
+                <label for="category" style="display: block;">Category</label>
                 <select name="post_category_id">
                     <?php
                     
@@ -57,17 +57,29 @@
 
 
             <div class="form-group">
-                <label for="users">Author</label>    
-                <input 
-                    type="text" 
-                    class="form-control" 
-                    name="post_author" 
-                    value="<?php echo $post_row["post_author"]; ?>"
-                >
+                <label for="users" style="display: block;">Author</label>    
+                <select name="post_author">
+                    <?php
+
+                        echo "<option value='{$post_row['post_author']}'>{$post_row['post_author']}</option>";
+
+                        $query = $mysqli->prepare("SELECT * FROM users");
+                        $query->execute();
+                        $users = $query->get_result();
+                        
+                        while($row = $users->fetch_assoc()) {
+                            if($row !== $post_row['post_author']) {
+                                echo "<option value='{$row['user_username']}'>{$row['user_username']}</option>";
+                            }
+                        }
+
+                        $query->close();    
+                    ?>
+                </select>
             </div>
 
             <div class="form-group">
-                <label for="post_status">Post Status</label>    
+                <label for="post_status" style="display: block;">Post Status</label>    
                 <select name="post_status" id="post_status">
                     <?php
                         if($post_row["post_status"] === 'draft') {

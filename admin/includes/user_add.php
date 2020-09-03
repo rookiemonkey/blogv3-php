@@ -20,7 +20,7 @@
     </div>
 
     <div class="form-group">
-        <label for="role">Role</label>
+        <label for="role" style="display: block;">Role</label>
         <select name="user_role">
             <option value="subscriber">Select Role</option>
             <option value="admin">Admin</option>

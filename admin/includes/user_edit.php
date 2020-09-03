@@ -33,7 +33,7 @@
 
         <div class="form-group">
             <label for="role">Role</label>
-            <select name="user_role">
+            <select name="user_role" style="display: block;">
                 <?php
 
                     if($user_row['user_role'] === 'subscriber') {
