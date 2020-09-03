@@ -15,6 +15,8 @@
 
 
 
+    // utilities
+    include './utilities/isAdmin.php';
 
 
 
@@ -25,10 +27,10 @@
     include './controllers/category_delete.php';
 
     class Categories {
-        public static function create() { create_category(); }
-        public static function read() { read_categories(); }
-        public static function update() { update_category(); }
-        public static function delete() { delete_category(); }
+        public static function create() { isAdmin(); create_category(); }
+        public static function read() { isAdmin(); read_categories(); }
+        public static function update() { isAdmin(); update_category(); }
+        public static function delete() { isAdmin(); delete_category(); }
     }
 
 
@@ -44,9 +46,9 @@
 
     class Posts {
         public static function create() { create_post(); }
-        public static function read() { read_posts(); }
-        public static function update() { update_post(); }
-        public static function delete() { delete_post(); }
+        public static function read() { isAdmin(); read_posts(); }
+        public static function update() { isAdmin(); update_post(); }
+        public static function delete() { isAdmin(); delete_post(); }
     }
 
 
@@ -72,6 +74,8 @@
      */
     function update_renderForm() {
         global $mysqli;
+
+        isAdmin();
 
         if(isset($_GET['update']) && $_GET['update'] === '') {
             echo "<div class='panel panel-danger'>";
@@ -145,6 +149,8 @@
     function read_comments() {
         global $mysqli;
 
+        isAdmin();
+
         // prepare statement and query
         $query = $mysqli->prepare("SELECT * FROM comments");
         $query->execute();
@@ -196,6 +202,8 @@
      function read_comments_ofpost() {
         global $mysqli;
 
+        isAdmin();
+
         // prepare statement and query
         $post = $_GET['comments_of_post'];
         $query = $mysqli->prepare("SELECT * FROM comments WHERE comment_post = ?");
@@ -245,6 +253,8 @@
     function delete_comment() {
         global $mysqli;
 
+        isAdmin();
+
         if(isset($_GET['delete'])) {
             // prepare statement and query
             $comment_id = intval($_GET['delete']);
@@ -282,6 +292,8 @@
      */
     function unapprove_comment() {
         global $mysqli;
+
+        isAdmin();
 
         if(isset($_GET['unapprove'])) {
             // prepare statement and query
@@ -331,6 +343,8 @@
      */
     function approve_comment() {
         global $mysqli;
+
+        isAdmin();
 
         if(isset($_GET['approve'])) {
             // prepare statement and query
@@ -383,6 +397,8 @@
     function read_users() {
         global $mysqli;
 
+        isAdmin();
+
         // prepare statement and query
         $query = $mysqli->prepare("SELECT * FROM users");
         $query->execute();
@@ -420,6 +436,8 @@
      */
     function create_user() {
         global $mysqli;
+        
+        isAdmin();
 
         if(isset($_POST['create_user'])) {
             $user_firstname = $_POST['user_firstname'];
@@ -473,6 +491,8 @@
     function delete_user() {
         global $mysqli;
 
+        isAdmin();
+
         if(isset($_GET['delete'])) {
             // prepare statement and query
             $user_id = intval($_GET['delete']);
@@ -498,6 +518,8 @@
      */
     function update_user_toAdmin() {
         global $mysqli;
+
+        isAdmin();
 
         if(isset($_GET['admin'])) {
             // prepare statement and query
@@ -527,6 +549,8 @@
      */
     function update_user_toSubscriber() {
         global $mysqli;
+
+        isAdmin();
 
         if(isset($_GET['subscriber'])) {
             // prepare statement and query
@@ -558,6 +582,8 @@
      */
     function update_user() {
         global $mysqli;
+
+        isAdmin();
 
         if(isset($_POST['update_user'])) {
             $user_id = intval($_GET['u_id']);
