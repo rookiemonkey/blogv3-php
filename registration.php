@@ -30,10 +30,7 @@
                         }
 
                         else {
-                            $hash = "$2y$10$";
-                            $salt = "a3s12af8dlfjhlkjhasd8709832f"; 
-                            $hash_salt = $hash . $salt;
-                            $user_password = crypt($user_password, $hash_salt);
+                            $user_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
 
                             $query = $mysqli->prepare("INSERT INTO users (user_firstname, user_lastname, user_username, user_role, user_email, user_password, user_avatar, user_randSalt) VALUES (?,?,?,?,?,?,?,?)");
                             $query->bind_param('ssssssss', $user_firstname, $user_lastname, $user_username, $user_role, $user_email, $user_password, $user_avatar, $user_randSalt);

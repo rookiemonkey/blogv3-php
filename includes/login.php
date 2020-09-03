@@ -24,9 +24,9 @@
         $db_user_lastname = $row['user_lastname'];
         $db_user_role = $row['user_role'];
 
-        $password = crypt($password, $db_user_password);
+        $isMatch = password_verify($password, $db_user_password);
 
-        if($password !== $db_user_password) {
+        if(!$isMatch ) {
             header('Location: ../index.php');
         }
 
