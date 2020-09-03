@@ -1,6 +1,22 @@
 <?php
 
-    include './controllers/post_bulk_options.php';
+    // response to loadUsersOnline js ajax script to update the DOM every 1sec
+    if(isset($_GET['onlineusers'])) {
+        include '../includes/database.php';
+
+        // query number of users online
+        $query = $mysqli->prepare("SELECT * FROM users_online");
+        $query->execute();
+        $users_online = $query->get_result();
+        $query->close();
+        $users_online_count = $users_online->num_rows;
+        echo $users_online_count;
+    }
+
+
+
+
+
 
     // categories
     include './controllers/category_create.php';
@@ -20,6 +36,7 @@
 
 
     // posts
+    include './controllers/post_bulk_options.php';
     include './controllers/posts_create.php';   
     include './controllers/posts_renderAll.php';
     include './controllers/posts_update.php';
