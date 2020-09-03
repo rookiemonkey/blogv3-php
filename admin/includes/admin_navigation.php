@@ -15,6 +15,18 @@
 
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
+        <?php
+
+            // query number of users online
+            $query = $mysqli->prepare("SELECT * FROM users_online");
+            $query->execute();
+            $users_online = $query->get_result();
+            $query->close();
+            $users_online_count = $users_online->num_rows;
+            echo "<li><a>Online Users: {$users_online_count}</a></li>";
+        
+        ?>
+
         <li><a href="../index.php">Home</a></li>
 
         <li class="dropdown">

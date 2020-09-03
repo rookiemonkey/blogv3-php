@@ -32,6 +32,16 @@
 
         else {
             session_start();
+
+            $session = session_id();
+            $time_out = time() - 60;
+
+            // insert as logged in user to users_online table
+            $query = $mysqli->prepare("INSERT INTO users_online (user_id, session, time) VALUES (?,?,?)");
+            $query->bind_param('iss', $db_user_id, $session, $time_out);
+            $query->execute();
+            $query->close();
+
             $_SESSION['username'] = $db_user_username;
             $_SESSION['firstname'] = $db_user_firstname;
             $_SESSION['lastname'] = $db_user_lastname;
