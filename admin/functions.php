@@ -170,12 +170,64 @@
             echo "<td>{$row['comment_status']}</td>";
             echo "<td><a href='comments.php?approve={$row['comment_id']}'>Approve</a></td>"; 
             echo "<td><a href='comments.php?unapprove={$row['comment_id']}'>Unapprove</a></td>"; 
-            echo "<td><a href='comments.php?delete={$row['comment_id']}'>Delete</a></td>"; 
-            echo "<td><a href='comments.php?update={$row['comment_id']}'>Update</a></td>";    
+            echo "<td><a href='comments.php?delete={$row['comment_id']}'>Delete</a></td>";    
             echo "</tr>";
 
             $query->close();
         }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * read all comments of a specific post
+     * and render them as a table
+     */
+     function read_comments_ofpost() {
+        global $mysqli;
+
+        // prepare statement and query
+        $post = $_GET['comments_of_post'];
+        $query = $mysqli->prepare("SELECT * FROM comments WHERE comment_post = ?");
+        $query->bind_param("i", $_GET['comments_of_post']);
+        $query->execute();
+        $comments = $query->get_result();
+        $query->close();
+        
+        // loop into the results and render
+        while($row = $comments->fetch_assoc()) {  
+
+            $query = $mysqli->prepare("SELECT * FROM posts WHERE post_id = ?");
+            $query->bind_param('s', $row['comment_post']);
+            $query->execute();
+            $posts = $query->get_result();
+            $post_row = $posts->fetch_assoc();
+
+            echo "<tr>";
+            echo "<td>{$row['comment_id']}</td>";
+            echo "<td>{$row['comment_date']}</td>";
+            echo "<td>{$row['comment_author']}</td>";
+            echo "<td>{$row['comment_content']}</td>";
+            echo "<td>{$row['comment_email']}</td>";
+            echo "<td><a href='../post.php?p_id={$post_row['post_id']}'>{$post_row['post_title']}</a></td>";
+            echo "<td>{$row['comment_status']}</td>";
+            echo "<td><a href='comments.php?comments_of_post={$post}&approve={$row['comment_id']}'>Approve</a></td>"; 
+            echo "<td><a href='comments.php?comments_of_post={$post}&unapprove={$row['comment_id']}'>Unapprove</a></td>"; 
+            echo "<td><a href='comments.php?comments_of_post={$post}&delete={$row['comment_id']}'>Delete</a></td>"; 
+            echo "</tr>";
+
+            $query->close();
+    }
     }
 
 
@@ -202,7 +254,13 @@
             $query->close();
             
             // refresh the page
-            header("Location: comments.php");
+            if(isset($_GET['comments_of_post'])) {
+                $post_id = $_GET['comments_of_post'];
+                header("Location: comments.php?comments_of_post={$post_id}");
+            }
+            else {
+                header("Location: comments.php");
+            }
         }
     }
 
@@ -238,7 +296,13 @@
             // check if query is successfull
             if($result) { 
                 // refresh the page
-                header("Location: comments.php");
+                if(isset($_GET['comments_of_post'])) {
+                    $post_id = $_GET['comments_of_post'];
+                    header("Location: comments.php?comments_of_post={$post_id}");
+                }
+                else {
+                    header("Location: comments.php");
+                }
             }
             else { 
                 echo "<div class='panel panel-danger'>";
@@ -281,7 +345,13 @@
             // check if query is successfull
             if($result) { 
                 // refresh the page
-                header("Location: comments.php");
+                if(isset($_GET['comments_of_post'])) {
+                    $post_id = $_GET['comments_of_post'];
+                    header("Location: comments.php?comments_of_post={$post_id}");
+                }
+                else {
+                    header("Location: comments.php");
+                }
             }
             else { 
                 echo "<div class='panel panel-danger'>";

@@ -11,12 +11,20 @@
             <th>Approved</th>
             <th>Unapproved</th>
             <th>Delete</th>
-            <th>Update</th>
         </tr>
     </thead>
     <tbody>
 
-        <?php read_comments(); ?>
+
+        <?php 
+            if(isset($_GET['comments_of_post'])) {
+                read_comments_ofpost();
+            }
+
+            else {            
+                read_comments();
+            }
+        ?>
         <?php delete_comment(); ?>
         <?php unapprove_comment(); ?>
         <?php approve_comment(); ?>

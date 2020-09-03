@@ -43,7 +43,11 @@
                 alt='<?php echo $row['post_title']; ?>' width='100' />
                 </td>
                 <td><?php echo $row['post_tags']; ?></td>
-                <td><?php echo $row['post_comment_count']; ?></td>
+                <td>
+                    <a href="../admin/comments.php?comments_of_post=<?php echo $row['post_id'] ?>">
+                        <?php echo $row['post_comment_count']; ?>
+                    </a>
+                </td>
                 <td>
                     <a href='./posts.php?delete=<?php echo $row['post_id']; ?>'>
                         Delete
