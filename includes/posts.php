@@ -8,10 +8,10 @@
     if(isset($_GET['page'])) { 
         $page = $_GET['page']; 
     } else { 
-        $page = ''; 
+        $page = 0; 
     }
 
-    if($page === '' || $page === 1) { 
+    if($page === 0 || $page === 1) { 
         $page_1 = 0; 
     } else { 
         $page_1 = ($page * $post_per_page) - $post_per_page; 
@@ -28,7 +28,7 @@
 
     // determine the number of pages to show and round it down incase it returns
     // a float instead of an integer
-    $page_last = ceil($total_num / $post_per_page);
+    $page_last = intval(ceil($total_num / $post_per_page));
 
 
     $post_status = 'published';

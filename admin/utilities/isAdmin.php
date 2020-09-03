@@ -10,7 +10,7 @@
 
         $isAuthorized = $_SESSION['role'] === 'admin';
 
-        if(!$isAuthorized) { header('Location: index.php'); }
+        if(!$isAuthorized) { header('Location: index.php'); die(); }
 
     }
 

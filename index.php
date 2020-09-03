@@ -33,12 +33,12 @@
                             if($i === $page - 1 && $page - 1 !== 0) {
                                 echo "<li class='previous'><a href='index.php?page={$i}'>Previous</a></li>";
                             }
-                            else if ($i === $page + 1) {
+                            else if ($i === $page + 1 && $page + 1 <= $page_last) {
                                 echo "<li class='next'><a href='index.php?page={$i}'>Next</a></li>";
                             }
                         }
 
-                        if($page < $page_last ) {
+                        if($page < $page_last && $page_last !== 1) {
                             echo "<li class='next'><a href='index.php?page={$page_last}'>Last >></a></li>";
                         }
                     ?>
