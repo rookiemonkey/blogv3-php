@@ -1,22 +1,18 @@
 <?php
 
-    // response to loadUsersOnline js ajax script to update the DOM every 1sec
-    if(isset($_GET['onlineusers'])) {
-        include '../includes/database.php';
-
-        // query number of users online
-        $query = $mysqli->prepare("SELECT * FROM users_online");
-        $query->execute();
-        $users_online = $query->get_result();
-        $query->close();
-        $users_online_count = $users_online->num_rows;
-        echo $users_online_count;
-    }
-
-
-
     // utilities
     include './utilities/isAdmin.php';
+    include './utilities/setOnlineUsers.php';
+    include './utilities/renderAlert.php';
+
+
+
+
+
+
+
+
+
 
 
 
@@ -28,10 +24,15 @@
 
     class Categories {
         public static function create() { isAdmin(); create_category(); }
-        public static function read() { isAdmin(); read_categories(); }
+        public static function read()   { isAdmin(); read_categories(); }
         public static function update() { isAdmin(); update_category(); }
         public static function delete() { isAdmin(); delete_category(); }
     }
+
+
+
+
+
 
 
 
@@ -45,10 +46,10 @@
     include './controllers/posts_delete.php';
 
     class Posts {
-        public static function create() { create_post(); }
-        public static function read() { isAdmin(); read_posts(); }
-        public static function update() { isAdmin(); update_post(); }
-        public static function delete() { isAdmin(); delete_post(); }
+        public static function create()     { create_post(); }
+        public static function read()       { isAdmin(); read_posts(); }
+        public static function update()     { isAdmin(); update_post(); }
+        public static function delete()     { isAdmin(); delete_post(); }
     }
 
 
@@ -60,7 +61,20 @@
 
 
 
+    // comments
+    include './controllers/comments_renderAll.php';
+    include './controllers/comments_renderAllOfPost.php';
+    include './controllers/comment_delete.php';
+    include './controllers/comment_unapprove.php';
+    include './controllers/comment_approve.php';
 
+    class Comments {
+        public static function read()           { isAdmin(); read_comments(); }
+        public static function read_ofPost()    { isAdmin(); read_comments_ofpost(); }
+        public static function delete()         { isAdmin(); delete_comment(); }
+        public static function approve()        { isAdmin(); approve_comment(); }
+        public static function unapprove()      { isAdmin(); unapprove_comment(); }
+    }
 
 
 
@@ -89,297 +103,6 @@
             include './includes/update_category.php'; 
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * read all comments and render them as a table
-     */
-    function read_comments() {
-        global $mysqli;
-
-        isAdmin();
-
-        // prepare statement and query
-        $query = $mysqli->prepare("SELECT * FROM comments");
-        $query->execute();
-        $comments = $query->get_result();
-        $query->close();
-        
-        // loop into the results and render
-        while($row = $comments->fetch_assoc()) {  
-
-            $query = $mysqli->prepare("SELECT * FROM posts WHERE post_id = ?");
-            $query->bind_param('s', $row['comment_post']);
-            $query->execute();
-            $post = $query->get_result();
-            $post_category_row = $post->fetch_assoc();
-
-            echo "<tr>";
-            echo "<td>{$row['comment_id']}</td>";
-            echo "<td>{$row['comment_date']}</td>";
-            echo "<td>{$row['comment_author']}</td>";
-            echo "<td>{$row['comment_content']}</td>";
-            echo "<td>{$row['comment_email']}</td>";
-            echo "<td><a href='../post.php?p_id={$post_category_row['post_id']}'>{$post_category_row['post_title']}</a></td>";
-            echo "<td>{$row['comment_status']}</td>";
-            echo "<td><a href='comments.php?approve={$row['comment_id']}'>Approve</a></td>"; 
-            echo "<td><a href='comments.php?unapprove={$row['comment_id']}'>Unapprove</a></td>"; 
-            echo "<td><a href='comments.php?delete={$row['comment_id']}'>Delete</a></td>";    
-            echo "</tr>";
-
-            $query->close();
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * read all comments of a specific post
-     * and render them as a table
-     */
-     function read_comments_ofpost() {
-        global $mysqli;
-
-        isAdmin();
-
-        // prepare statement and query
-        $post = $_GET['comments_of_post'];
-        $query = $mysqli->prepare("SELECT * FROM comments WHERE comment_post = ?");
-        $query->bind_param("i", $_GET['comments_of_post']);
-        $query->execute();
-        $comments = $query->get_result();
-        $query->close();
-        
-        // loop into the results and render
-        while($row = $comments->fetch_assoc()) {  
-
-            $query = $mysqli->prepare("SELECT * FROM posts WHERE post_id = ?");
-            $query->bind_param('s', $row['comment_post']);
-            $query->execute();
-            $posts = $query->get_result();
-            $post_row = $posts->fetch_assoc();
-
-            echo "<tr>";
-            echo "<td>{$row['comment_id']}</td>";
-            echo "<td>{$row['comment_date']}</td>";
-            echo "<td>{$row['comment_author']}</td>";
-            echo "<td>{$row['comment_content']}</td>";
-            echo "<td>{$row['comment_email']}</td>";
-            echo "<td><a href='../post.php?p_id={$post_row['post_id']}'>{$post_row['post_title']}</a></td>";
-            echo "<td>{$row['comment_status']}</td>";
-            echo "<td><a href='comments.php?comments_of_post={$post}&approve={$row['comment_id']}'>Approve</a></td>"; 
-            echo "<td><a href='comments.php?comments_of_post={$post}&unapprove={$row['comment_id']}'>Unapprove</a></td>"; 
-            echo "<td><a href='comments.php?comments_of_post={$post}&delete={$row['comment_id']}'>Delete</a></td>"; 
-            echo "</tr>";
-
-            $query->close();
-    }
-    }
-
-
-
-
-
-
-
-
-
-    /**
-     * delete a comment
-     * admin/comments.php?delete=2
-     */
-    function delete_comment() {
-        global $mysqli;
-
-        isAdmin();
-
-        if(isset($_GET['delete'])) {
-            // prepare statement and query
-            $comment_id = intval($_GET['delete']);
-            $query = $mysqli->prepare("DELETE FROM comments WHERE comment_id = ?");
-            $query->bind_param('i', $comment_id);
-            $query->execute();
-            $query->close();
-            
-            // refresh the page
-            if(isset($_GET['comments_of_post'])) {
-                $post_id = $_GET['comments_of_post'];
-                header("Location: comments.php?comments_of_post={$post_id}");
-            }
-            else {
-                header("Location: comments.php");
-            }
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * unapproved a comment
-     * admin/comments.php?unapprove=2
-     */
-    function unapprove_comment() {
-        global $mysqli;
-
-        isAdmin();
-
-        if(isset($_GET['unapprove'])) {
-            // prepare statement and query
-            $comment_id = intval($_GET['unapprove']);
-            $comment_status = 'unapproved';
-            $query = $mysqli->prepare("UPDATE comments SET comment_status = ? WHERE comment_id = ?");
-            $query->bind_param('si', $comment_status, $comment_id);
-
-            // execute the query
-            $result = $query->execute();
-
-            // check if query is successfull
-            if($result) { 
-                // refresh the page
-                if(isset($_GET['comments_of_post'])) {
-                    $post_id = $_GET['comments_of_post'];
-                    header("Location: comments.php?comments_of_post={$post_id}");
-                }
-                else {
-                    header("Location: comments.php");
-                }
-            }
-            else { 
-                echo "<div class='panel panel-danger'>";
-                echo "<div class='panel-heading'>";
-                echo "<h3 class='panel-title'>Something went wrong. Please try again later</h3>";
-                echo "</div>";
-                echo "</div>";
-            }
-
-            $query->close();
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-    /**
-     * approve a comment
-     * admin/comments.php?approve=2
-     */
-    function approve_comment() {
-        global $mysqli;
-
-        isAdmin();
-
-        if(isset($_GET['approve'])) {
-            // prepare statement and query
-            $comment_id = intval($_GET['approve']);
-            $comment_status = 'approved';
-            $query = $mysqli->prepare("UPDATE comments SET comment_status = ? WHERE comment_id = ?");
-            $query->bind_param('si', $comment_status, $comment_id);
-
-            // execute the query
-            $result = $query->execute();
-
-            // check if query is successfull
-            if($result) { 
-                // refresh the page
-                if(isset($_GET['comments_of_post'])) {
-                    $post_id = $_GET['comments_of_post'];
-                    header("Location: comments.php?comments_of_post={$post_id}");
-                }
-                else {
-                    header("Location: comments.php");
-                }
-            }
-            else { 
-                echo "<div class='panel panel-danger'>";
-                echo "<div class='panel-heading'>";
-                echo "<h3 class='panel-title'>Something went wrong. Please try again later</h3>";
-                echo "</div>";
-                echo "</div>";
-            }
-
-            $query->close();
-        }
-    }
-
-
 
 
 
