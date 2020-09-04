@@ -1,6 +1,6 @@
 <?php
 
-    include 'database.php';
+    include '../includes/database.php';
 
     session_start();
     $_SESSION['username'] = null;

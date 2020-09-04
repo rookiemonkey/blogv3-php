@@ -1,5 +1,7 @@
 <?php include "./includes/database.php"; ?>
-<?php include "./includes/header.php" ?>
+<?php include "./includes/header.php"; ?>
+<?php include "./controllers/render_posts.php"; ?>
+<?php include "./controllers/render_pagination.php"; ?>
 
     <!-- Navigation -->
     <?php include "./includes/navigation.php" ?>
@@ -18,30 +20,11 @@
                 </h1>
 
                 <!-- Post -->
-                <?php include "./includes/posts.php" ?>
+                <?php render_posts(); ?>
 
                 <!-- Pager -->
                 <ul class="pager">
-                    <?php
-                        
-                        if($page > 1) {
-                            echo "<li class='previous'><a href='index.php?page=1'><< Start</a></li>";
-                        }
-
-                        for ($i = 1; $i <= $page_last; $i++) {
-
-                            if($i === $page - 1 && $page - 1 !== 0) {
-                                echo "<li class='previous'><a href='index.php?page={$i}'>Previous</a></li>";
-                            }
-                            else if ($i === $page + 1 && $page + 1 <= $page_last) {
-                                echo "<li class='next'><a href='index.php?page={$i}'>Next</a></li>";
-                            }
-                        }
-
-                        if($page < $page_last && $page_last !== 1) {
-                            echo "<li class='next'><a href='index.php?page={$page_last}'>Last >></a></li>";
-                        }
-                    ?>
+                    <?php render_pagination(); ?>
                 </ul>
 
             </div>

@@ -50,22 +50,13 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="role" style="display: block;">Role</label>
-                                <select name="user_role">
-
-                <?php render_roleOptions_edit($user_row); ?>
-
-                                </select>
-                            </div>
-
-                            <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" id="email" class="form-control" name="user_email"  value="<?php echo $user_row['user_email'] ?>" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" id="password" class="form-control" name="user_password" value="<?php echo $user_row['user_password'] ?>" required>
+                                <input type="password" id="password" class="form-control" name="user_password" value="<?php echo $user_row['user_password'] ?>" required readonly>
                             </div>
 
                             <div class="form-group">

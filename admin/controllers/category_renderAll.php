@@ -10,11 +10,11 @@
         $query = $mysqli->prepare("SELECT * FROM categories");
         $query->execute();
         $categories = $query->get_result();
+        $categories_count = $query->affected_rows;
+        $query->close();
 
-        if($query->affected_rows === 0) {
-?>
-            <h3 class="display-4">No available categories</h3>
-<?php
+        if($categories_count === 0) {
+            echo "<div class='alert alert-danger' role='alert'>No available categories</div>";
         }
 
         while($row = $categories->fetch_assoc()) {  
@@ -42,8 +42,5 @@
             </tr>
 <?php
         }
-
-        $query->close();
     }
-
 ?>

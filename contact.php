@@ -16,6 +16,7 @@
                         $body       = $_POST['body'];
                         $header     = $_POST['email'];
 
+                        mail($to, $subject, $body, $header);
                     }
                 ?>
 

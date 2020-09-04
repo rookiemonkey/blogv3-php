@@ -53,7 +53,7 @@
     include './controllers/posts_delete.php';
 
     class Posts {
-        public static function create()     { create_post(); }
+        public static function create()     { isAdmin(); create_post(); }
         public static function read()       { isAdmin(); read_posts(); }
         public static function update()     { isAdmin(); update_post(); }
         public static function delete()     { isAdmin(); delete_post(); }
