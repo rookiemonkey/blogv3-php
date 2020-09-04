@@ -1,7 +1,5 @@
 <?php include "./includes/database.php"; ?>
 <?php include "./includes/header.php"; ?>
-<?php include "./controllers/render_posts.php"; ?>
-<?php include "./controllers/render_pagination.php"; ?>
 
     <!-- Navigation -->
     <?php include "./includes/navigation.php" ?>
@@ -20,11 +18,11 @@
                 </h1>
 
                 <!-- Post -->
-                <?php render_posts(); ?>
+                <?php include "./controllers/render_posts.php"; ?>
 
                 <!-- Pager -->
                 <ul class="pager">
-                    <?php render_pagination(); ?>
+                    <?php include "./controllers/render_pagination.php"; ?>
                 </ul>
 
             </div>
