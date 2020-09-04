@@ -51,7 +51,7 @@
 
                             <div class="form-group">
                                 <label for="role" style="display: block;">Role</label>
-                                <select name="user_ro   le">
+                                <select name="user_role">
 
                 <?php render_roleOptions_edit($user_row); ?>
 
