@@ -25,6 +25,7 @@
                                 name="cat_title" 
                                 id="cat_title" 
                                 value="<?php if(isset($category_title)) { echo $category_title; } ?>"
+                                required
                             />
         <?php
                 }
@@ -45,6 +46,6 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" class="btn btn-primary" name="update_category" value="Update"/>
+                                    <input type="submit" class="btn btn-primary" name="update_category" value="Update" required/>
                                 </div>
                             </form>

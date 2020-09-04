@@ -22,11 +22,11 @@
                     <form role="form" action="contact.php" method="POST" id="login-form" autocomplete="off">
                         <div class="form-group">
                             <label for="email" class="sr-only">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Email Address">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Email Address" required>
                         </div>    
                         <div class="form-group">
                             <label for="subject" class="sr-only">Subject</label>
-                            <input type="subject" name="subject" id="subject" class="form-control" placeholder="Subject">
+                            <input type="subject" name="subject" id="subject" class="form-control" placeholder="Subject" required>
                         </div> 
                         <div class="form-group">
                             <label for="subject" class="sr-only">Message</label>

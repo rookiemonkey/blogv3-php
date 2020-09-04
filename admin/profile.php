@@ -36,17 +36,17 @@
 
                             <div class="form-group">
                                 <label for="firstname">First Name</label>
-                                <input type="text" id="firstname" class="form-control" name="user_firstname" value="<?php echo $user_row['user_firstname'] ?>">
+                                <input type="text" id="firstname" class="form-control" name="user_firstname" value="<?php echo $user_row['user_firstname'] ?>" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="lastname">Last Name</label>
-                                <input type="text" id="lastname" class="form-control" name="user_lastname" value="<?php echo $user_row['user_lastname'] ?>">
+                                <input type="text" id="lastname" class="form-control" name="user_lastname" value="<?php echo $user_row['user_lastname'] ?>" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="text" id="username" class="form-control" name="user_username" value="<?php echo $user_row['user_username'] ?>">
+                                <input type="text" id="username" class="form-control" name="user_username" value="<?php echo $user_row['user_username'] ?>" required>
                             </div>
 
                             <div class="form-group">
@@ -60,12 +60,12 @@
 
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" id="email" class="form-control" name="user_email"  value="<?php echo $user_row['user_email'] ?>">
+                                <input type="email" id="email" class="form-control" name="user_email"  value="<?php echo $user_row['user_email'] ?>" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" id="password" class="form-control" name="user_password" value="<?php echo $user_row['user_password'] ?>">
+                                <input type="password" id="password" class="form-control" name="user_password" value="<?php echo $user_row['user_password'] ?>" required>
                             </div>
 
                             <div class="form-group">

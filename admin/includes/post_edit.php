@@ -24,6 +24,7 @@
                     class="form-control" 
                     name="post_title" 
                     value="<?php echo $post_row["post_title"]; ?>"
+                    required
                 >
             </div>
 
@@ -71,6 +72,7 @@
                     class="form-control" 
                     name="post_tags"
                     value="<?php echo $post_row["post_tags"]; ?>"
+                    required
                 >
             </div>
         
