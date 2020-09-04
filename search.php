@@ -23,7 +23,7 @@
                 
                     if(isset($_POST["submit"])) {
                         $search =  $_POST["search"]; 
-                        $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%'";  
+                        $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%' AND post_status = 'published'";  
                         $search_query = mysqli_query($mysqli, $query);
 
                         if(!$search_query) {
@@ -32,8 +32,12 @@
 
                         $count = mysqli_num_rows($search_query);
 
-                        if($count < 0) {
-                            echo "<h1>No Results Found</h1>";
+                        if($count === 0) {
+                            echo "<div class='panel panel-primary'>";
+                            echo "<div class='panel-heading'>";
+                            echo '<h3 class="panel-title">No Results Found</h3>';
+                            echo "</div>";
+                            echo "</div>";
                         }
 
                         while($row = mysqli_fetch_assoc($search_query)) {

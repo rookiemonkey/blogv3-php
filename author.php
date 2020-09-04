@@ -23,7 +23,7 @@
                 
                     if(isset($_GET["author"])) {
                         $author =  $_GET["author"]; 
-                        $query = "SELECT * FROM posts WHERE post_author LIKE '%$author%'";  
+                        $query = "SELECT * FROM posts WHERE post_author LIKE '%$author%' AND post_status = 'published'";  
                         $search_query = mysqli_query($mysqli, $query);
 
                         if(!$search_query) {

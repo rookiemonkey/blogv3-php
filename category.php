@@ -22,9 +22,10 @@
                 
                     if(isset($_GET['c_id'])) {
                         $category_id = $_GET['c_id'];
+                        $post_status = 'published';
 
-                        $query = $mysqli->prepare("SELECT * FROM posts WHERE post_category_id = ?");
-                        $query->bind_param('i', $category_id);
+                        $query = $mysqli->prepare("SELECT * FROM posts WHERE post_category_id = ? AND post_status = ?");
+                        $query->bind_param('is', $category_id, $post_status);
                         $query->execute();
                         $posts = $query->get_result();
                         $query->close();
