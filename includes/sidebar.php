@@ -1,5 +1,29 @@
 <div class="col-md-4">
 
+        <!-- Blog Login Well -->
+    <?php
+    
+        if(!isset($_SESSION['username'])){
+    ?>
+        <div class="well">
+            <h4>Login</h4>
+            <form action="./includes/login.php" method="POST">
+                <div class="form-group">
+                    <input name="username" type="text" class="form-control" placeholder="Username">
+                </div>
+
+                <div class="input-group">
+                    <input name="password" type="password" class="form-control" placeholder="Password">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" name="login" type="submit">Login</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    <?php
+        }
+    ?>
+
     <!-- Blog Search Well -->
     <div class="well">
         <h4>Blog Search</h4>
@@ -10,23 +34,6 @@
                     <button name="submit" type="submit" class="btn btn-default" >
                         <span class="glyphicon glyphicon-search"></span>
                     </button>
-                </span>
-            </div>
-        </form>
-    </div>
-
-        <!-- Blog Login Well -->
-    <div class="well">
-        <h4>Login</h4>
-        <form action="./includes/login.php" method="POST">
-            <div class="form-group">
-                <input name="username" type="text" class="form-control" placeholder="Username">
-            </div>
-
-            <div class="input-group">
-                <input name="password" type="password" class="form-control" placeholder="Password">
-                <span class="input-group-btn">
-                    <button class="btn btn-primary" name="login" type="submit">Login</button>
                 </span>
             </div>
         </form>

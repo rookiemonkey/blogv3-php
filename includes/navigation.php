@@ -21,16 +21,37 @@
                     $query->execute();
                     $catogories = $query->get_result();
 
+                    $page_name = basename($_SERVER['PHP_SELF']);
+                    $registration_class = '';
+
+                    if ($page_name === 'registration.php') {
+                        $registration_class = 'active';
+                    }
+
                     while($row = $catogories->fetch_assoc()) {
                         $category_id = $row["cat_id"];
                         $category_title = $row["cat_title"];
-                        echo "<li><a href='#'>{$category_title}</a></li>";     
+                        $category_class = null;
+
+                        if(isset($_GET['c_id']) && $_GET['c_id'] == $category_id){
+                            $category_class = 'active';
+                        }
+
+                        echo "<li class={$category_class}><a href='/_PHP_blog/category.php?c_id={$category_id}'>{$category_title}</a></li>";     
                     }
                 ?>
 
-                <li><a href='/_PHP_blog/admin'>Admin</a></li>
+                <li>
+                    <a href='/_PHP_blog/admin'>
+                        Admin
+                    </a>
+                </li>
 
-                <li><a href='/_PHP_blog/registration.php'>Register</a></li>
+                <li class="<?php echo $registration_class; ?>">
+                    <a href='/_PHP_blog/registration.php'>
+                        Register
+                    </a>
+                </li>
 
                 <?php
                     if(isset($_SESSION['role'])) {
