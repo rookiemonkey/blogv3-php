@@ -22,38 +22,29 @@
                         $user_randSalt = "test+random+salt";
 
                         if(empty($user_firstname) || empty($user_lastname) || empty($user_username) || empty($user_email) || empty($user_password)) {
-                            echo "<div class='panel panel-danger'>";
-                            echo "<div class='panel-heading'>";
-                            echo "<h3 class='panel-title'>Please provide valid informations</h3>";
-                            echo "</div>";
-                            echo "</div>";
+                            render_alert_failed('Please provide valid informations');
                         }
 
-                        else {
+                        else if (is_user_exisiting($user_email, $user_username)){
+                            render_alert_failed('Username/Email already exists. Please provide a unique username and email');
+                        }
+
+                        else if (!is_user_exisiting($user_email, $user_username)) {
                             $user_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
 
                             $query = $mysqli->prepare("INSERT INTO users (user_firstname, user_lastname, user_username, user_role, user_email, user_password, user_avatar, user_randSalt) VALUES (?,?,?,?,?,?,?,?)");
                             $query->bind_param('ssssssss', $user_firstname, $user_lastname, $user_username, $user_role, $user_email, $user_password, $user_avatar, $user_randSalt);
                             $result = $query->execute();
+                            $query->close();
 
                             // check if query is successfull
                             if($result) { 
-                                echo "<div class='panel panel-success'>";
-                                echo "<div class='panel-heading'>";
-                                echo "<h3 class='panel-title'>Succesfully registered. Please login</h3>";
-                                echo "</div>";
-                                echo "</div>";
+                                render_alert_success('Succesfully registered. Please login');
                             }
                             else { 
-                                echo "<div class='panel panel-danger'>";
-                                echo "<div class='panel-heading'>";
-                                echo "<h3 class='panel-title'>Something went wrong. Please try again later</h3>";
-                                echo "</div>";
-                                echo "</div>";
+                                render_alert_failed('Something went wrong. Please try again');
                             }
                         }
-                        
-                        $query->close();
                     }
 
                 ?>
