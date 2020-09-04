@@ -14,33 +14,45 @@
                     if(isset($_POST['submit_register'])) {
                         $user_firstname = $_POST['user_firstname'];
                         $user_lastname = $_POST['user_lastname'];
-                        $user_username = $_POST['user_username'];
-                        $user_role = 'subscriber';  
+                        $user_username = $_POST['user_username'];;  
                         $user_email = $_POST['user_email'];
                         $user_password = $_POST['user_password'];
-                        $user_avatar = "test+image+page";
-                        $user_randSalt = "test+random+salt";
 
                         if(empty($user_firstname) || empty($user_lastname) || empty($user_username) || empty($user_email) || empty($user_password)) {
-                            render_alert_failed('Please provide valid informations');
+                            render_alert_failed('User informations cannot be empty');
+                        }
+
+                        else if (strlen($user_password) < 8) {
+                            render_alert_failed('Passwords should have a minimum of 8 charactes');
                         }
 
                         else if (is_user_exisiting($user_email, $user_username)){
                             render_alert_failed('Username/Email already exists. Please provide a unique username and email');
                         }
 
-                        else if (!is_user_exisiting($user_email, $user_username)) {
-                            $user_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
+                        else if (!is_user_exisiting($user_email, $user_username)) { 
+                            $inputs = [
+                                'firstname' => $user_firstname,
+                                'lastname' => $user_lastname,
+                                'username' => $user_username,
+                                'email' => $user_email,
+                                'password' => $user_password ,
+                                'role' => 'subscriber',
+                                'avatar' => 'test+avatar+jpg',
+                                'randSalt' => 'test+randsalt',
+                            ];
 
-                            $query = $mysqli->prepare("INSERT INTO users (user_firstname, user_lastname, user_username, user_role, user_email, user_password, user_avatar, user_randSalt) VALUES (?,?,?,?,?,?,?,?)");
-                            $query->bind_param('ssssssss', $user_firstname, $user_lastname, $user_username, $user_role, $user_email, $user_password, $user_avatar, $user_randSalt);
-                            $result = $query->execute();
-                            $query->close();
+                            // create the user's account
+                            $user_info = register_user($inputs);
+
+                            // login and start the session
+                            login_user($user_info['username'], $user_info['password']);
 
                             // check if query is successfull
-                            if($result) { 
-                                render_alert_success('Succesfully registered. Please login');
+                            if($user_info['result']) { 
+                                header('Location: index.php');
                             }
+                            
                             else { 
                                 render_alert_failed('Something went wrong. Please try again');
                             }
