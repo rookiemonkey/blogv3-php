@@ -27,6 +27,7 @@
                 $query = $mysqli->prepare($statement);
                 $query->bind_param("ss", $category_title, $category_id);
                 $result = $query->execute();
+                $query->close();
 
                 // check if query is successfull
                 if($result) { 
@@ -34,19 +35,10 @@
                     header("Location: categories.php");
                 }
                 
-                else { 
-?>
-                    <div class='panel panel-danger'>
-                        <div class='panel-heading'>
-                            <h3 class='panel-title'>Something went wrong. Please try again later</h3>
-                        </div>
-                    </div>
-<?php
+                else {  
+                    render_alert_failed();
                 }
-
-                $query->close();
             }
         }
     }
-
 ?>

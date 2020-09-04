@@ -13,6 +13,7 @@
             $query = $mysqli->prepare($stmnt); 
             $query->bind_param("s", $category_id);
             $result = $query->execute();
+            $query->close();
 
             if($result) { 
                 // refresh the page, alert box is working but DOM doesn't update
@@ -20,17 +21,8 @@
             }
             
             else { 
-?>
-                <div class='panel panel-danger'>
-                    <div class='panel-heading'>
-                        <h3 class='panel-title'>Something went wrong. Please try again later</h3>
-                    </div>
-                </div>
-<?php
+                render_alert_failed();
             }
-
-            $query->close();
         }
     }
-
 ?>

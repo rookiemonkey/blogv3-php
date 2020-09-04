@@ -28,33 +28,17 @@
                 $query = $mysqli->prepare($statement);
                 $query->bind_param("s", $category_title);
                 $result = $query->execute();
+                $query->close();
 
                 // check if query is successfull
-
                 if($result) { 
-?>
-                    <div class='panel panel-success'>
-                        <div class='panel-heading'>
-                            <h3 class='panel-title'>Succesfully added a category</h3>
-                        </div>
-                    </div>
-<?php
+                    render_alert_success('Succesfully added a category');
                 }
 
                 else { 
-?>
-                    <div class='panel panel-danger'>
-                        <div class='panel-heading'>
-                            <h3 class='panel-title'>Something went wrong. Please try again later</h3>
-                        </div>
-                    </div>
-<?php
+                    render_alert_failed();
                 }
-
-                // close the connection to the database
-                $query->close();
             }
         }
     }
-
 ?>

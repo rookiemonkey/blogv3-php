@@ -26,14 +26,8 @@
                     header("Location: comments.php");
                 }
             }
-            else { 
-?>
-                <div class='panel panel-danger'>
-                    <div class='panel-heading'>
-                        <h3 class='panel-title'>Something went wrong. Please try again later</h3>
-                    </div>
-                </div>
-<?php
+            else {
+                render_alert_failed();
             }
         }
     }

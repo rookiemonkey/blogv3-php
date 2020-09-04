@@ -7,7 +7,7 @@
         }
 
         else if ($post_row["post_status"] === 'published') {
-            echo '<option value="published" selected="selected">Publised</option>';
+            echo '<option value="published" selected="selected">Published</option>';
             echo '<option value="draft">Draft</option>';
         }
     }
