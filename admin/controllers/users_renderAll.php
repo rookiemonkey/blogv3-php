@@ -14,7 +14,12 @@
         $query->close();
         
         // loop into the results and render
-        while($row = $users->fetch_assoc()) {  
+        while($row = $users->fetch_assoc()) { 
+
+        // render delete confirmation modal
+        $message = 'Are you sure you want to delete user: '. $row['user_username'] . '?';
+        $link = './users.php?delete=' . $row['user_id'];
+        render_modal($row['user_id'], 'delete', $message, $link);
 ?>
             <tr>
                 <td><?php echo $row['user_id']; ?></td>
@@ -35,10 +40,10 @@
                     </a>
                 </td>
                 <td>
-                    <a href='./users.php?delete=<?php echo $row['user_id']; ?>'>
+                    <a data-toggle="modal" data-target="#myModal_<?php echo $row['user_id']; ?>">
                         Delete
                     </a>
-                </td>";
+                </td>
                 <td>
                     <a href='./users.php?source=edit_user&u_id=<?php echo $row['user_id']; ?>'>
                         Edit

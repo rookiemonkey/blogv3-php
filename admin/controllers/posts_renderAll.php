@@ -26,6 +26,11 @@
             $categories = $query->get_result();
             $post_category_row = $categories->fetch_assoc();
             $query->close();
+
+            // render delete confirmation modal
+            $message = 'Are you sure you want to delete the post: '. $row['post_title'] . '?';
+            $link = './posts.php?delete=' . $row['post_id'];
+            render_modal($row['post_id'], 'delete', $message, $link);
 ?>
             <tr>
                 <th>
@@ -53,7 +58,7 @@
                     </a>
                 </td>
                 <td>
-                    <a href='./posts.php?delete=<?php echo $row['post_id']; ?>'>
+                    <a data-toggle="modal" data-target="#myModal_<?php echo $row['post_id']; ?>">
                         Delete
                     </a>
                 </td>

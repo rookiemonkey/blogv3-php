@@ -20,12 +20,25 @@
         while($row = $categories->fetch_assoc()) {  
             $category_id = $row["cat_id"];
             $category_title = $row["cat_title"];
+
+            // render delete confirmation modal
+            $message = 'Are you sure you want to delete the ' . $category_title . ' category' . '?';
+            $link = 'categories.php?delete=' . $category_id;
+            render_modal($category_id, 'delete', $message, $link);
 ?>
             <tr>
                 <td><?php echo $category_id; ?></td>
                 <td><?php echo $category_title; ?></td>
-                <td><a href="categories.php?delete=<?php echo $category_id; ?>">Delete</a></td>
-                <td><a href="categories.php?update=<?php echo $category_id; ?>">Update</a></td>
+                <td>
+                    <a data-toggle="modal" data-target="#myModal_<?php echo $category_id; ?>">
+                        Delete
+                    </a>
+                </td>
+                <td>
+                    <a href="categories.php?update=<?php echo $category_id; ?>">
+                        Update
+                    </a>
+                </td>
             </tr>
 <?php
         }

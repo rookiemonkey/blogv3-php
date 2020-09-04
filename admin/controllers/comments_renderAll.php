@@ -27,7 +27,12 @@
                 $query->execute();
                 $posts = $query->get_result();
                 $post_row = $posts->fetch_assoc();
-                $query->close();      
+                $query->close();   
+                
+                // render delete confirmation modal
+                $message = 'Are you sure you want to delete the comment by : '. $row['comment_author'] . ' to ' . $post_row['post_title'] . '?';
+                $link = 'comments.php?delete=' . $row['comment_id'];
+                render_modal($row['comment_id'], 'delete', $message, $link);
 ?>
                     <td><?php echo $row['comment_id']; ?></td>
                     <td><?php echo $row['comment_date']; ?></td>
@@ -51,7 +56,7 @@
                         </a>
                     </td>
                     <td>
-                        <a href='comments.php?delete=<?php echo $row['comment_id']; ?>'>
+                        <a data-toggle="modal" data-target="#myModal_<?php echo $row['comment_id']; ?>">
                             Delete
                         </a>
                     </td>

@@ -6,6 +6,7 @@
     include './utilities/renderAlert_success.php';
     include './utilities/renderAlert_failed.php';
     include './utilities/renderAlert_tablenoresult.php';
+    include './utilities/renderModal_delete.php';
     include './utilities/renderForm_updateCategory.php';
     include './utilities/renderOptions_author_create.php';
     include './utilities/renderOptions_author_edit.php';
