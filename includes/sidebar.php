@@ -2,12 +2,12 @@
 
         <!-- Blog Login Well -->
     <?php
-    
+
         if(!isset($_SESSION['username'])){
     ?>
         <div class="well">
             <h4>Login</h4>
-            <form action="./includes/login.php" method="POST">
+            <form action="" method="POST">
                 <div class="form-group">
                     <input name="username" type="text" class="form-control" placeholder="Username" required>
                 </div>
@@ -19,6 +19,11 @@
                     </span>
                 </div>
             </form>
+            <?php 
+                if(isset($_POST['login'])) { 
+                    login_user($_POST['username'], $_POST['password']); 
+                } 
+            ?>
         </div>
     <?php
         }

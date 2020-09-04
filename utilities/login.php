@@ -10,8 +10,8 @@
         $query->close();
         
         if($users->num_rows === 0) {
-            echo "Invalid username and password";
-            die();  
+            render_alert_failed("Invalid username and password");
+            exit;
         }
 
         $row = $users->fetch_assoc();
@@ -25,7 +25,8 @@
         $isMatch = password_verify($password, $db_user_password);
 
         if(!$isMatch ) {
-            header('Location: ../index.php');
+            render_alert_failed("Invalid username and password");
+            exit;
         }
 
         else {
@@ -44,7 +45,7 @@
             $_SESSION['firstname'] = $db_user_firstname;
             $_SESSION['lastname'] = $db_user_lastname;
             $_SESSION['role'] = $db_user_role;
-            header('Location: ../admin');
+            header('Location: admin');
         }
     }
 
