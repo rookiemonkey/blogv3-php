@@ -1,0 +1,11 @@
+RewriteEngine on
+
+#$1 is a variabled that will be replaced by those inside ()
+
+RewriteRule ^(index|contact|registration)$ $1.php [NC,L]
+
+RewriteRule ^post/(\d+)$ post.php?p_id=$1
+
+RewriteRule ^category/(\d+)$ category.php?c_id=$1
+
+RewriteRule ^author/(\w+)$ author.php?author=$1 [NC,L]

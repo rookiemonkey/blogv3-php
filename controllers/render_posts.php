@@ -21,11 +21,11 @@
         $post_image = $row["post_image"];   
 ?>
     <h2>
-        <a href="/_PHP_blog/post.php?p_id=<?php echo $post_id ?>"><?php echo $post_title ?></a>
+        <a href="/_PHP_blog/post/<?php echo $post_id ?>"><?php echo $post_title ?></a>
     </h2>
 
     <p class="lead">
-        by <a href="/_PHP_blog/author.php?author='<?php echo $post_author ?>"><?php echo $post_author ?></a>
+        by <a href="/_PHP_blog/author/<?php echo $post_author ?>"><?php echo $post_author ?></a>
     </p>
 
     <p>
@@ -35,14 +35,14 @@
 
     <hr>
         <!-- the image name on database should match the one on the file system -->
-        <a href="/_PHP_blog/post.php?p_id=<?php echo $post_id ?>">
+        <a href="/_PHP_blog/post/<?php echo $post_id ?>">
             <img class="img-responsive" src="./images/<?php echo $post_image ?>" alt="<?php echo $post_title ?>">
         </a>
     <hr>
 
     <p><?php echo $post_content . '...' ?></p>
 
-    <a class="btn btn-primary" href="/_PHP_blog/post.php?p_id=<?php echo $post_id ?>">
+    <a class="btn btn-primary" href="/_PHP_blog/post/<?php echo $post_id ?>">
         Read More 
         <span class="glyphicon glyphicon-chevron-right">
         </span>

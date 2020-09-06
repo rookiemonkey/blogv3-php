@@ -23,7 +23,7 @@
                 </li>
 
                 <li>
-                    <a href='/_PHP_blog/registration.php'>
+                    <a href='/_PHP_blog/registration'>
                         Register
                     </a>
                 </li>

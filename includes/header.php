@@ -13,8 +13,8 @@
 
     <title>Blog</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/blog-home.css" rel="stylesheet">
+    <link href="/_PHP_blog/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/_PHP_blog/css/blog-home.css" rel="stylesheet">
 
 </head>
 
