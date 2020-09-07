@@ -4,7 +4,7 @@
     use PHPMailer\PHPMailer\Exception;
 
     // Load Composer's autoloader
-    require '../vendor/autoload.php';
+    require 'vendor/autoload.php';
 
     // Load custom configuration
     require '_config_email.php';

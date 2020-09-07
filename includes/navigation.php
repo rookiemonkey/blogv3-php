@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/_PHP_blog/">Logo</a>
+            <a class="navbar-brand" href="/cms/">Logo</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -17,13 +17,13 @@
             <ul class="nav navbar-nav">
 
                 <li>
-                    <a href='/_PHP_blog/admin'>
+                    <a href='/cms/admin'>
                         Admin
                     </a>
                 </li>
 
                 <li>
-                    <a href='/_PHP_blog/registration'>
+                    <a href='/cms/registration'>
                         Register
                     </a>
                 </li>
@@ -34,7 +34,7 @@
                         if(isset($_GET['p_id'])) {
                             $post_id = $_GET['p_id'];
 
-                            echo "<li><a href='/_PHP_blog/admin/posts.php?source=edit_post&p_id={$post_id}'>Edit Post</a></li>";
+                            echo "<li><a href='/cms/admin/posts.php?source=edit_post&p_id={$post_id}'>Edit Post</a></li>";
                         }
                     }
                 ?>

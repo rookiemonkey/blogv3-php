@@ -19,7 +19,7 @@
                     </span>
                 </div>
                 <div class="form-group">
-                    <a href="/_PHP_blog/forgot?token=<?php echo uniqid(); ?>">Forgot Password?</a>
+                    <a href="/cms/forgot?token=<?php echo uniqid(); ?>">Forgot Password?</a>
                 </div>
             </form>
             <?php 
@@ -67,7 +67,7 @@
                         while($row = $catogories->fetch_assoc()) {
                             $category_title = $row["cat_title"];
                             $category_id = $row["cat_id"];
-                            echo "<li><a href='/_PHP_blog/category.php?c_id={$category_id}'>{$category_title}</a></li>";     
+                            echo "<li><a href='/cms/category.php?c_id={$category_id}'>{$category_title}</a></li>";     
                         }
 
                     ?>    

@@ -6,7 +6,7 @@
 
 <?php
 
-	isLoggedInThenRedirect('/_PHP_blog/admin');
+	isLoggedInThenRedirect('/cms/admin');
 
 	if(isMethod('POST')) {
 		if(!isset($_POST['username'])  && !isset($_POST['password'])) {
@@ -14,7 +14,7 @@
 		}
 
 		else {
-			redirect('/_PHP_blog/login');
+			redirect('/cms/login');
 		}
 	}
 
