@@ -1,8 +1,5 @@
 <?php
 
-    include 'redirect.php';
-    include 'isLoggedIn.php';
-
     function isLoggedInThenRedirect($location=null) {
 
         if(!$location) {

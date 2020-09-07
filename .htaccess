@@ -2,7 +2,7 @@ RewriteEngine on
 
 #$1 is a variabled that will be replaced by those inside ()
 
-RewriteRule ^(index|contact|registration)$ $1.php [NC,L]
+RewriteRule ^(index|contact|registration|login)$ $1.php [NC,L]
 
 RewriteRule ^post/(\d+)$ post.php?p_id=$1
 
