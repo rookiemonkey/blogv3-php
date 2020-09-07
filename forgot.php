@@ -41,6 +41,7 @@
                                                         $query->bind_param('ss', $token, $email);
                                                         $query->execute();
                                                         $query->close();
+                                                        toEmailPasswordReset($email);
                                                         render_alert_success('Success! Password rest link sent to your email.');
                                                     }
 

@@ -17,8 +17,7 @@
 
             global $mail;
             
-            //Server settings
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                    // Enable verbose debug output
+            // Server settings
             $mail->isSMTP();                                          // Send using SMTP
             $mail->Host       = EmailConfig::SMTP_HOST;               // Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                 // Enable SMTP authentication
@@ -27,18 +26,19 @@
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;       // Enable TLS encryption;
             $mail->Port       = EmailConfig::SMTP_PORT;               // TCP port to connect to
 
-            //Recipients
+            // Recipients
             $mail->setFrom(EmailConfig::SMTP_EMAIL, EmailConfig::SMTP_MAILER);
             $mail->addAddress($receiver);              
 
             // Content
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = 'Password Reset Request';
-            $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+            $mail->Body    = 'This is the HTML message body Adiós Quién? <b>in bold!</b>';
+            $mail->CharSet = 'UTF-8';
 
+            // Send the Email
             $mail->send();
-            echo 'Message has been sent';
-            
+
         } catch (Exception $e) {
 
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";

@@ -7,6 +7,8 @@
 
     $mysqli = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
 
+    $mysqli->set_charset("utf8");
+
     if (!$mysqli) {
         echo "Error: Unable to connect to MySQL." . PHP_EOL;
         echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
