@@ -64,6 +64,10 @@
                     $isLiked->close();
 
                 ?>
+
+                <?php
+                    if(isLoggedIn()) {
+                ?>
                     <button id="btn_like" type="button" class="btn btn-primary">
                         <i class="glyphicon glyphicon-thumbs-up"></i>
                         <?php
@@ -76,6 +80,9 @@
                             }
                         ?>
                     </button>
+                <?php
+                    }
+                ?>
                 
                 Likes: <?php echo $post_likes ?>
             </div>
