@@ -129,6 +129,8 @@
                     data: { likedby: userId }
                 })
             })
+
+            $('[data-toggle="thumbsup"]').tooltip(); 
         })
     </script>
 <?php

@@ -67,20 +67,21 @@
 
                 <?php
                     if(isLoggedIn()) {
+                        if($results->num_rows === 0) {
                 ?>
-                    <button id="btn_like" type="button" class="btn btn-primary">
-                        <i class="glyphicon glyphicon-thumbs-up"></i>
-                        <?php
-                            if($results->num_rows === 0) {
-                                echo 'Like';
-                            }
-
-                            else {
-                                echo 'Unlike';
-                            }
-                        ?>
-                    </button>
+                        <button id="btn_like" type="button" class="btn btn-primary" data-toggle="thumbsup" title="Give me a like Please!">
+                            <i class="glyphicon glyphicon-thumbs-up"></i>
+                            Like
+                        </button>
                 <?php
+                        } else {
+                ?>
+                        <button id="btn_like" type="button" class="btn btn-primary" data-toggle="thumbsup" title="You've already given me a like">
+                            <i class="glyphicon glyphicon-thumbs-up"></i>
+                            Unlike
+                        </button>
+                <?php
+                        }
                     }
                 ?>
                 
