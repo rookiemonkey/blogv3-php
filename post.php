@@ -4,6 +4,20 @@
 <?php include "./controllers/render_comments.php"; ?>
 <?php include "./controllers/add_comment.php"; ?>
 
+<?php
+    if(isset($_POST['likedby'])) {
+        $post_id = $_GET['p_id'];
+        $user_id = intval($_POST['likedby']);
+        $user_username = $_POST['username'];
+
+        // increment the post_likes col
+        $views_query = $mysqli->prepare("UPDATE posts SET post_likes = post_likes + 1 WHERE post_id = ?");
+        $views_query->bind_param('s', $post_id);
+        $views_query->execute();
+        $views_query->close();
+    }
+?>
+
     <!-- Navigation -->
     <?php include "./includes/navigation.php" ?>
 
@@ -67,5 +81,31 @@
         </div>
 
     <hr>
+
+
+
+<?php
+    if(isLoggedIn()) {
+?>
+    <script>
+        $(document).ready(function() {
+            $('#btn_like').on('click', function() {
+                let userId = <?php echo $_SESSION['id']; ?>;
+                let userName = "<?php echo $_SESSION['username']; ?>";
+
+                $.ajax({
+                    url: '/cms/post.php?p_id=<?php echo $_GET['p_id']; ?>',
+                    type: 'POST',
+                    data: { 
+                        likedby: userId,
+                        username: userName
+                    }
+                })
+            })
+        })
+    </script>
+<?php
+    }
+?>
 
 <?php include "./includes/footer.php" ?>

@@ -31,7 +31,7 @@
             $query = $mysqli->prepare($statement);
 
             // bind the parameters  
-            $query->bind_param("sssssssisi", $post_category_id, $post_title, $post_author, $post_date, $post_image, $post_content, $post_tags, $post_comment_count, $post_status, $post_views);
+            $query->bind_param("sssssssisii", $post_category_id, $post_title, $post_author, $post_date, $post_image, $post_content, $post_tags, $post_comment_count, $post_status, $post_views);
 
             // execute the query
             $result = $query->execute();

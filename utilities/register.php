@@ -9,7 +9,7 @@
 
         $query = $mysqli->prepare("INSERT INTO users (user_firstname, user_lastname, user_username, user_role, user_email, user_password, user_avatar, user_randSalt, user_token) VALUES (?,?,?,?,?,?,?,?,?)");
 
-        $query->bind_param('ssssssss', $inputs['firstname'], $inputs['lastname'], $inputs['username'], $inputs['role'], $inputs['email'], $inputs['password'], $inputs['avatar'], $inputs['randSalt'], $inputs['token']);
+        $query->bind_param('sssssssss', $inputs['firstname'], $inputs['lastname'], $inputs['username'], $inputs['role'], $inputs['email'], $inputs['password'], $inputs['avatar'], $inputs['randSalt'], $inputs['token']);
 
         $result = $query->execute();
 

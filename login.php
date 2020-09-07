@@ -9,7 +9,7 @@
 	isLoggedInThenRedirect('/cms/admin');
 
 	if(isMethod('POST')) {
-		if(!isset($_POST['username'])  && !isset($_POST['password'])) {
+		if(isset($_POST['username'])  && isset($_POST['password'])) {
 			login_user($_POST['username'], $_POST['password']);
 		}
 

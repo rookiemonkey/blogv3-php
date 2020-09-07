@@ -24,6 +24,7 @@
             $post_date = $row["post_date"];
             $post_content = $row["post_content"];
             $post_image = $row["post_image"];   
+            $post_likes = $row["post_likes"];   
             
 ?>
             <h1 class="page-header">
@@ -52,6 +53,11 @@
             <p>
                 <?php echo $post_content ?>
             </p>
+            
+            <div>
+                <button id="btn_like" type="button" class="btn btn-primary">Like</button>
+                Likes: <?php echo $post_likes ?>
+            </div>
 
             <hr>
 <?php                          

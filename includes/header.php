@@ -15,6 +15,7 @@
 
     <link href="/cms/css/bootstrap.min.css" rel="stylesheet">
     <link href="/cms/css/blog-home.css" rel="stylesheet">
+    <script src="/cms/js/jquery.js" type='text/javascript'></script>
 
 </head>
 

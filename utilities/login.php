@@ -41,6 +41,7 @@
             $query->execute();
             $query->close();
 
+            $_SESSION['id'] = $db_user_id;
             $_SESSION['username'] = $db_user_username;
             $_SESSION['firstname'] = $db_user_firstname;
             $_SESSION['lastname'] = $db_user_lastname;
