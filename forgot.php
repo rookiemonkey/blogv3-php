@@ -41,8 +41,8 @@
                                                         $query->bind_param('ss', $token, $email);
                                                         $query->execute();
                                                         $query->close();
-                                                        toEmailPasswordReset($email);
-                                                        render_alert_success('Success! Password rest link sent to your email.');
+                                                        toEmailPasswordReset($email, $token);
+                                                        render_alert_success('Success! Password reset link sent to your email.');
                                                     }
 
                                                     else {
@@ -55,7 +55,7 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
-                                                <input id="email" name="email" placeholder="email address" class="form-control"  type="email">
+                                                <input id="email" name="email" placeholder="Enter Email" class="form-control"  type="email">
                                             </div>
                                         </div>
                                         <div class="form-group">

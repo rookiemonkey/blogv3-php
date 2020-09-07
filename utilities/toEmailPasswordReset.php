@@ -9,7 +9,7 @@
     // Instantiation and passing `true` enables exceptions
     $mail = new PHPMailer(true);
 
-    function toEmailPasswordReset($receiver) {
+    function toEmailPasswordReset($receiver, $token) {
         try {
 
             global $mail;
@@ -29,9 +29,10 @@
 
             // Content
             $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->CharSet = 'UTF-8';                             // Set Char. Set to render non-english characters
             $mail->Subject = 'Password Reset Request';
-            $mail->Body    = 'This is the HTML message body Adiós Quién? <b>in bold!</b>';
-            $mail->CharSet = 'UTF-8';
+            $mail->Body    = '<p>Please click the reset button to reset your password: <a href="http://localhost:8000/cms/reset.php?email=' .$receiver.'&token='.$token.'"'.'>Reset</a></p>';
+
 
             // Send the Email
             $mail->send();
