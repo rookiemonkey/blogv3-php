@@ -1,4 +1,4 @@
-<?
+<?php
 
     class EmailConfig {
         public const SMTP_HOST = 'smtp.mailtrap.io';

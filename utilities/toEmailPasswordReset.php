@@ -6,9 +6,6 @@
     // Load Composer's autoloader
     require 'vendor/autoload.php';
 
-    // Load custom configuration
-    require '_config_email.php';
-
     // Instantiation and passing `true` enables exceptions
     $mail = new PHPMailer(true);
 

@@ -8,6 +8,11 @@
             "email": "kevinroirigorbasina@pm.me"
         }
     ],
+    "autoload": {
+        "classmap": [
+            "classes"
+        ]
+    },
     "require": {
         "phpmailer/phpmailer": "^6.1"
     }
