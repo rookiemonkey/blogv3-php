@@ -63,20 +63,19 @@
                     $results = $isLiked->get_result();
                     $isLiked->close();
 
-                    if($results->num_rows === 0) {
                 ?>
                     <button id="btn_like" type="button" class="btn btn-primary">
-                        Like
+                        <i class="glyphicon glyphicon-thumbs-up"></i>
+                        <?php
+                            if($results->num_rows === 0) {
+                                echo 'Like';
+                            }
+
+                            else {
+                                echo 'Unlike';
+                            }
+                        ?>
                     </button>
-                <?php
-                    } else {
-                ?>
-                    <button id="btn_like" type="button" class="btn btn-primary">
-                        Unlike
-                    </button>
-                <?php
-                    }
-                ?>
                 
                 Likes: <?php echo $post_likes ?>
             </div>
