@@ -16,26 +16,35 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
 
-                <li>
-                    <a href='/cms/admin'>
-                        Admin
-                    </a>
-                </li>
+                <?php if (isAdmin()) { ?>
+                    <li>
+                        <a href='/cms/admin'>
+                            Admin
+                        </a>
+                    </li>
+                <?php } ?>
 
-                <li>
-                    <a href='/cms/registration'>
-                        Register
-                    </a>
-                </li>
+                <?php if (!isLoggedIn())  { ?>
+                    <li>
+                        <a href='/cms/registration'>
+                            Register
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href='/cms/login'>
+                            Login
+                        </a>
+                    </li>
+                <?php } ?>
 
                 <?php
-                    if(isset($_SESSION['role'])) {
-
-                        if(isset($_GET['p_id'])) {
-                            $post_id = $_GET['p_id'];
-
-                            echo "<li><a href='/cms/admin/posts.php?source=edit_post&p_id={$post_id}'>Edit Post</a></li>";
-                        }
+                    if(isLoggedIn() && isset($_GET['p_id'])) {
+                ?>
+                    <li>
+                        <a href="/cms/admin/posts.php?source=edit_post&p_id={$_GET['p_id']}">Edit Post</a>
+                    </li>
+                <?php
                     }
                 ?>
                 

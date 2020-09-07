@@ -6,6 +6,7 @@
     include './utilities/register.php';
     include './utilities/login.php';
     include './utilities/redirect.php';
+    include './utilities/isAdmin.php';
     include './utilities/isLoggedIn.php';
     include './utilities/isLoggedInThenRedirect.php';
     include './utilities/isMethod.php';
