@@ -1,0 +1,14 @@
+{
+    "name": "kevin/blog",
+    "type": "project",
+    "description": "",
+    "authors": [
+        {
+            "name": "rookiemonkey",
+            "email": "kevinroirigorbasina@pm.me"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.1"
+    }
+}
