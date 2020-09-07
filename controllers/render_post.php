@@ -55,7 +55,29 @@
             </p>
             
             <div>
-                <button id="btn_like" type="button" class="btn btn-primary">Like</button>
+                <?php
+                    // check if the user already liked the post
+                    $isLiked = $mysqli->prepare("SELECT * FROM likes WHERE like_postid = ? AND like_userid = ?");
+                    $isLiked->bind_param('ii', $post_id, $_SESSION['id']);
+                    $isLiked->execute();
+                    $results = $isLiked->get_result();
+                    $isLiked->close();
+
+                    if($results->num_rows === 0) {
+                ?>
+                    <button id="btn_like" type="button" class="btn btn-primary">
+                        Like
+                    </button>
+                <?php
+                    } else {
+                ?>
+                    <button id="btn_like" type="button" class="btn btn-primary">
+                        Unlike
+                    </button>
+                <?php
+                    }
+                ?>
+                
                 Likes: <?php echo $post_likes ?>
             </div>
 
