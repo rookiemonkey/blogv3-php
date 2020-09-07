@@ -29,6 +29,7 @@
                 'role' => 'subscriber',
                 'avatar' => 'test+avatar+jpg',
                 'randSalt' => 'test+randsalt',
+                'token' => ''
             ];
 
             // create the user's account

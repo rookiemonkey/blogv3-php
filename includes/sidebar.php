@@ -18,6 +18,9 @@
                         <button class="btn btn-primary" name="login" type="submit">Login</button>
                     </span>
                 </div>
+                <div class="form-group">
+                    <a href="/_PHP_blog/forgot?token=<?php echo uniqid(); ?>">Forgot Password?</a>
+                </div>
             </form>
             <?php 
                 if(isset($_POST['login'])) { 
