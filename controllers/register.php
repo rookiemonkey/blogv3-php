@@ -8,18 +8,18 @@
         $user_password = $_POST['user_password'];
 
         if(empty($user_firstname) || empty($user_lastname) || empty($user_username) || empty($user_email) || empty($user_password)) {
-            render_alert_failed('User informations cannot be empty');
+            View::alert_Failed('User informations cannot be empty');
         }
 
         else if (strlen($user_password) < 8) {
-            render_alert_failed('Passwords should have a minimum of 8 charactes');
+            View::alert_Failed('Passwords should have a minimum of 8 charactes');
         }
 
-        else if (is_user_exisiting($user_email, $user_username)){
-            render_alert_failed('Username/Email already exists. Please provide a unique username and email');
+        else if (Utility::isUserExisting($user_email, $user_username)){
+            View::alert_Failed('Username/Email already exists. Please provide a unique username and email');
         }
 
-        else if (!is_user_exisiting($user_email, $user_username)) { 
+        else if (!Utility::isUserExisting($user_email, $user_username)) { 
             $inputs = [
                 'firstname' => $user_firstname,
                 'lastname' => $user_lastname,
@@ -28,24 +28,22 @@
                 'password' => $user_password ,
                 'role' => 'subscriber',
                 'avatar' => 'test+avatar+jpg',
-                'randSalt' => 'test+randsalt',
                 'token' => ''
             ];
 
             // create the user's account
-            $user_info = register_user($inputs);
-
-            // login and start the session
-            login_user($user_info['username'], $user_info['password']);
+            $user_info = Utility::toCreate_User($inputs);
 
             // check if query is successfull
-            if($user_info['result']) { 
-                header('Location: index.php');
+            if(!$user_info['result']) { 
+                View::alert_Failed('Something went wrong. Please try again');
+                exit;
             }
-            
-            else { 
-                render_alert_failed('Something went wrong. Please try again');
-            }
+
+            return [
+                'username' => $user_info['username'],
+                'password' => $user_info['password']
+            ];
         }
     }
 ?>

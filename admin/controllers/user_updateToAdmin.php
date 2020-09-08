@@ -5,7 +5,7 @@
      * DESC: change role to admin
      */
     function update_user_toAdmin() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
 
         if(isset($_GET['admin'])) {
             // prepare statement and query

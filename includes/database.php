@@ -5,15 +5,19 @@
     define("DB_PASSWORD", "");
     define("DB_DBNAME", "blog");
 
-    $mysqli = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
+    function Initialize_Database() {
+        $mysqli = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
 
-    $mysqli->set_charset("utf8");
+        $mysqli->set_charset("utf8");
 
-    if (!$mysqli) {
-        echo "Error: Unable to connect to MySQL." . PHP_EOL;
-        echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
-        echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
-        exit;
+        if (!$mysqli) {
+            echo "Error: Unable to connect to MySQL." . PHP_EOL;
+            echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
+            echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
+            exit;
+        }
+
+        return $mysqli;
     }
 
     /* activate reporting */

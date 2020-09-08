@@ -5,7 +5,7 @@
      * DESC: unapproved a comment
      */
     function unapprove_comment() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
 
         if(isset($_GET['unapprove'])) {
             $comment_id = intval($_GET['unapprove']);

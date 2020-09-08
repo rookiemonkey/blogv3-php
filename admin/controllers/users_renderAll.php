@@ -5,7 +5,7 @@
      * DESC: read all users and render them as a table
      */
     function read_users() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
 
         // prepare statement and query
         $query = $mysqli->prepare("SELECT * FROM users");

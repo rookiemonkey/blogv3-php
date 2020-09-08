@@ -1,18 +1,13 @@
 <?php
+
+    require __DIR__ .  '../../vendor/autoload.php';
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
 
-    // Load Composer's autoloader
-    require 'vendor/autoload.php';
-
-    // Instantiation and passing `true` enables exceptions
-    $mail = new PHPMailer(true);
-
     function toEmailPasswordReset($receiver, $token) {
         try {
-
-            global $mail;
+            $mail = new PHPMailer(true);
             
             // Server settings
             $mail->isSMTP();                                          // Send using SMTP
@@ -28,14 +23,15 @@
             $mail->addAddress($receiver);              
 
             // Content
-            $mail->isHTML(true);                                  // Set email format to HTML
-            $mail->CharSet = 'UTF-8';                             // Set Char. Set to render non-english characters
+            $mail->isHTML(true);             // Set email format to HTML
+            $mail->CharSet = 'UTF-8';        // Set Char. Set to render non-english characters
             $mail->Subject = 'Password Reset Request';
-            $mail->Body    = '<p>Please click the reset button to reset your password: <a href="http://localhost:8000/cms/reset.php?email=' .$receiver.'&token='.$token.'"'.'>Reset</a></p>';
-
+            $mail->Body = '<p>Please click the reset button to reset your password: <a href="http://localhost:8000/cms/reset.php?email=' .$receiver.'&token='.$token.'"'.'>Reset</a></p>';
 
             // Send the Email
             $mail->send();
+
+            View::alert_Success('Success! Password reset link sent to your email.');
 
         } catch (Exception $e) {
 

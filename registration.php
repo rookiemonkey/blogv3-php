@@ -1,7 +1,6 @@
-<?php  include "includes/database.php"; ?>
-<?php  include "includes/header.php"; ?>
-<?php  include "includes/navigation.php"; ?>
-<?php  include "controllers/register.php"; ?>
+<?php require 'vendor/autoload.php'; ?>
+<?php View::MainHeader(); ?>
+<?php View::Navigation(); ?>
 
 <section id="login">    
     <div class="container">
@@ -10,11 +9,7 @@
                 <div class="form-wrap">
                 <h1>Register</h1>
 
-                <?php
-
-                    if(isset($_POST['submit_register'])) { register(); }
-
-                ?>
+                <?php Controller::register(); ?>
 
                     <form role="form" action="registration.php" method="POST" id="login-form" autocomplete="off">
                         <div class="form-group">
@@ -49,4 +44,4 @@
 
 <hr>
 
-<?php include "includes/footer.php";?>
+<?php View::MainFooter(); ?>

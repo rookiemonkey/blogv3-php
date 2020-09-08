@@ -5,7 +5,7 @@
      * DESC: read all the posts and render them as a table
      */
     function read_posts() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
 
         // prepare statement and query
         $query = $mysqli->prepare("SELECT * FROM posts");

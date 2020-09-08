@@ -1,37 +1,29 @@
-<?php include "./includes/database.php"; ?>
-<?php include "./includes/header.php"; ?>
+<?php require 'vendor/autoload.php'; ?>
+<?php View::MainHeader(); ?>
+<?php View::Navigation(); ?>
 
-    <!-- Navigation -->
-    <?php include "./includes/navigation.php" ?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
 
-    <!-- Page Content -->
-    <div class="container">
+            <h1 class="page-header">
+                What's the latest?   
+                <small>Discover interesting contents</small>
+            </h1>
 
-        <div class="row">
+            <?php View::Posts(); ?>
 
-            <!-- Blog Entries Column -->
-            <div class="col-md-8">
+            <ul class="pager">
 
-                <h1 class="page-header">
-                    Page Heading    
-                    <small>Secondary Text</small>
-                </h1>
+                <?php View::Pagination(true); ?>
 
-                <!-- Post -->
-                <?php include "./controllers/render_posts.php"; ?>
-
-                <!-- Pager -->
-                <ul class="pager">
-                    <?php include "./controllers/render_pagination.php"; ?>
-                </ul>
-
-            </div>
-
-            <!-- Blog Sidebar Widgets Column -->
-            <?php include "./includes/sidebar.php" ?>
+            </ul>
 
         </div>
 
-    <hr>
+        <?php View::SideBar(); ?>
 
-<?php include "./includes/footer.php" ?>
+    </div>
+<hr>
+
+<?php View::MainFooter(); ?>

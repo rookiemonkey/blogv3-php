@@ -5,7 +5,7 @@
         <div class='alert alert-danger'>
             <div class='panel-heading'>
                 <h3 class='panel-title'>
-                    <h3 class='panel-title'><?php echo $message; ?></h3>
+                    <?php echo $message; ?>
                 </h3>
             </div>
         </div>

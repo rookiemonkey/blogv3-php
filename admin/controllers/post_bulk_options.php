@@ -6,7 +6,7 @@
      *  added clone
      */
     function bulk_options_posts() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
         
         if(isset($_POST['checkBoxArray'])){
 

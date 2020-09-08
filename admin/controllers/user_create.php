@@ -5,7 +5,7 @@
     * DESC: create a user
     */
     function create_user() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
     
         if(isset($_POST['create_user'])) {
             $user_firstname = $_POST['user_firstname'];
@@ -15,14 +15,13 @@
             $user_email = $_POST['user_email'];
             $user_password = $_POST['user_password'];
             $user_avatar = "test+image+page";
-            $user_randSalt = "test+random+salt";
 
             $user_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
             
             // prepare statement and query
-            $query = $mysqli->prepare("INSERT INTO users (user_firstname, user_lastname, user_username, user_role, user_email, user_password, user_avatar, user_randSalt) VALUES (?,?,?,?,?,?,?,?)");
+            $query = $mysqli->prepare("INSERT INTO users (user_firstname, user_lastname, user_username, user_role, user_email, user_password, user_avatar) VALUES (?,?,?,?,?,?,?)");
 
-            $query->bind_param('ssssssss', $user_firstname, $user_lastname, $user_username, $user_role, $user_email, $user_password, $user_avatar, $user_randSalt);
+            $query->bind_param('ssssssss', $user_firstname, $user_lastname, $user_username, $user_role, $user_email, $user_password, $user_avatar);
 
             $result = $query->execute();
 

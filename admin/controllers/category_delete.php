@@ -4,7 +4,7 @@
      * delete a category
      */
     function delete_category() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
 
         if(isset($_GET['delete'])) {
             $category_id = $_GET['delete'];

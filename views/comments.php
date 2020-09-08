@@ -1,7 +1,7 @@
 <?php
 
     function render_comments() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
 
         $p_id = $_GET['p_id'];
         $comment_status = 'approved';

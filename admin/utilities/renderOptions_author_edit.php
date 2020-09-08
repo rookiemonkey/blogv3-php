@@ -1,7 +1,7 @@
 <?php
 
     function render_authorOptions_edit($post_row) {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
 
         // echo the initial value of the select which is the current author
         echo "<option value='{$post_row['post_author']}' selected='selected'>{$post_row['post_author']}</option>";

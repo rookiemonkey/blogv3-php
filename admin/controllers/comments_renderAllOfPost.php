@@ -6,7 +6,7 @@
      *       and render them as a table
      */
      function read_comments_ofpost() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
 
         if(isset($_GET['comments_of_post'])) {
             // prepare statement and query

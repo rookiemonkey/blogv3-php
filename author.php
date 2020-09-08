@@ -1,47 +1,29 @@
-<?php include "./includes/database.php"; ?>
-<?php include "./includes/header.php"; ?>
-<?php include "./controllers/search_author.php"; ?>
+<?php require 'vendor/autoload.php'; ?>
+<?php View::MainHeader(); ?>
+<?php View::Navigation(); ?>
 
-    <!-- Navigation -->
-    <?php include "./includes/navigation.php" ?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
 
-    <!-- Page Content -->
-    <div class="container">
+            <h1 class="page-header">
+                Author Search    
+                <small>by <?php echo $_GET['author']; ?></small>
+            </h1>
 
-        <div class="row">
+            <?php View::search_byAuthor(); ?>
 
-            <!-- Blog Entries Column -->
-            <div class="col-md-8">
+            <ul class="pager">
 
-                <h1 class="page-header">
-                    Page Heading    
-                    <small>Secondary Text</small>
-                </h1>
-
-                <!-- Post -->
-                <?php
-                    if(isset($_GET["author"])) {
-                        search_author();
-                    }
-                ?>
-
-                <!-- Pager -->
-                <ul class="pager">
-                    <li class="previous">
-                        <a href="#">&larr; Older</a>
-                    </li>
-                    <li class="next">
-                        <a href="#">Newer &rarr;</a>
-                    </li>
-                </ul>
-
-            </div>
-
-            <!-- Blog Sidebar Widgets Column -->
-            <?php include "./includes/sidebar.php" ?>
+                <?php View::Pagination(true); ?>
+                
+            </ul>
 
         </div>
 
-    <hr>
+        <?php View::SideBar(); ?>
 
-<?php include "./includes/footer.php" ?>
+    </div>
+<hr>
+
+<?php View::MainFooter(); ?>

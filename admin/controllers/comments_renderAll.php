@@ -5,7 +5,7 @@
      * DESC: read all comments and render them as a table
      */
     function read_comments() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
 
         if(!isset($_GET['comments_of_post'])) {
             // prepare statement and query

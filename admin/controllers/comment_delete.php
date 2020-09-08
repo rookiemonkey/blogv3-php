@@ -5,7 +5,7 @@
      * DESC: delete a comment
      */
     function delete_comment() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
 
         if(isset($_GET['delete'])) {
             $comment_id = intval($_GET['delete']);

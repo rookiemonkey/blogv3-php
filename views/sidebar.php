@@ -1,12 +1,23 @@
+<?php $mysqli = Model::Provide_Database(); ?>
+
 <div class="col-md-4">
 
-        <!-- Blog Login Well -->
     <?php
-
+        if(isset($_POST['login'])) {
+            Controller::login($_POST['username'], $_POST['password']); 
+        }
+        
         if(!isset($_SESSION['username'])){
     ?>
         <div class="well">
-            <h4>Login</h4>
+            <h4>
+                Login
+                <small>
+                    <a href="/cms/forgot?token=<?php echo uniqid(); ?>">
+                        Forgot Password?
+                    </a>
+                </small>
+            </h4>
             <form action="" method="POST">
                 <div class="form-group">
                     <input name="username" type="text" class="form-control" placeholder="Username" required>
@@ -18,23 +29,14 @@
                         <button class="btn btn-primary" name="login" type="submit">Login</button>
                     </span>
                 </div>
-                <div class="form-group">
-                    <a href="/cms/forgot?token=<?php echo uniqid(); ?>">Forgot Password?</a>
-                </div>
             </form>
-            <?php 
-                if(isset($_POST['login'])) { 
-                    login_user($_POST['username'], $_POST['password']); 
-                } 
-            ?>
         </div>
     <?php
         }
     ?>
 
-    <!-- Blog Search Well -->
     <div class="well">
-        <h4>Blog Search</h4>
+        <h4>Blog Search <small>via tags</small></h4>
         <form action="./search.php" method="POST">
             <div class="input-group">
                 <input name="search" type="text" class="form-control">
@@ -47,38 +49,38 @@
         </form>
     </div>
 
-    <!-- Blog Categories Well -->
     <div class="well">
+        <h4>Blog Categories</h4>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="list-unstyled">  
 
                     <?php
                         $query = $mysqli->prepare("SELECT * FROM categories");
                         $query->execute();
                         $catogories = $query->get_result();
 
-                    ?>
-
-        <h4>Blog Categories</h4>
-        <div class="row">
-            <div class="col-lg-12">
-                <ul class="list-unstyled">
-                    
-                    <?php 
-                    
                         while($row = $catogories->fetch_assoc()) {
                             $category_title = $row["cat_title"];
                             $category_id = $row["cat_id"];
-                            echo "<li><a href='/cms/category.php?c_id={$category_id}'>{$category_title}</a></li>";     
+                    ?>
+                        <li>
+                            <a href="/cms/category.php?c_id=<?php echo $category_id; ?>">
+                                <?php echo $category_title; ?>
+                            </a>
+                        </li>
+                    <?php
                         }
-
-                    ?>    
+                    ?> 
 
                 </ul>
             </div>
         </div>
     </div>
 
-
-    <!-- Side Widget Well -->
-    <?php include "widget.php" ?>
+    <div class="well">
+        <h4>Side Widget Well</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+    </div>
 
 </div>

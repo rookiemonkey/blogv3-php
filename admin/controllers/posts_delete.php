@@ -5,7 +5,7 @@
      * DESC: delete a post
      */
     function delete_post() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
 
         if(isset($_GET['delete'])) {
             $post_id = $_GET['delete'];

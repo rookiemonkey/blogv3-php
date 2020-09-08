@@ -4,7 +4,7 @@
      * conditional render of the update form
      */
     function update_renderForm() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
 
         if(isset($_GET['update']) && $_GET['update'] === '') {
             echo "<div class='panel panel-danger'>";

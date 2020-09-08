@@ -5,7 +5,7 @@
      * DESC: create a post
      */
     function create_post() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
 
         if(isset($_POST['create_post'])) {
             $post_title        = $_POST['post_title'];

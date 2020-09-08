@@ -1,7 +1,7 @@
 <?php
 
     function render_post() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
 
         $post_id = $_GET['p_id'];
         $post_status = 'published';
@@ -28,17 +28,9 @@
             
 ?>
             <h1 class="page-header">
-                Page Heading    
-                <small>Secondary Text</small>
+                <?php echo $post_title ?>    
+                <small>by <?php echo $post_author ?></small>
             </h1>
-            
-            <h2>
-                <a><?php echo $post_title ?></a>
-            </h2>
-
-            <p class="lead">
-                by <a href="/author.php"><?php echo $post_author ?></a>
-            </p>
 
             <p>
                 <span class="glyphicon glyphicon-time"></span> 
@@ -66,7 +58,7 @@
                 ?>
 
                 <?php
-                    if(isLoggedIn()) {
+                    if(Utility::isLoggedIn()) {
                         if($results->num_rows === 0) {
                 ?>
                         <button id="btn_like" type="button" class="btn btn-primary" data-toggle="thumbsup" title="Give me a like Please!">

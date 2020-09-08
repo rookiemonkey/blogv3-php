@@ -1,7 +1,7 @@
 <?php
 
     function render_categoryOptions_edit($post_row) {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
             
         $query = $mysqli->prepare("SELECT * FROM categories");
         $query->execute();

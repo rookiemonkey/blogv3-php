@@ -1,7 +1,10 @@
+<?php
+    session_start();
+    $mysqli = Model::Provide_Database();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-<?php session_start(); ?>
-<?php include 'utilities.php' ?>
 
 <head>
 

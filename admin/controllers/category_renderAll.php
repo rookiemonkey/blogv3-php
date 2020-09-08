@@ -5,7 +5,7 @@
      * and render them as a table
      */
     function read_categories() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
 
         $query = $mysqli->prepare("SELECT * FROM categories");
         $query->execute();

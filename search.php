@@ -1,47 +1,29 @@
-<?php include "./includes/database.php"; ?>
-<?php include "./includes/header.php"; ?>
-<?php include "./controllers/search_tags"; ?>
+<?php require 'vendor/autoload.php'; ?>
+<?php View::MainHeader(); ?>
+<?php View::Navigation(); ?>
 
-    <!-- Navigation -->
-    <?php include "./includes/navigation.php" ?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
 
-    <!-- Page Content -->
-    <div class="container">
+            <h1 class="page-header">
+                Tag Search    
+                <small>Term: '<?php echo $_POST['search']; ?>'</small>
+            </h1>
 
-        <div class="row">
+            <?php View::search_byTags(); ?>
 
-            <!-- Blog Entries Column -->
-            <div class="col-md-8">
+            <ul class="pager">
 
-                <h1 class="page-header">
-                    Page Heading    
-                    <small>Secondary Text</small>
-                </h1>
+                <?php View::Pagination(true); ?>
 
-                <!-- render posts by search tags -->
-                <?php    
-                    if(isset($_POST["submit"])) {
-                        search_tags();
-                    }
-                ?>
-
-                <!-- Pager -->
-                <ul class="pager">
-                    <li class="previous">
-                        <a href="#">&larr; Older</a>
-                    </li>
-                    <li class="next">
-                        <a href="#">Newer &rarr;</a>
-                    </li>
-                </ul>
-
-            </div>
-
-            <!-- Blog Sidebar Widgets Column -->
-            <?php include "./includes/sidebar.php" ?>
+            </ul>
 
         </div>
 
-    <hr>
+        <?php View::SideBar(); ?>
 
-<?php include "./includes/footer.php"; ?>
+    </div>
+<hr>
+
+<?php View::MainFooter(); ?>

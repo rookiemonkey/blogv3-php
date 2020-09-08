@@ -5,7 +5,7 @@
      * DESC: approved a comment
      */
     function approve_comment() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
 
         if(isset($_GET['approve'])) {
             $comment_id = intval($_GET['approve']);

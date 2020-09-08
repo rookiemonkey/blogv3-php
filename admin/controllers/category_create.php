@@ -4,7 +4,7 @@
      * create a new category
      */
     function create_category() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
 
         if(isset($_POST['add_category'])) {
             $category_title = $_POST['cat_title'];

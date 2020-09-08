@@ -4,7 +4,7 @@
      * update a category
      */
     function update_category() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
 
         if(isset($_POST['update_category'])) {
             $category_title = $_POST['cat_title'];

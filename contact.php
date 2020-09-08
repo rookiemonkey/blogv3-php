@@ -1,6 +1,6 @@
-<?php  include "includes/database.php"; ?>
-<?php  include "includes/header.php"; ?>
-<?php  include "includes/navigation.php"; ?>
+<?php require 'vendor/autoload.php'; ?>
+<?php View::MainHeader(); ?>
+<?php View::Navigation(); ?>
 
 <section id="login">    
     <div class="container">
@@ -9,16 +9,7 @@
                 <div class="form-wrap">
                 <h1>Contact</h1>
 
-                <?php
-                    if(isset($_POST['submit_contact'])) {
-                        $to         = "kevinroirigorbasina@gmail.com";
-                        $subject    = wordwrap($_POST['subject'], 70);
-                        $body       = $_POST['body'];
-                        $header     = $_POST['email'];
-
-                        mail($to, $subject, $body, $header);
-                    }
-                ?>
+                <?php Utility::toEmail_Contact(); ?>
 
                     <form role="form" action="contact.php" method="POST" id="login-form" autocomplete="off">
                         <div class="form-group">
@@ -44,4 +35,4 @@
 
 <hr>
 
-<?php include "includes/footer.php";?>
+<?php View::MainFooter(); ?>

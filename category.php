@@ -1,36 +1,30 @@
-<?php include "./includes/database.php"; ?>
-<?php include "./includes/header.php"; ?>
-<?php include "./controllers/search_category.php"; ?>
+<?php require 'vendor/autoload.php'; ?>
+<?php View::MainHeader(); ?>
+<?php View::Navigation(); ?>
 
-    <!-- Navigation -->
-    <?php include "./includes/navigation.php" ?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="page-header">
+                Category Search   
+                <small>
+                    <?php Utility::getCategoryName($_GET['c_id']) ?>
+                </small>
+            </h1>
 
-    <!-- Page Content -->
-    <div class="container">
+            <?php View::search_byCategory(); ?>
 
-        <div class="row">
+            <ul class="pager">
 
-            <!-- Blog Entries Column -->
-            <div class="col-md-8">
+                <?php View::Pagination(true); ?>
 
-                <h1 class="page-header">
-                    Page Heading    
-                    <small>Secondary Text</small>
-                </h1>
-
-                <!-- Post -->
-                <?php
-                    if(isset($_GET['c_id'])) {
-                        search_category();
-                    }
-                ?>
-            </div>
-
-            <!-- Blog Sidebar Widgets Column -->
-            <?php include "./includes/sidebar.php" ?>
-
+            </ul>
+            
         </div>
 
-    <hr>
+        <?php View::SideBar(); ?>
 
-<?php include "./includes/footer.php" ?>
+    </div>
+<hr>
+
+<?php View::MainFooter(); ?>

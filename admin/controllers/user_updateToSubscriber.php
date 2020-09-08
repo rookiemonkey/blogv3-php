@@ -5,7 +5,7 @@
      * DESC: change role to subscriber
      */
     function update_user_toSubscriber() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
 
         if(isset($_GET['subscriber'])) {
             // prepare statement and query

@@ -26,7 +26,7 @@
 
             // check if query is successfull
             if($result) { 
-                render_alert_success("Succesfully added a comment. Once approved by admin, it will be visible on this post.");
+                View::alert_Success("Succesfully added a comment. Once approved by admin, it will be visible on this post.");
 
                 // increment the comment count on post
                 $statement = "UPDATE posts SET post_comment_count  = post_comment_count + 1 WHERE post_id = ?";
@@ -36,12 +36,12 @@
                 $query->close();
             }
             else { 
-                render_alert_failed("Something went wrong. Please try again later");
+                View::alert_Failed("Something went wrong. Please try again later");
             }
         }
 
         else {
-            render_alert_failed("Please complete your comment details");
+            View::alert_Failed("Please complete your comment details");
         }
     }
 ?>

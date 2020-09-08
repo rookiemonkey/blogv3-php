@@ -5,7 +5,7 @@
      * DESC: delete a user
      */
     function delete_user() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
 
         if(isset($_GET['delete'])) {
             // prepare statement and query

@@ -1,7 +1,7 @@
 <?php
 
     function render_authorOptions_create() {
-        global $mysqli;
+        $mysqli = Model::Provide_Database();
             
         $query = $mysqli->prepare("SELECT * FROM users");
         $query->execute();
