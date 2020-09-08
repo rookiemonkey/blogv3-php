@@ -1,7 +1,6 @@
 <?php
 
-    function render_alert_tablenoresult($message_parameter) {
-        $message = $message_parameter;
+    function render_alert_tablenoresult($message) {
 ?>
             <div class="jumbotron">
                 <h1>We apologize..</h1>

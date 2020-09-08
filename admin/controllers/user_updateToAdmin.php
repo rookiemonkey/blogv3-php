@@ -1,11 +1,7 @@
 <?php
 
-    /**
-     * ROUTE: GET /admin/users.php?admin=USERID
-     * DESC: change role to admin
-     */
     function update_user_toAdmin() {
-        $mysqli = Model::Provide_Database();
+        $mysqli = AdminModel::Provide_Database();
 
         if(isset($_GET['admin'])) {
             // prepare statement and query
@@ -21,7 +17,7 @@
                 header("Location: users.php");
             }
             else { 
-                render_alert_failed();
+                AdminUtilities::alert_Failed();
             }
         }
     }

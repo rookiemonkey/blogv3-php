@@ -1,11 +1,7 @@
 <?php
 
-    /**
-     * ROUTE: GET /admin/users.php?subscriber=USERID
-     * DESC: change role to subscriber
-     */
     function update_user_toSubscriber() {
-        $mysqli = Model::Provide_Database();
+        $mysqli = AdminModel::Provide_Database();
 
         if(isset($_GET['subscriber'])) {
             // prepare statement and query
@@ -21,7 +17,7 @@
                 header("Location: users.php");
             }
             else { 
-                render_alert_failed();
+                AdminUtilities::alert_Failed();
             }
         }
     }

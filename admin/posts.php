@@ -1,48 +1,39 @@
-<?php include './includes/admin_header.php' ?>  
+<?php require '../vendor/autoload.php'; ?>
+<?php AdminView::AdminHeader(); ?>   
 
-    <div id="wrapper">
+<div id="wrapper">
 
-        <!-- Navigation -->
-        <?php include './includes/admin_navigation.php' ?>
+    <?php AdminView::AdminNavigation(); ?>  
 
-        <div id="page-wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Posts Dashboard
+                    </h1>
 
-            <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            Posts Dashboard
-                            <small><?php echo $_SESSION['username']; ?></small>
-                        </h1>
-
-
-                        <?php
-                            if(isset($_GET['source'])) {
-                                $source = $_GET['source'];
-
-                                switch($source) {
-                                    case 'add_post':
-                                        include './includes/post_add.php';
-                                        break;
-                                    case 'edit_post':
-                                        include './includes/post_edit.php';
-                                        break;
-                                    default:
-                                        include './includes/posts_read.php';
-                                }
+                    <?php
+                        if(isset($_GET['source'])) {
+                            switch($_GET['source']) {
+                                case 'add_post':
+                                    AdminView::Post_addForm();
+                                    break;
+                                case 'edit_post':
+                                    AdminView::Post_editForm();
+                                    break;
+                                default:
+                                    AdminView::PostsPage();
                             }
-                            
-                            else { include './includes/posts_read.php'; }
-                        ?>
+                        }
+                        
+                        else { AdminView::PostsPage(); }
+                    ?>
 
-                    </div>
                 </div>
-
-
             </div>
         </div>
     </div>
+</div>
 
-<?php include "./includes/admin_footer.php" ?>
+<?php AdminView::AdminFooter(); ?>  

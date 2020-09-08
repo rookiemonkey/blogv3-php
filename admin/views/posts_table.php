@@ -1,11 +1,7 @@
 <?php
 
-    /**
-     * ROUTE: GET admin/posts.php
-     * DESC: read all the posts and render them as a table
-     */
     function read_posts() {
-        $mysqli = Model::Provide_Database();
+        $mysqli = AdminModel::Provide_Database();
 
         // prepare statement and query
         $query = $mysqli->prepare("SELECT * FROM posts");
@@ -15,7 +11,7 @@
 
         // render a message if no available post
         if($posts->num_rows === 0) {
-            render_alert_tablenoresult("However, there are no available posts");
+            AdminUtilities::alert_NoResults("There are no available posts");
         }
         
         // loop into the results and render
@@ -30,7 +26,7 @@
             // render delete confirmation modal
             $message = 'Are you sure you want to delete the post: '. $row['post_title'] . '?';
             $link = './posts.php?delete=' . $row['post_id'];
-            render_modal($row['post_id'], 'delete', $message, $link);
+            AdminUtilities::alert_Modal($row['post_id'], 'delete', $message, $link);
 ?>
             <tr>
                 <th>

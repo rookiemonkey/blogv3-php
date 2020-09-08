@@ -1,13 +1,7 @@
-<?php include '../includes/database.php'; ?>
-<?php include 'functions.php'; ?>
-<?php session_start();  ?>
-
 <?php 
-
-    if(!isset($_SESSION['role'])) {
-        header('Location: ../');
-    }   
-
+    session_start();
+    ob_start();
+    AdminCondition::Protect_Admin();
 ?>
 
 <!DOCTYPE html>

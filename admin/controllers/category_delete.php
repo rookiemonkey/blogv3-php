@@ -1,10 +1,7 @@
 <?php
 
-    /**
-     * delete a category
-     */
     function delete_category() {
-        $mysqli = Model::Provide_Database();
+        $mysqli = AdminModel::Provide_Database();
 
         if(isset($_GET['delete'])) {
             $category_id = $_GET['delete'];
@@ -21,7 +18,7 @@
             }
             
             else { 
-                render_alert_failed();
+                AdminUtilities::alert_Failed();
             }
         }
     }

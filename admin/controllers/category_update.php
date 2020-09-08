@@ -1,27 +1,17 @@
 <?php
 
-    /**
-     * update a category
-     */
     function update_category() {
-        $mysqli = Model::Provide_Database();
+        $mysqli = AdminModel::Provide_Database();
 
         if(isset($_POST['update_category'])) {
             $category_title = $_POST['cat_title'];
             $category_id = $_GET['update'];
 
             if(empty($category_title)) { 
-?>
-                <div class='panel panel-danger'>
-                    <div class='panel-heading'>
-                        <h3 class='panel-title'>Category field is requied</h3>
-                    </div>
-                </div>
-<?php
+                AdminUtilities::alert_Failed('Category title is required');
             }
 
             else {
-                // prepare statement and query
                 $category_title = mysqli_real_escape_string($mysqli, $category_title);
                 $statement = "UPDATE categories SET cat_title = ? WHERE cat_id = ?";
                 $query = $mysqli->prepare($statement);
@@ -29,14 +19,12 @@
                 $result = $query->execute();
                 $query->close();
 
-                // check if query is successfull
                 if($result) { 
-                    // refresh the page, alert box is working but DOM doesn't update
                     header("Location: categories.php");
                 }
                 
                 else {  
-                    render_alert_failed();
+                    AdminUtilities::alert_Failed();
                 }
             }
         }

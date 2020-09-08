@@ -1,7 +1,6 @@
 <?php
 
-    function render_alert_success($message_parameter) {
-        $message = $message_parameter;
+    function render_alert_success($message) {
 ?>
         <div class='alert alert-success'>
             <div class='panel-heading'>

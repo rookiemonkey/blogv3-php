@@ -1,11 +1,7 @@
 <?php
 
-    /**
-     * ROUTE: GET admin/comments.php?unapprove=COMMENTID
-     * DESC: unapproved a comment
-     */
     function unapprove_comment() {
-        $mysqli = Model::Provide_Database();
+        $mysqli = AdminModel::Provide_Database();
 
         if(isset($_GET['unapprove'])) {
             $comment_id = intval($_GET['unapprove']);
@@ -27,7 +23,7 @@
                 }
             }
             else { 
-                render_alert_failed();
+                AdminUtilities::alert_Failed();
             }
         }
     }

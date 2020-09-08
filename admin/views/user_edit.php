@@ -1,7 +1,9 @@
 <?php 
-    update_user(); 
+    AdminUsers::update(); 
 
     if(isset($_GET['u_id'])) {
+        $mysqli = AdminModel::Provide_Database();
+
         // prepare statement and query
         $query = $mysqli->prepare("SELECT * FROM users WHERE user_id = ?");
         $query->bind_param('s', $_GET['u_id']);

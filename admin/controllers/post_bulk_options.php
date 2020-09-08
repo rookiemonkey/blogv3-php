@@ -1,17 +1,11 @@
 <?php
 
-    /**
-     *  allows an admin to do certain task to multiple users
-     *  such as delete, or update multiple post to publish or just a draft
-     *  added clone
-     */
-    function bulk_options_posts() {
-        $mysqli = Model::Provide_Database();
-        
+    function bulk_options_posts() {        
         if(isset($_POST['checkBoxArray'])){
-
+            $mysqli = AdminModel::Provide_Database();
+            $bulk_options = $_POST['bulkOption'];
+            
             foreach ($_POST['checkBoxArray'] as $post_id) {
-                $bulk_options = $_POST['bulkOption'];
                 
                 switch($bulk_options) {
 

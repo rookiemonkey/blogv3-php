@@ -1,11 +1,7 @@
 <?php
 
-    /**
-     * ROUTE: GET admin/posts.php?delete=COMMENTID
-     * DESC: delete a post
-     */
     function delete_post() {
-        $mysqli = Model::Provide_Database();
+        $mysqli = AdminModel::Provide_Database();
 
         if(isset($_GET['delete'])) {
             $post_id = $_GET['delete'];
@@ -22,7 +18,7 @@
                 header("Location: posts.php");
             }
             else { 
-                render_alert_failed();
+                AdminUtilities::alert_Failed();
             }
         }
     }

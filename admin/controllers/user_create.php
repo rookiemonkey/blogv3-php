@@ -1,11 +1,7 @@
 <?php
 
-   /**
-    * ROUTE: POST /admin/users.php?source=add_user
-    * DESC: create a user
-    */
     function create_user() {
-        $mysqli = Model::Provide_Database();
+        $mysqli = AdminModel::Provide_Database();
     
         if(isset($_POST['create_user'])) {
             $user_firstname = $_POST['user_firstname'];
@@ -29,10 +25,10 @@
 
             // check if query is successfull
             if($result) { 
-                render_alert_success('Succesfully added a user');
+                AdminUtilities::alert_Success('Succesfully added a user');
             }
             else { 
-                render_alert_failed();
+                AdminUtilities::alert_Failed();
             }
         }
     }

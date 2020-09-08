@@ -6,6 +6,7 @@
         $_POST['comment_email'] !== '' || 
         $_POST['comment_content'] !== ''
         ) { 
+            $mysqli = Model::Provide_Database();
 
             $comment_post = $_GET['p_id'];
             $comment_author = $_POST['comment_author'];

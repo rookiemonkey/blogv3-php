@@ -1,11 +1,7 @@
 <?php
 
-    /**
-     * read all categories available 
-     * and render them as a table
-     */
     function read_categories() {
-        $mysqli = Model::Provide_Database();
+        $mysqli = AdminModel::Provide_Database();
 
         $query = $mysqli->prepare("SELECT * FROM categories");
         $query->execute();
@@ -14,7 +10,7 @@
         $query->close();
 
         if($categories_count === 0) {
-            echo "<div class='alert alert-danger' role='alert'>No available categories</div>";
+            AdminUtilities::alert_Failed('No available categories');
         }
 
         while($row = $categories->fetch_assoc()) {  
@@ -22,9 +18,9 @@
             $category_title = $row["cat_title"];
 
             // render delete confirmation modal
-            $message = 'Are you sure you want to delete the ' . $category_title . ' category' . '?';
+            $message = 'Are you sure you want to delete the "' . $category_title . '" category' . '?';
             $link = 'categories.php?delete=' . $category_id;
-            render_modal($category_id, 'delete', $message, $link);
+            AdminUtilities::alert_Modal($category_id, 'delete', $message, $link);
 ?>
             <tr>
                 <td><?php echo $category_id; ?></td>

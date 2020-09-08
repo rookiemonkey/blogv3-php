@@ -1,7 +1,7 @@
 <?php
 
     function render_categoryOptions_create() {
-        $mysqli = Model::Provide_Database();
+        $mysqli = AdminModel::Provide_Database();
             
         $query = $mysqli->prepare("SELECT * FROM categories");
         $query->execute();

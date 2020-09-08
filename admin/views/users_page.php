@@ -17,13 +17,11 @@
     <tbody>
 
         <?php
-        
-            Users::read();
-            Users::delete();
-            Users::update();
-            Users::update_toAdmin();
-            Users::update_toSubscriber();
-
+            AdminView::UsersTable();
+            AdminUsers::delete();
+            AdminUsers::update();
+            AdminUsers::update_toAdmin();
+            AdminUsers::update_toSubscriber();
         ?>
 
     </tbody>

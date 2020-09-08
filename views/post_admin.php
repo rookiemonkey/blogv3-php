@@ -1,19 +1,14 @@
 <?php
 
-    function render_post() {
+    function render_post_admin() {
         $mysqli = Model::Provide_Database();
 
         $post_id = $_GET['p_id'];
         $post_status = 'published';
 
-        // update view count on database
-        $views_query = $mysqli->prepare("UPDATE posts SET post_views = post_views + 1 WHERE post_id = ?");
-        $views_query->bind_param('s', $post_id);
-        $views_query->execute();
-        $views_query->close();
-
-        $query = $mysqli->prepare("SELECT * FROM posts WHERE post_id = ? AND post_status = ?");
-        $query->bind_param('ss', $post_id, $post_status);
+        $stmt = "SELECT * FROM posts WHERE post_id = ?";
+        $query = $mysqli->prepare($stmt);
+        $query->bind_param('s', $post_id);
         $query->execute();
         $posts = $query->get_result();
         $query->close();
@@ -25,17 +20,31 @@
             $post_content = $row["post_content"];
             $post_image = $row["post_image"];   
             $post_likes = $row["post_likes"];   
+            $post_status = $row["post_status"];
             
 ?>
             <h1 class="page-header">
                 <?php echo $post_title ?>    
                 <small>by <?php echo $post_author ?></small>
+                <?php
+                if($post_status === 'draft') {
+                    echo '<span class="badge" style="background-color: #f0ad4e">Draft</span>';
+                }
+                else {
+                    echo '<span class="badge" style="background-color: #5cb85c">Published</span>';
+                }
+                ?>
+                
             </h1>
 
             <p>
                 <span class="glyphicon glyphicon-time"></span> 
                 Posted on <?php echo $post_date ?>
             </p>
+
+            <div class="alert alert-warning" role="alert">
+                <b>IMPORTANT!</b> This is an Admin's view. Hence, view counts are not counted and adding comments and likes are also disabled.
+            </div>
 
             <hr>
                 <!-- the image name on database should match the one on the file system -->

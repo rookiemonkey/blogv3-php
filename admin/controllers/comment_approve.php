@@ -1,11 +1,7 @@
 <?php
 
-    /**
-     * ROUTE: admin/comments.php?approve=COMMENTID
-     * DESC: approved a comment
-     */
     function approve_comment() {
-        $mysqli = Model::Provide_Database();
+        $mysqli = AdminModel::Provide_Database();
 
         if(isset($_GET['approve'])) {
             $comment_id = intval($_GET['approve']);
@@ -27,7 +23,7 @@
                 }
             }
             else {
-                render_alert_failed();
+                AdminUtilities::alert_Failed();
             }
         }
     }

@@ -1,12 +1,7 @@
 <?php
 
-    /**
-     * ROUTE: GET admin/comments.php?comments_of_post=:POSTID
-     * DESC: read all comments of a specific post
-     *       and render them as a table
-     */
      function read_comments_ofpost() {
-        $mysqli = Model::Provide_Database();
+        $mysqli = AdminModel::Provide_Database();
 
         if(isset($_GET['comments_of_post'])) {
             // prepare statement and query
@@ -19,7 +14,7 @@
 
             // render a message if no available post
             if($comments->num_rows === 0) {
-                render_alert_tablenoresult("However, there are no comments for this post");
+                AdminUtilities::alert_NoResults("There are no comments for this post");
             }
             
             // loop into the results and render

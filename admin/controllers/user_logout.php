@@ -1,7 +1,7 @@
 <?php
 
     function logout() {
-        $mysqli = Model::Provide_Database();
+        $mysqli = AdminModel::Provide_Database();
         session_start();
 
         // set session to null
@@ -18,7 +18,7 @@
         $query->execute();
         $query->close();
 
-        header('Location: index.php');
+        header('Location: ../index.php');
     }
 
 ?>

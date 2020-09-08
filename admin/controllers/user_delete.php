@@ -1,11 +1,7 @@
 <?php
 
-    /**
-     * ROOUTE: GET /admin/users.php?delete=USERID
-     * DESC: delete a user
-     */
     function delete_user() {
-        $mysqli = Model::Provide_Database();
+        $mysqli = AdminModel::Provide_Database();
 
         if(isset($_GET['delete'])) {
             // prepare statement and query
@@ -20,7 +16,7 @@
                 header("Location: users.php");
             }
             else { 
-                render_alert_failed();
+                AdminUtilities::alert_Failed();
             }
         }
     }

@@ -1,11 +1,7 @@
 <?php
 
-    /**
-     * ROUTE: GET /admin/users.php
-     * DESC: read all users and render them as a table
-     */
     function read_users() {
-        $mysqli = Model::Provide_Database();
+        $mysqli = AdminModel::Provide_Database();
 
         // prepare statement and query
         $query = $mysqli->prepare("SELECT * FROM users");
@@ -19,7 +15,7 @@
         // render delete confirmation modal
         $message = 'Are you sure you want to delete user: '. $row['user_username'] . '?';
         $link = './users.php?delete=' . $row['user_id'];
-        render_modal($row['user_id'], 'delete', $message, $link);
+        AdminUtilities::alert_Modal($row['user_id'], 'delete', $message, $link);
 ?>
             <tr>
                 <td><?php echo $row['user_id']; ?></td>

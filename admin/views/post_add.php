@@ -1,5 +1,4 @@
-<?php Posts::create(); ?>
-
+<?php AdminPosts::create(); ?>
 
 <form action="" method="post" enctype="multipart/form-data">    
      
@@ -12,7 +11,7 @@
             <label for="category" style="display: block;">Category</label>
             <select name="post_category_id" id="">
 
-                <?php render_categoryOptions_create(); ?>
+                <?php AdminUtilities::render_CategoryOptionsCreate(); ?>
 
             </select>
         </div>
@@ -22,7 +21,7 @@
             <label for="users" style="display: block;">Users</label>
             <select name="post_author" id="">
 
-                <?php render_authorOptions_create(); ?>
+                <?php AdminUtilities::render_AuthorOptionsCreate(); ?>
 
             </select> 
         </div>
@@ -30,7 +29,7 @@
         <div class="form-group">
             <label for="post_status" style="display: block;">Post Status</label>
             <select name="post_status" id="">
-                <option value="draft">Select Options</option>
+                <option value="draft" selected="selected">Select Options</option>
                 <option value="published">Published</option>
                 <option value="draft">Draft</option>
             </select>

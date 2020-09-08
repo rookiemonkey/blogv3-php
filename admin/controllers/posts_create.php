@@ -1,11 +1,7 @@
 <?php
 
-    /**
-     * ROUTE: POST posts.php?source=add_post
-     * DESC: create a post
-     */
     function create_post() {
-        $mysqli = Model::Provide_Database();
+        $mysqli = AdminModel::Provide_Database();
 
         if(isset($_POST['create_post'])) {
             $post_title        = $_POST['post_title'];
@@ -19,6 +15,7 @@
             $post_image_temp   = $_FILES['image']['tmp_name'];
             $post_comment_count = 0;
             $post_views         = 0;
+            $post_likes         = 0;
 
             $post_date         = date("Y-m-d");
 
@@ -27,11 +24,11 @@
             move_uploaded_file($post_image_temp, UPLOAD_LOCATION);
 
             // prepare the statement
-            $statement = "INSERT INTO posts (post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status, post_views) VALUES (?,?,?,?,?,?,?,?,?,?)";
+            $statement = "INSERT INTO posts (post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status, post_views, post_likes) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
             $query = $mysqli->prepare($statement);
 
             // bind the parameters  
-            $query->bind_param("sssssssisii", $post_category_id, $post_title, $post_author, $post_date, $post_image, $post_content, $post_tags, $post_comment_count, $post_status, $post_views);
+            $query->bind_param("sssssssisii", $post_category_id, $post_title, $post_author, $post_date, $post_image, $post_content, $post_tags, $post_comment_count, $post_status, $post_views, $post_likes);
 
             // execute the query
             $result = $query->execute();
@@ -44,10 +41,10 @@
 
             // check if query is successfull
             if($result) { 
-                render_alert_success("Succesfully added a post");
+                AdminUtilities::alert_Success("Succesfully added a post");
             }
             else { 
-                render_alert_failed();
+                AdminUtilities::alert_Failed();
             }
         }
     }

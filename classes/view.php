@@ -6,7 +6,8 @@
     require __DIR__ . '../../views/comments.php';
     require __DIR__ . '../../views/pagination.php';
     require __DIR__ . '../../views/posts.php';
-    require __DIR__ . '../../views/post.php';
+    require __DIR__ . '../../views/post_subscriber.php';
+    require __DIR__ . '../../views/post_admin.php';
     require __DIR__ . '../../views/alert_Failed.php';
     require __DIR__ . '../../views/alert_Success.php';
     
@@ -32,7 +33,13 @@
         }
 
         public static function Post() {
-            if(isset($_GET['p_id'])) { render_post(); }
+            if(isset($_GET['p_id']) && $_SESSION['role'] === 'admin') { 
+                render_post_admin(); 
+            }
+
+            else {
+                render_post_subscriber();
+            }
         }
 
         public static function Posts() { 

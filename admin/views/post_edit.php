@@ -1,9 +1,9 @@
 <?php
 
-    Posts::update();
+    AdminPosts::update();
+    $mysqli = AdminModel::Provide_Database();
 
     if(isset($_GET['p_id'])) {
-        // prepare statement and query
         $query = $mysqli->prepare("SELECT * FROM posts WHERE post_id = ?");
         $query->bind_param('s', $_GET['p_id']);
         $query->execute();
@@ -32,7 +32,7 @@
                 <label for="category" style="display: block;">Category</label>
                 <select name="post_category_id">
 
-                    <?php render_categoryOptions_edit($post_row); ?>
+                    <?php AdminUtilities::render_CategoryOptionsEdit($post_row); ?>
 
                 </select>
             </div>
@@ -42,7 +42,7 @@
                 <label for="users" style="display: block;">Author</label>    
                 <select name="post_author">
 
-                    <?php render_authorOptions_edit($post_row); ?>
+                    <?php AdminUtilities::render_AuthorOptionsEdit($post_row); ?>
   
                 </select>
             </div>
@@ -51,7 +51,7 @@
                 <label for="post_status" style="display: block;">Post Status</label>    
                 <select name="post_status" id="post_status">
 
-                    <?php render_poststatusOptions_edit($post_row); ?>
+                    <?php AdminUtilities::render_PostStatusOptionsEdit($post_row); ?>
 
                 </select>
             </div>

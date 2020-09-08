@@ -1,10 +1,7 @@
 <?php
 
-    /**
-     * update a post
-     */
     function update_post() {
-        $mysqli = Model::Provide_Database();
+        $mysqli = AdminModel::Provide_Database();
 
         if(isset($_POST['update_post'])) {
             $post_title = $_POST["post_title"];
@@ -29,10 +26,10 @@
 
             // check if query is successfull
             if($result) { 
-                render_alert_success("Post Updated succesfully");
+                AdminUtilities::alert_Success("Post Updated succesfully");
             }
             else { 
-                render_alert_failed();
+                AdminUtilities::alert_Failed();
             }
         }
     }

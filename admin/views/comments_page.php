@@ -16,13 +16,11 @@
     <tbody>
 
         <?php 
-
-            Comments::read();
-            Comments::read_ofPost();
-            Comments::delete();
-            Comments::unapprove();
-            Comments::approve();
-
+            AdminView::CommentsTable();
+            AdminView::CommentsTableOfPost();
+            AdminComments::delete();
+            AdminComments::unapprove();
+            AdminComments::approve();
         ?>
 
     </tbody>

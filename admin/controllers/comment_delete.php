@@ -1,19 +1,34 @@
 <?php
 
-    /**
-     * ROUTE: GET admin/comments.php?delete=:COMMENTID
-     * DESC: delete a comment
-     */
     function delete_comment() {
-        $mysqli = Model::Provide_Database();
+        $mysqli = AdminModel::Provide_Database();
 
         if(isset($_GET['delete'])) {
-            $comment_id = intval($_GET['delete']);
-            $query = $mysqli->prepare("DELETE FROM comments WHERE comment_id = ?");
-            $query->bind_param('i', $comment_id);
+
+            // decrement the total num of comments of the post
+            $post_id = intval($_GET['p_id']);
+
+            $query = $mysqli->prepare("UPDATE posts SET post_comment_count = post_comment_count - 1 WHERE post_id = ?");
+
+            $query->bind_param('i', $post_id);
+
             $result = $query->execute();
+
+            $query->close();
+
+
+            // delete the comment from comment's table
+            $comment_id = intval($_GET['delete']);
+
+            $query = $mysqli->prepare("DELETE FROM comments WHERE comment_id = ?");
+
+            $query->bind_param('i', $comment_id);
+
+            $result = $query->execute();
+
             $query->close();
             
+
             // check if query is successfull
             if($result) { 
                 // refresh the page
@@ -27,7 +42,7 @@
             }
 
             else {
-                render_alert_failed();
+                AdminUtilities::alert_Failed();
             }
         }
     }

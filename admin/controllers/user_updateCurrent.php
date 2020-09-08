@@ -1,11 +1,7 @@
 <?php
 
-    /**
-     * ROUTE: POST /admin/profile.php
-     * DESC: update currently logged in user
-     */
     function update_current_user() {
-        $mysqli = Model::Provide_Database();
+        $mysqli = AdminModel::Provide_Database();
 
         if(isset($_POST['update_user'])) {
             $current_user = $_SESSION['username'];
@@ -28,10 +24,10 @@
 
             // check if query is successfull
             if($result) { 
-                render_alert_success('Succesfully updated your details');
+                AdminUtilities::alert_Success('Succesfully updated your details. Please relogin');
             }
             else { 
-                render_alert_failed('');
+                AdminUtilities::alert_Failed('');
             }
         }
     }
