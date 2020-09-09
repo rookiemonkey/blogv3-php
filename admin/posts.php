@@ -1,9 +1,9 @@
 <?php require '../vendor/autoload.php'; ?>
-<?php AdminView::AdminHeader(); ?>   
+<?php AdminView::AdminHeader(); ?>
 
 <div id="wrapper">
 
-    <?php AdminView::AdminNavigation(); ?>  
+    <?php AdminView::AdminNavigation(); ?>
 
     <div id="page-wrapper">
         <div class="container-fluid">
@@ -14,20 +14,20 @@
                     </h1>
 
                     <?php
-                        if(isset($_GET['source'])) {
-                            switch($_GET['source']) {
-                                case 'add_post':
-                                    AdminView::Post_addForm();
-                                    break;
-                                case 'edit_post':
-                                    AdminView::Post_editForm();
-                                    break;
-                                default:
-                                    AdminView::PostsPage();
-                            }
+                    if (isset($_GET['source'])) {
+                        switch ($_GET['source']) {
+                            case 'add_post':
+                                AdminView::Post_addForm();
+                                break;
+                            case 'edit_post':
+                                AdminView::Post_editForm();
+                                break;
+                            default:
+                                AdminView::PostsPage();
                         }
-                        
-                        else { AdminView::PostsPage(); }
+                    } else {
+                        AdminView::PostsPage();
+                    }
                     ?>
 
                 </div>
@@ -36,4 +36,4 @@
     </div>
 </div>
 
-<?php AdminView::AdminFooter(); ?>  
+<?php AdminView::AdminFooter(); ?>

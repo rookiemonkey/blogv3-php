@@ -1,31 +1,26 @@
 <?php
 
-    function create_category() {
+function create_category()
+{
+    if (isset($_POST['add_category'])) {
         $mysqli = AdminModel::Provide_Database();
+        $category_title = Utility::sanitize($_POST['cat_title']);
 
-        if(isset($_POST['add_category'])) {
-            $category_title = Utility::sanitize($_POST['cat_title']);
+        if (empty($category_title)) {
+            AdminUtilities::alert_Failed('Category title is required');
+        } else {
+            $category_title = mysqli_real_escape_string($mysqli, $category_title);
+            $statement = "INSERT INTO categories (cat_title) VALUES (?)";
+            $query = $mysqli->prepare($statement);
+            $query->bind_param("s", $category_title);
+            $result = $query->execute();
+            $query->close();
 
-            if(empty($category_title)) { 
-                AdminUtilities::alert_Failed('Category title is required');
-            }
-
-            else {
-                $category_title = mysqli_real_escape_string($mysqli, $category_title);
-                $statement = "INSERT INTO categories (cat_title) VALUES (?)";
-                $query = $mysqli->prepare($statement);
-                $query->bind_param("s", $category_title);
-                $result = $query->execute();
-                $query->close();
-
-                if($result) { 
-                    AdminUtilities::alert_Success('Succesfully added a category');
-                }
-
-                else { 
-                    AdminUtilities::alert_Failed();
-                }
+            if ($result) {
+                AdminUtilities::alert_Success('Succesfully added a category');
+            } else {
+                AdminUtilities::alert_Failed();
             }
         }
     }
-?>
+}

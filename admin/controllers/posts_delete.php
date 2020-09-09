@@ -1,25 +1,28 @@
 <?php
 
-    function delete_post() {
+function delete_post()
+{
+    if (isset($_GET['delete'])) {
         $mysqli = AdminModel::Provide_Database();
+        $post_id = $_GET['delete'];
+        $post_id = mysqli_real_escape_string($mysqli, $post_id);
 
-        if(isset($_GET['delete'])) {
-            $post_id = $_GET['delete'];
-            $post_id = mysqli_real_escape_string($mysqli, $post_id);
-            $stmnt = "DELETE FROM posts WHERE post_id = ?";
-            $query = $mysqli->prepare($stmnt); 
-            $query->bind_param("s", $post_id);
-            $result = $query->execute();
-            $query->close();
+        $stmnt = "DELETE FROM posts WHERE post_id = ?";
 
-            // check if query is successfull
-            if($result) { 
-                // refresh the page
-                header("Location: /cms/admin/posts.php");
-            }
-            else { 
-                AdminUtilities::alert_Failed();
-            }
+        $query = $mysqli->prepare($stmnt);
+
+        $query->bind_param("s", $post_id);
+
+        $result = $query->execute();
+
+        $query->close();
+
+        // check if query is successfull
+        if ($result) {
+            // refresh the page
+            header("Location: /cms/admin/posts.php");
+        } else {
+            AdminUtilities::alert_Failed();
         }
     }
-?>
+}

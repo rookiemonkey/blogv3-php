@@ -1,32 +1,32 @@
 <?php
 
-    function update_category() {
+function update_category()
+{
+    if (isset($_POST['update_category'])) {
         $mysqli = AdminModel::Provide_Database();
+        $category_title = Utility::sanitize($_POST['cat_title']);
+        $category_id = Utility::sanitize($_GET['update']);
 
-        if(isset($_POST['update_category'])) {
-            $category_title = Utility::sanitize($_POST['cat_title']);
-            $category_id = Utility::sanitize($_GET['update']);
+        if (empty($category_title)) {
+            AdminUtilities::alert_Failed('Category title is required');
+        } else {
+            $category_title = mysqli_real_escape_string($mysqli, $category_title);
 
-            if(empty($category_title)) { 
-                AdminUtilities::alert_Failed('Category title is required');
-            }
+            $statement = "UPDATE categories SET cat_title = ? WHERE cat_id = ?";
 
-            else {
-                $category_title = mysqli_real_escape_string($mysqli, $category_title);
-                $statement = "UPDATE categories SET cat_title = ? WHERE cat_id = ?";
-                $query = $mysqli->prepare($statement);
-                $query->bind_param("ss", $category_title, $category_id);
-                $result = $query->execute();
-                $query->close();
+            $query = $mysqli->prepare($statement);
 
-                if($result) { 
-                    header("Location: /cms/admin/categories.php");
-                }
-                
-                else {  
-                    AdminUtilities::alert_Failed();
-                }
+            $query->bind_param("ss", $category_title, $category_id);
+
+            $result = $query->execute();
+
+            $query->close();
+
+            if ($result) {
+                header("Location: /cms/admin/categories.php");
+            } else {
+                AdminUtilities::alert_Failed();
             }
         }
     }
-?>
+}

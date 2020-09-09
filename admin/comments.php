@@ -1,5 +1,5 @@
 <?php require '../vendor/autoload.php'; ?>
-<?php AdminView::AdminHeader(); ?>  
+<?php AdminView::AdminHeader(); ?>
 
 <div id="wrapper">
 
@@ -21,4 +21,4 @@
     </div>
 </div>
 
-<?php AdminView::AdminFooter(); ?>  
+<?php AdminView::AdminFooter(); ?>

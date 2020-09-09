@@ -1,9 +1,9 @@
 <?php require '../vendor/autoload.php'; ?>
-<?php AdminView::AdminHeader(); ?>  
+<?php AdminView::AdminHeader(); ?>
 
 <div id="wrapper">
 
-    <?php AdminView::AdminNavigation(); ?>  
+    <?php AdminView::AdminNavigation(); ?>
 
     <div id="page-wrapper">
         <div class="container-fluid">
@@ -23,10 +23,10 @@
                         <form action='' method='POST'>
                             <div class="form-group">
                                 <label for="cat_title">Add Category</label>
-                                <input type="text" class="form-control"  name="cat_title" id="cat_title" required/>
+                                <input type="text" class="form-control" name="cat_title" id="cat_title" required />
                             </div>
                             <div class="form-group">
-                                <input type="submit" class="btn btn-primary" name="add_category" value="Add"/>
+                                <input type="submit" class="btn btn-primary" name="add_category" value="Add" />
                             </div>
                         </form>
 
@@ -55,4 +55,4 @@
     </div>
 </div>
 
-<?php AdminView::AdminFooter(); ?>  
+<?php AdminView::AdminFooter(); ?>
