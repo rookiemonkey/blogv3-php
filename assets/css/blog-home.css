@@ -11,3 +11,11 @@ body {
 footer {
     margin: 50px 0;
 }
+
+#btn_edit {
+    color: white;
+}
+
+#btn_edit:hover {
+    text-decoration: none;
+}

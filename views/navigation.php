@@ -1,6 +1,6 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
-    
+
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
@@ -15,56 +15,42 @@
             <ul class="nav navbar-nav">
 
                 <?php if (Utility::isAdmin()) { ?>
-                        <li>
-                            <a href='/cms/admin/index.php'>
-                                Admin
-                            </a>
-                        </li>
+                    <li>
+                        <a href='/cms/admin/index.php'>
+                            Admin
+                        </a>
+                    </li>
                 <?php } ?>
 
-                <?php if (Utility::isLoggedIn())  {  ?>
-                        <li>
-                            <a href='/cms/api/logout.php'>
-                                Logout
-                            </a>
-                        </li>
+                <?php if (Utility::isLoggedIn()) {  ?>
+                    <li>
+                        <a href='/cms/api/logout.php'>
+                            Logout
+                        </a>
+                    </li>
                 <?php } ?>
 
-                <?php if (!Utility::isLoggedIn())  { ?>
-                        <li>
-                            <a href='/cms/registration'>
-                                Register
-                            </a>
-                        </li>
+                <?php if (!Utility::isLoggedIn()) { ?>
+                    <li>
+                        <a href='/cms/registration'>
+                            Register
+                        </a>
+                    </li>
 
-                        <li>
-                            <a href='/cms/login'>
-                                Login
-                            </a>
-                        </li>
+                    <li>
+                        <a href='/cms/login'>
+                            Login
+                        </a>
+                    </li>
                 <?php } ?>
 
-                        <li>
-                            <a href='/cms/contact'>
-                                Contact
-                            </a>
-                        </li>
-                <?php
-                    if(Utility::isLoggedIn() && 
-                    Utility::isAdmin() && 
-                    isset($_GET['p_id'])
-                ) {
-                ?>
-                        <li>
-                            <a href="/cms/admin/posts.php?source=edit_post&p_id=<?php echo Utility::sanitize($_GET['p_id']); ?>">
-                                Edit Post
-                            </a>
-                        </li>
-                <?php
-                    }
-                ?>
-                
+                <li>
+                    <a href='/cms/contact'>
+                        Contact
+                    </a>
+                </li>
+
             </ul>
         </div>
     </div>
-</nav>  
+</nav>
