@@ -1,14 +1,14 @@
 <?php AdminPosts::options(); ?>
 
-<form action="" method="POST">  
+<form action="" method="POST">
 
     <?php
-        $mysqli = AdminModel::Provide_Database();
-        $query = $mysqli->prepare("SELECT * FROM posts");
-        $query->execute();
-        $posts = $query->get_result();
-        $query->close();
-        if($posts->num_rows > 0) {
+    $mysqli = AdminModel::Provide_Database();
+    $query = $mysqli->prepare("SELECT * FROM posts");
+    $query->execute();
+    $posts = $query->get_result();
+    $query->close();
+    if ($posts->num_rows > 0) {
     ?>
         <div id="bulkOptionsContainer" class="col-xs-4">
             <select class="form-control" name="bulkOption" id="">
@@ -26,7 +26,7 @@
             <a href="posts.php?source=add_post" class="btn btn-primary">Add Post</a>
         </div>
     <?php
-        }
+    }
     ?>
 
 
@@ -48,9 +48,9 @@
         </thead>
         <tbody>
 
-            <?php 
-                AdminView::PostsTable();
-                AdminPosts::delete(); 
+            <?php
+            AdminView::PostsTable();
+            AdminPosts::delete();
             ?>
 
         </tbody>

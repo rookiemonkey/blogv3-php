@@ -69,4 +69,9 @@ class AdminUtilities
     {
         render_poststatusOptions_edit($post_row);
     }
+
+    public static function render_RoleOptionsEdit($post_row)
+    {
+        render_roleOptions_edit($post_row);
+    }
 }

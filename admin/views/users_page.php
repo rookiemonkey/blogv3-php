@@ -9,7 +9,7 @@
             <th>Avatar</th>
             <th>Role</th>
             <th>Change Role</th>
-            <th>Change Role</th>   
+            <th>Change Role</th>
             <th>Delete</th>
             <th>Update</th>
         </tr>
@@ -17,11 +17,11 @@
     <tbody>
 
         <?php
-            AdminView::UsersTable();
-            AdminUsers::delete();
-            AdminUsers::update();
-            AdminUsers::update_toAdmin();
-            AdminUsers::update_toSubscriber();
+        AdminView::UsersTable();
+        AdminUsers::delete();
+        AdminUsers::update();
+        AdminUsers::update_toAdmin();
+        AdminUsers::update_toSubscriber();
         ?>
 
     </tbody>

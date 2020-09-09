@@ -1,7 +1,7 @@
-<?php 
-    session_start();
-    ob_start();
-    AdminCondition::Protect_Admin();
+<?php
+session_start();
+ob_start();
+AdminCondition::Protect_Admin();
 ?>
 
 <!DOCTYPE html>

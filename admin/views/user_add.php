@@ -1,9 +1,7 @@
+<form action="" method="POST">
 
+    <?php AdminUsers::create(); ?>
 
-<form action="" method="POST">    
-
-    <?php Users::create(); ?>
-     
     <div class="form-group">
         <label for="firstname">First Name</label>
         <input type="text" id="firstname" class="form-control" name="user_firstname" required>
