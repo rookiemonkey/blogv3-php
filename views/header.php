@@ -1,6 +1,6 @@
 <?php
-    session_start();
-    $mysqli = Model::Provide_Database();
+session_start();
+$mysqli = Model::Provide_Database();
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +19,7 @@
     <link href="/cms/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="/cms/assets/css/blog-home.css" rel="stylesheet">
     <script src="/cms/assets/js/jquery.js" type='text/javascript'></script>
+    <script src="/cms/assets/js/bootstrap.min.js"></script>
 
 </head>
 
