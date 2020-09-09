@@ -5,11 +5,11 @@
 
         if(isset($_POST['update_user'])) {
             $user_id = intval($_GET['u_id']);
-            $user_firstname = $_POST['user_firstname'];
-            $user_lastname = $_POST['user_lastname'];
-            $user_username = $_POST['user_username'];
-            $user_role = $_POST['user_role'];
-            $user_email = $_POST['user_email'];
+            $user_firstname = Utility::sanitize($_POST['user_firstname']);
+            $user_lastname = Utility::sanitize($_POST['user_lastname']);
+            $user_username = Utility::sanitize($_POST['user_username']);
+            $user_role = Utility::sanitize($_POST['user_role']);
+            $user_email = Utility::sanitize($_POST['user_email']);
             $user_avatar = "test+image+page";
             
             // prepare statement and query

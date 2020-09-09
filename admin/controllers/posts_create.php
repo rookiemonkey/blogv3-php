@@ -4,15 +4,15 @@
         $mysqli = AdminModel::Provide_Database();
 
         if(isset($_POST['create_post'])) {
-            $post_title        = $_POST['post_title'];
-            $post_author       = $_POST['post_author'];
-            $post_category_id  = $_POST['post_category_id'];
-            $post_status       = $_POST['post_status'];
-            $post_tags         = $_POST['post_tags'];
-            $post_content      = $_POST['post_content'];
+            $post_title        = Utility::sanitize($_POST['post_title']);
+            $post_author       = Utility::sanitize($_POST['post_author']);
+            $post_category_id  = Utility::sanitize($_POST['post_category_id']);
+            $post_status       = Utility::sanitize($_POST['post_status']);
+            $post_tags         = Utility::sanitize($_POST['post_tags']);
+            $post_content      = Utility::sanitize($_POST['post_content']);
 
-            $post_image        = $_FILES['image']['name'];
-            $post_image_temp   = $_FILES['image']['tmp_name'];
+            $post_image        = Utility::sanitize($_FILES['image']['name']);
+            $post_image_temp   = Utility::sanitize($_FILES['image']['tmp_name']);
             $post_comment_count = 0;
             $post_views         = 0;
             $post_likes         = 0;

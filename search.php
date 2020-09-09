@@ -8,7 +8,7 @@
 
             <h1 class="page-header">
                 Tag Search    
-                <small>Term: '<?php echo $_POST['search']; ?>'</small>
+                <small>Term: '<?php echo Utility::sanitize($_POST['search']); ?>'</small>
             </h1>
 
             <?php View::search_byTags(); ?>

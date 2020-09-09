@@ -27,29 +27,29 @@
                 $post_row = $posts->fetch_assoc();
                 $query->close();
 ?>
-                    <td><?php echo $row['comment_id']; ?></td>
-                    <td><?php echo $row['comment_date']; ?></td>
-                    <td><?php echo $row['comment_author']; ?></td>
-                    <td><?php echo $row['comment_content']; ?></td>
-                    <td><?php echo $row['comment_email']; ?></td>
+                    <td><?php echo Utility::sanitize($row['comment_id']); ?></td>
+                    <td><?php echo Utility::sanitize($row['comment_date']); ?></td>
+                    <td><?php echo Utility::sanitize($row['comment_author']); ?></td>
+                    <td><?php echo Utility::sanitize($row['comment_content']); ?></td>
+                    <td><?php echo Utility::sanitize($row['comment_email']) ?></td>
                     <td>
                         <a href='../post.php?p_id=<?php echo $post_row['post_id'] ?>'>
-                            <?php $post_row['post_title'] ?>
+                            <?php Utility::sanitize($post_row['post_title']); ?>
                         </a>
                     </td>
-                    <td><?php echo $row['comment_status']; ?></td>
+                    <td><?php echo Utility::sanitize($row['comment_status']); ?></td>
                     <td>
-                        <a href='comments.php?comments_of_post=<?php echo $post ?>&approve=<?php echo $row['comment_id']; ?>'>
+                        <a href='comments.php?comments_of_post=<?php echo $post ?>&approve=<?php echo Utility::sanitize($row['comment_id']); ?>'>
                             Approve
                         </a>
                     </td>
                     <td>
-                        <a href='comments.php?comments_of_post=<?php echo $post ?>&unapprove=<?php echo $row['comment_id']; ?>'>
+                        <a href='comments.php?comments_of_post=<?php echo $post ?>&unapprove=<?php echo Utility::sanitize($row['comment_id']); ?>'>
                             Unapprove
                         </a>
                     </td>
                     <td>
-                        <a href='comments.php?comments_of_post=<?php echo $post ?>&delete=<?php echo $row['comment_id']; ?>'>
+                        <a href='comments.php?comments_of_post=<?php echo $post ?>&delete=<?php echo Utility::sanitize($row['comment_id']); ?>'>
                             Delete
                         </a>
                     </td>

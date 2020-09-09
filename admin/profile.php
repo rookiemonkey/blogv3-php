@@ -11,7 +11,9 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">
                         Admin Profile Page
-                        <small><?php echo $_SESSION['username']; ?></small>
+                        <small>
+                            <?php echo Utility::sanitize($_SESSION['username']); ?>
+                        </small>
                     </h1>
 
             <?php AdminUsers::update_Current(); ?> 
@@ -35,27 +37,27 @@
 
                         <div class="form-group">
                             <label for="firstname">First Name</label>
-                            <input type="text" id="firstname" class="form-control" name="user_firstname" value="<?php echo $user_row['user_firstname'] ?>" required>
+                            <input type="text" id="firstname" class="form-control" name="user_firstname" value="<?php echo Utility::sanitize($user_row['user_firstname']); ?>" required>
                         </div>
 
                         <div class="form-group">
                             <label for="lastname">Last Name</label>
-                            <input type="text" id="lastname" class="form-control" name="user_lastname" value="<?php echo $user_row['user_lastname'] ?>" required>
+                            <input type="text" id="lastname" class="form-control" name="user_lastname" value="<?php echo Utility::sanitize($user_row['user_lastname']); ?>" required>
                         </div>
 
                         <div class="form-group">
                             <label for="username">Username</label>
-                            <input type="text" id="username" class="form-control" name="user_username" value="<?php echo $user_row['user_username'] ?>" required>
+                            <input type="text" id="username" class="form-control" name="user_username" value="<?php echo Utility::sanitize($user_row['user_username']); ?>" required>
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" name="user_email"  value="<?php echo $user_row['user_email'] ?>" required>
+                            <input type="email" id="email" class="form-control" name="user_email"  value="<?php echo Utility::sanitize($user_row['user_email']); ?>" required>
                         </div>
 
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" id="password" class="form-control" name="user_password" value="<?php echo $user_row['user_password'] ?>" required readonly>
+                            <input type="password" id="password" class="form-control" name="user_password" value="<?php echo Utility::sanitize($user_row['user_password']); ?>" required readonly>
                         </div>
 
                         <div class="form-group">

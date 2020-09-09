@@ -5,8 +5,9 @@
         $vars = View::Pagination(false);
         
         $page_1 = intval($vars['page_1']);
-        $post_per_page = intval($vars['post_per_page']);   
-        $search =  "%{$_POST['search']}%";   
+        $post_per_page = intval($vars['post_per_page']); 
+        $sanitized = Utility::sanitize($_POST['search']);   
+        $search =  "%{$sanitized}%";   
         $post_status = 'published';
 
         $stmt = "SELECT * FROM posts WHERE post_status = ? AND post_tags LIKE ? LIMIT ?, ?";
@@ -26,11 +27,11 @@
         }
 
         while($row = $posts->fetch_assoc()) {
-            $post_title = $row['post_title'];
-            $post_image = $row['post_image'];
-            $post_author = $row['post_author'];
-            $post_date = $row['post_date'];
-            $post_content = $row['post_content'];
+            $post_title = Utility::sanitize($row['post_title']);
+            $post_image = Utility::sanitize($row['post_image']);
+            $post_author = Utility::sanitize($row['post_author']);
+            $post_date = Utility::sanitize($row['post_date']);
+            $post_content = Utility::sanitize($row['post_content']);
 ?>
         <h2>
             <a href="/cms/post/<?php echo $post_id ?>">
@@ -52,7 +53,7 @@
         <hr>
 
             <a href="/cms/post/<?php echo $post_id ?>">
-                <img class="img-responsive" src="/cms/assets/images/<?php echo $post_image ?>.png" alt="<?php echo $post_title ?>">
+                <img class="img-responsive" src="/cms/assets/images/<?php echo $post_image ?>" alt="<?php echo $post_title ?>">
             </a>
             
         <hr>

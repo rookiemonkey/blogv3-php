@@ -37,7 +37,7 @@
 
     <div class="well">
         <h4>Blog Search <small>via tags</small></h4>
-        <form action="./search.php" method="POST">
+        <form action="/cms/search" method="POST">
             <div class="input-group">
                 <input name="search" type="text" class="form-control">
                 <span class="input-group-btn">
@@ -65,8 +65,8 @@
                             $category_id = $row["cat_id"];
                     ?>
                         <li>
-                            <a href="/cms/category/<?php echo $category_id; ?>">
-                                <?php echo $category_title; ?>
+                            <a href="/cms/category/<?php echo Utility::sanitize($category_id); ?>">
+                                <?php echo Utility::sanitize($category_title); ?>
                             </a>
                         </li>
                     <?php

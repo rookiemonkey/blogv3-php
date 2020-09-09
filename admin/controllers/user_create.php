@@ -4,12 +4,12 @@
         $mysqli = AdminModel::Provide_Database();
     
         if(isset($_POST['create_user'])) {
-            $user_firstname = $_POST['user_firstname'];
-            $user_lastname = $_POST['user_lastname'];
-            $user_username = $_POST['user_username'];
-            $user_role = $_POST['user_role'];
-            $user_email = $_POST['user_email'];
-            $user_password = $_POST['user_password'];
+            $user_firstname = Utility::sanitize($_POST['user_firstname']);
+            $user_lastname = Utility::sanitize($_POST['user_lastname']);
+            $user_username = Utility::sanitize($_POST['user_username']);
+            $user_role = Utility::sanitize($_POST['user_role']);
+            $user_email = Utility::sanitize($_POST['user_email']);
+            $user_password = Utility::sanitize($_POST['user_password']);
             $user_avatar = "test+image+page";
 
             $user_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));

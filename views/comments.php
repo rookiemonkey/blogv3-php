@@ -12,9 +12,9 @@
         $query->close();
 
         while($row = $comments->fetch_assoc()) {
-            $comment_author = $row['comment_author'];
-            $comment_content = $row['comment_content'];
-            $comment_date = $row['comment_date'];
+            $comment_author = Utility::sanitize($row['comment_author']);
+            $comment_content = Utility::sanitize($row['comment_content']);
+            $comment_date = Utility::sanitize($row['comment_date']);
 ?>
         <div class="media">
             <a class="pull-left" href="#">

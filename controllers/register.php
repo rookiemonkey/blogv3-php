@@ -1,11 +1,11 @@
 <?php
 
     function register() {
-        $user_firstname = $_POST['user_firstname'];
-        $user_lastname = $_POST['user_lastname'];
-        $user_username = $_POST['user_username'];;  
-        $user_email = $_POST['user_email'];
-        $user_password = $_POST['user_password'];
+        $user_firstname = Utility::sanitize($_POST['user_firstname']);
+        $user_lastname = Utility::sanitize($_POST['user_lastname']);
+        $user_username = Utility::sanitize($_POST['user_username']);  
+        $user_email = Utility::sanitize($_POST['user_email']);
+        $user_password = Utility::sanitize($_POST['user_password']);
 
         if(empty($user_firstname) || empty($user_lastname) || empty($user_username) || empty($user_email) || empty($user_password)) {
             View::alert_Failed('User informations cannot be empty');

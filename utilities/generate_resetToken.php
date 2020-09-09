@@ -3,7 +3,7 @@
     function generate_resetToken() {
         $mysqli = Model::Provide_Database();
 
-        $email = $_POST['email'];
+        $email = Utility::sanitize($_POST['email']);
         $token = bin2hex(openssl_random_pseudo_bytes(50));
 
         if(Utility::isUserExisting($email, "null")) {

@@ -5,11 +5,11 @@
 
         if(isset($_POST['update_user'])) {
             $current_user = $_SESSION['username'];
-            $user_firstname = $_POST['user_firstname'];
-            $user_lastname = $_POST['user_lastname'];
-            $user_username = $_POST['user_username'];
-            $user_email = $_POST['user_email'];
-            $user_password = $_POST['user_password'];
+            $user_firstname = Utility::sanitize($_POST['user_firstname']);
+            $user_lastname = Utility::sanitize($_POST['user_lastname']);
+            $user_username = Utility::sanitize($_POST['user_username']);
+            $user_email = Utility::sanitize($_POST['user_email']);
+            $user_password = Utility::sanitize($_POST['user_password']);
             $user_role = 'subscriber';
             $user_avatar = "test+image+page";
             

@@ -30,12 +30,12 @@
         }
 
         while($row = $posts->fetch_assoc()) {
-            $post_id = $row["post_id"];
-            $post_title = $row['post_title'];
-            $post_image = $row['post_image'];
-            $post_author = $row['post_author'];
-            $post_date = $row['post_date'];
-            $post_content = $row['post_content'];
+            $post_id = Utility::sanitize($row["post_id"]);
+            $post_title = Utility::sanitize($row['post_title']);
+            $post_image = Utility::sanitize($row['post_image']);
+            $post_author = Utility::sanitize($row['post_author']);
+            $post_date = Utility::sanitize($row['post_date']);
+            $post_content = Utility::sanitize($row['post_content']);
 ?>
             <h2>
                 <a href="/cms/post/<?php echo $post_id ?>">

@@ -14,13 +14,13 @@
         $query->close();
 
         while($row = $posts->fetch_assoc()) { 
-            $post_title = $row["post_title"];
-            $post_author = $row["post_author"];
-            $post_date = $row["post_date"];
-            $post_content = $row["post_content"];
-            $post_image = $row["post_image"];   
-            $post_likes = $row["post_likes"];   
-            $post_status = $row["post_status"];
+            $post_title = Utility::sanitize($row["post_title"]);
+            $post_author = Utility::sanitize($row["post_author"]);
+            $post_date = Utility::sanitize($row["post_date"]);
+            $post_content = Utility::sanitize($row["post_content"]);
+            $post_image = Utility::sanitize($row["post_image"]);   
+            $post_likes = Utility::sanitize($row["post_likes"]);   
+            $post_status = Utility::sanitize($row["post_status"]);
             
 ?>
             <h1 class="page-header">

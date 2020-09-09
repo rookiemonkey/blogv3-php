@@ -50,11 +50,11 @@
     <script>
         $(document).ready(function() {
             $('#btn_like').on('click', function() {
-                let userId = <?php echo $_SESSION['id']; ?>;
-                let userName = "<?php echo $_SESSION['username']; ?>";
+                let userId = <?php echo Utility::sanitize($_SESSION['id']); ?>;
+                let userName = "<?php echo Utility::sanitize($_SESSION['username']); ?>";
 
                 $.ajax({
-                    url: '/cms/post.php?p_id=<?php echo $_GET['p_id']; ?>',
+                    url: '/cms/post.php?p_id=<?php echo Utility::sanitize($_GET['p_id']) ?>',
                     type: 'POST',
                     data: { likedby: userId }
                 })

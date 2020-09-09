@@ -4,7 +4,7 @@
 ?>
             <div class="jumbotron">
                 <h1>We apologize..</h1>
-                <p><?php echo $message; ?></p>
+                <p><?php echo Utility::sanitize($message); ?></p>
             </div>
             <script>
                 document.addEventListener("DOMContentLoaded", function(){

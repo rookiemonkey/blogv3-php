@@ -3,8 +3,8 @@
     function password_reset() {
         $mysqli = Model::Provide_Database();
 
-        $new = $_POST['newpassword'];
-        $confirm = $_POST['confirmpassword'];
+        $new = Utility::sanitize($_POST['newpassword']);
+        $confirm = Utility::sanitize($_POST['confirmpassword']);
         $email = $_GET['email'];
         $token = $_GET['token'];
 

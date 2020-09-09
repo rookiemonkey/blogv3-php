@@ -23,7 +23,7 @@
                     type="text" 
                     class="form-control" 
                     name="post_title" 
-                    value="<?php echo $post_row["post_title"]; ?>"
+                    value="<?php echo Utility::sanitize($post_row["post_title"]); ?>"
                     required
                 >
             </div>
@@ -60,8 +60,8 @@
                 <label for="post_image">Post Image</label>
                 <img 
                     width="100" 
-                    src="../images/assets/<?php echo $post_row["post_image"] ?>" 
-                    alt="<?php echo $post_row["post_title"]; ?>"
+                    src="../images/assets/<?php echo Utility::sanitize($post_row["post_image"]); ?>" 
+                    alt="<?php echo Utility::sanitize($post_row["post_title"]); ?>"
                 >
             </div>
 
@@ -71,7 +71,7 @@
                     type="text" 
                     class="form-control" 
                     name="post_tags"
-                    value="<?php echo $post_row["post_tags"]; ?>"
+                    value="<?php echo Utility::sanitize($post_row["post_tags"]); ?>"
                     required
                 >
             </div>
@@ -79,7 +79,7 @@
             <div class="form-group">
                 <label for="post_content">Post Content</label>
                 <textarea class="form-control"name="post_content" id="body" cols="30" rows="20">
-                    <?php echo $post_row["post_content"]; ?>
+                    <?php echo Utility::sanitize($post_row["post_content"]); ?>
                 </textarea>
             </div>
         

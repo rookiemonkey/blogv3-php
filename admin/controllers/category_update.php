@@ -4,8 +4,8 @@
         $mysqli = AdminModel::Provide_Database();
 
         if(isset($_POST['update_category'])) {
-            $category_title = $_POST['cat_title'];
-            $category_id = $_GET['update'];
+            $category_title = Utility::sanitize($_POST['cat_title']);
+            $category_id = Utility::sanitize($_GET['update']);
 
             if(empty($category_title)) { 
                 AdminUtilities::alert_Failed('Category title is required');

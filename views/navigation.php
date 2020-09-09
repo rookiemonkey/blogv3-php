@@ -56,7 +56,9 @@
                 ) {
                 ?>
                         <li>
-                            <a href="/cms/admin/posts.php?source=edit_post&p_id=<?php echo $_GET['p_id']; ?>">Edit Post</a>
+                            <a href="/cms/admin/posts.php?source=edit_post&p_id=<?php echo Utility::sanitize($_GET['p_id']); ?>">
+                                Edit Post
+                            </a>
                         </li>
                 <?php
                     }

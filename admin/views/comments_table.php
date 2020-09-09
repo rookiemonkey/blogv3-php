@@ -30,29 +30,29 @@
                 $link = 'comments.php?delete=' . $row['comment_id'] . '&p_id=' . $row['comment_post'];
                 AdminUtilities::alert_Modal($row['comment_id'], 'delete', $message, $link);
 ?>
-                    <td><?php echo $row['comment_id']; ?></td>
-                    <td><?php echo $row['comment_date']; ?></td>
-                    <td><?php echo $row['comment_author']; ?></td>
-                    <td><?php echo $row['comment_content']; ?></td>
-                    <td><?php echo $row['comment_email']; ?></td>
+                    <td><?php echo Utility::sanitize($row['comment_id']); ?></td>
+                    <td><?php echo Utility::sanitize($row['comment_date']); ?></td>
+                    <td><?php echo Utility::sanitize($row['comment_author']); ?></td>
+                    <td><?php echo Utility::sanitize($row['comment_content']); ?></td>
+                    <td><?php echo Utility::sanitize($row['comment_email']); ?></td>
                     <td>
-                        <a href='../post.php?p_id=<?php echo $post_row['post_id'] ?>'>
-                            <?php echo $post_row['post_title'] ?>
+                        <a href='../post.php?p_id=<?php echo Utility::sanitize($post_row['post_id']); ?>'>
+                            <?php echo Utility::sanitize($post_row['post_title']); ?>
                         </a>
                     </td>
                     <td><?php echo $row['comment_status']; ?></td>
                     <td>
-                        <a href='comments.php?approve=<?php echo $row['comment_id']; ?>'>
+                        <a href='comments.php?approve=<?php echo Utility::sanitize($row['comment_id']); ?>'>
                             Approve
                         </a>
                     </td>
                     <td>
-                        <a href='comments.php?unapprove=<?php echo $row['comment_id']; ?>'>
+                        <a href='comments.php?unapprove=<?php echo Utility::sanitize($row['comment_id']); ?>'>
                             Unapprove
                         </a>
                     </td>
                     <td>
-                        <a data-toggle="modal" data-target="#myModal_<?php echo $row['comment_id']; ?>">
+                        <a data-toggle="modal" data-target="#myModal_<?php echo Utility::sanitize($row['comment_id']); ?>">
                             Delete
                         </a>
                     </td>

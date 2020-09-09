@@ -11,11 +11,25 @@
     require __DIR__ . '../../utilities/getCategoryName.php';
 
     class Utility {
-        public static function isAdmin() { return isAdmin(); }
-        public static function isLoggedIn() { return isLoggedIn(); }
-        public static function isExisting_PasswordReset() { isUserExisting_Reset(); }
-        public static function toCreate_User($inputs) { return create_user($inputs); }
-        public static function toEmail_Contact() { toEmailContactRequest(); }
+        public static function isAdmin() { 
+            return isAdmin(); 
+        }
+
+        public static function isLoggedIn() { 
+            return isLoggedIn(); 
+        }
+
+        public static function isExisting_PasswordReset() { 
+            isUserExisting_Reset(); 
+        }
+
+        public static function toCreate_User($inputs) { 
+            return create_user($inputs); 
+        }
+
+        public static function toEmail_Contact() { 
+            toEmailContactRequest(); 
+        }
         
         public static function generate_resetToken() { 
             if($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -43,6 +57,10 @@
 
         public static function getCategoryName($category_id) { 
             getCategoryName($category_id); 
+        }
+
+        public static function sanitize($string) {
+            return stripslashes(strip_tags($string));
         }
     }
 ?>

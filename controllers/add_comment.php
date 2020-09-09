@@ -8,10 +8,10 @@
         ) { 
             $mysqli = Model::Provide_Database();
 
-            $comment_post = $_GET['p_id'];
-            $comment_author = $_POST['comment_author'];
-            $comment_email = $_POST['comment_email'];
-            $comment_content = $_POST['comment_content'];
+            $comment_post = intval($_GET['p_id']);
+            $comment_author = Utility::sanitize($_POST['comment_author']);
+            $comment_email = Utility::sanitize($_POST['comment_email']);
+            $comment_content = Utility::sanitize($_POST['comment_content']);
             $comment_date = date("Y-m-d");
             $comment_status = "unapproved";
 
@@ -19,7 +19,7 @@
             
             $query = $mysqli->prepare($statement);
 
-            $query->bind_param("ssssss", $comment_post, $comment_author, $comment_email, $comment_content, $comment_status, $comment_date);
+            $query->bind_param("isssss", $comment_post, $comment_author, $comment_email, $comment_content, $comment_status, $comment_date);
 
             $result = $query->execute();
 

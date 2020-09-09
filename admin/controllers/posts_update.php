@@ -4,12 +4,12 @@
         $mysqli = AdminModel::Provide_Database();
 
         if(isset($_POST['update_post'])) {
-            $post_title = $_POST["post_title"];
-            $post_category_id = $_POST['post_category_id'];
-            $post_author = $_POST['post_author'];
-            $post_status = $_POST['post_status'];
-            $post_tags = $_POST['post_tags'];
-            $post_content = $_POST['post_content'];
+            $post_title = Utility::sanitize($_POST["post_title"]);
+            $post_category_id = Utility::sanitize($_POST['post_category_id']);
+            $post_author = Utility::sanitize($_POST['post_author']);
+            $post_status = Utility::sanitize($_POST['post_status']);
+            $post_tags = Utility::sanitize($_POST['post_tags']);
+            $post_content = Utility::sanitize($_POST['post_content']);
 
             // prepare statement
             $statement = "UPDATE posts SET post_title = ?, post_category_id = ?, post_author = ?, post_status = ?, post_tags = ?, post_content = ? WHERE post_id = ?";

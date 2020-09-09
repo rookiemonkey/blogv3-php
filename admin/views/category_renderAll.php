@@ -14,8 +14,8 @@
         }
 
         while($row = $categories->fetch_assoc()) {  
-            $category_id = $row["cat_id"];
-            $category_title = $row["cat_title"];
+            $category_id = Utility::sanitize($row["cat_id"]);
+            $category_title = Utility::sanitize($row["cat_title"]);
 
             // render delete confirmation modal
             $message = 'Are you sure you want to delete the "' . $category_title . '" category' . '?';

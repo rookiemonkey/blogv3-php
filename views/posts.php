@@ -22,12 +22,12 @@
         $query->close();
 
         while($row = $posts->fetch_assoc()) {
-            $post_id = $row["post_id"];
-            $post_title = $row["post_title"];
-            $post_author = $row["post_author"];
-            $post_date = $row["post_date"];
-            $post_content = substr($row["post_content"], 0, 200);
-            $post_image = $row["post_image"];  
+            $post_id = Utility::sanitize($row["post_id"]);
+            $post_title = Utility::sanitize($row["post_title"]);
+            $post_author = Utility::sanitize($row["post_author"]);
+            $post_date = Utility::sanitize($row["post_date"]);
+            $post_content = Utility::sanitize(substr($row["post_content"], 0, 200));
+            $post_image = Utility::sanitize($row["post_image"]);  
 ?>
         <h2>  
             <a href="/cms/post/<?php echo $post_id ?>">
@@ -39,11 +39,11 @@
             by <a href="/cms/author/<?php echo $post_author ?>">
                 <?php echo $post_author ?>
             </a>
-        </p>
-
-        <p>
-            <span class="glyphicon glyphicon-time"></span> 
-            Posted on <?php echo $post_date ?>
+            
+            <small>
+                <span class="glyphicon glyphicon-time"></span> 
+                Posted on <?php echo $post_date ?>
+            </small>
         </p>
 
         <hr>

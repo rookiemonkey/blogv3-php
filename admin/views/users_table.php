@@ -18,30 +18,30 @@
         AdminUtilities::alert_Modal($row['user_id'], 'delete', $message, $link);
 ?>
             <tr>
-                <td><?php echo $row['user_id']; ?></td>
-                <td><?php echo $row['user_username']; ?></td>
-                <td><?php echo $row['user_firstname']; ?></td>
-                <td><?php echo $row['user_lastname']; ?></td>
-                <td><?php echo $row['user_email']; ?></td>
-                <td><?php echo $row['user_avatar']; ?></td>
-                <td><?php echo $row['user_role']; ?></td>
+                <td><?php echo Utility::sanitize($row['user_id']); ?></td>
+                <td><?php echo Utility::sanitize($row['user_username']); ?></td>
+                <td><?php echo Utility::sanitize($row['user_firstname']); ?></td>
+                <td><?php echo Utility::sanitize($row['user_lastname']); ?></td>
+                <td><?php echo Utility::sanitize($row['user_email']); ?></td>
+                <td><?php echo Utility::sanitize($row['user_avatar']); ?></td>
+                <td><?php echo Utility::sanitize($row['user_role']); ?></td>
                 <td>
-                    <a href='./users.php?admin=<?php echo $row['user_id']; ?>'>
+                    <a href='./users.php?admin=<?php echo Utility::sanitize($row['user_id']); ?>'>
                         To Admin
                     </a>
                 </td>
                 <td>
-                    <a href='./users.php?subscriber=<?php echo $row['user_id']; ?>'>
+                    <a href='./users.php?subscriber=<?php echo Utility::sanitize($row['user_id']); ?>'>
                         To Subscriber
                     </a>
                 </td>
                 <td>
-                    <a data-toggle="modal" data-target="#myModal_<?php echo $row['user_id']; ?>">
+                    <a data-toggle="modal" data-target="#myModal_<?php echo Utility::sanitize($row['user_id']); ?>">
                         Delete
                     </a>
                 </td>
                 <td>
-                    <a href='./users.php?source=edit_user&u_id=<?php echo $row['user_id']; ?>'>
+                    <a href='./users.php?source=edit_user&u_id=<?php echo Utility::sanitize($row['user_id']); ?>'>
                         Edit
                     </a>
                 </td>

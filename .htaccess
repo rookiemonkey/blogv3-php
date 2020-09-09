@@ -2,7 +2,7 @@ RewriteEngine on
 
 # $1 is a variable that will be replaced by those inside () regex
 
-RewriteRule ^(index|contact|registration|login)$ $1.php [NC,L]
+RewriteRule ^(index|contact|registration|login|search)$ $1.php [NC,L]
 
 RewriteRule ^(forgot)$ $1.php?token=. [NC,L]
 

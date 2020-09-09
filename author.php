@@ -8,7 +8,7 @@
 
             <h1 class="page-header">
                 Author Search    
-                <small>by <?php echo $_GET['author']; ?></small>
+                <small>by <?php echo Utility::sanitize($_GET['author']); ?></small>
             </h1>
 
             <?php View::search_byAuthor(); ?>

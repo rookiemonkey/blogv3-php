@@ -11,7 +11,9 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">
                         Users Dashboard
-                        <small><?php echo $_SESSION['username']; ?></small>
+                        <small>
+                            <?php echo Utility::sanitize($_SESSION['username']); ?>
+                        </small>
                     </h1>
 
                     <?php
