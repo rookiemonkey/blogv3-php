@@ -20,7 +20,7 @@
                     </a>
                 </li>
 
-                <?php if (Utility::isAdmin()) { ?>
+                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') { ?>
                     <li>
                         <a href='/cms/admin/index.php'>
                             Admin

@@ -2,9 +2,8 @@
 
 require __DIR__ . '../../utilities/toEmailContactRequest.php';
 require __DIR__ . '../../utilities/toEmailPasswordReset.php';
-require __DIR__ . '../../utilities/toCreateUser.php';
+require __DIR__ . '../../utilities/toRegisterUser.php';
 require __DIR__ . '../../utilities/generate_resetToken.php';
-require __DIR__ . '../../utilities/isAdmin.php';
 require __DIR__ . '../../utilities/isLoggedIn.php';
 require __DIR__ . '../../utilities/isUserExisting.php';
 require __DIR__ . '../../utilities/isUserExisting_Reset.php';
@@ -12,11 +11,6 @@ require __DIR__ . '../../utilities/getCategoryName.php';
 
 class Utility
 {
-    public static function isAdmin()
-    {
-        return isAdmin();
-    }
-
     public static function isLoggedIn()
     {
         return isLoggedIn();
@@ -29,7 +23,7 @@ class Utility
 
     public static function toCreate_User($inputs)
     {
-        return create_user($inputs);
+        return register_user($inputs);
     }
 
     public static function toEmail_Contact()
