@@ -47,7 +47,7 @@
 
             <hr>
                 <!-- the image name on database should match the one on the file system -->
-                <img class="img-responsive" src="./images/<?php echo $post_image ?>" alt="<?php echo $post_title ?>">
+                <img class="img-responsive" src="/cms/assets/images/<?php echo $post_image ?>" alt="<?php echo $post_title ?>">
             <hr>
 
             <p>

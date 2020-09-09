@@ -44,7 +44,7 @@
                 <td><?php echo $post_category_row['cat_title']; ?></td>
                 <td><?php echo $row['post_status']; ?></td>
                 <td>
-                    <img src='../images/<?php echo $row['post_image']; ?>' 
+                    <img src='/cms/assets/images/<?php echo $row['post_image']; ?>' 
                 alt='<?php echo $row['post_title']; ?>' width='100' />
                 </td>
                 <td><?php echo $row['post_tags']; ?></td>

@@ -20,7 +20,7 @@
             $post_date         = date("Y-m-d");
 
             // upload the image to the server
-            define("UPLOAD_LOCATION", $_SERVER['DOCUMENT_ROOT'] . "/cms/images/$post_image");
+            define("UPLOAD_LOCATION", $_SERVER['DOCUMENT_ROOT'] . "/cms/assets/images/$post_image");
             move_uploaded_file($post_image_temp, UPLOAD_LOCATION);
 
             // prepare the statement

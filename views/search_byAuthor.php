@@ -51,7 +51,7 @@
             <hr>
 
                 <a href="/cms/post/<?php echo $post_id ?>">
-                    <img class="img-responsive" src="./images/<?php echo $post_image ?>.png" alt="<?php echo $post_title ?>">
+                    <img class="img-responsive" src="/cms/assets/images/<?php echo $post_image ?>.png" alt="<?php echo $post_title ?>">
                 </a>
 
             <hr>

@@ -60,7 +60,7 @@
                 <label for="post_image">Post Image</label>
                 <img 
                     width="100" 
-                    src="../images/<?php echo $post_row["post_image"] ?>" 
+                    src="../images/assets/<?php echo $post_row["post_image"] ?>" 
                     alt="<?php echo $post_row["post_title"]; ?>"
                 >
             </div>

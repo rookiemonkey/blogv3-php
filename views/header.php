@@ -16,9 +16,9 @@
 
     <title>Blog</title>
 
-    <link href="/cms/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/cms/css/blog-home.css" rel="stylesheet">
-    <script src="/cms/js/jquery.js" type='text/javascript'></script>
+    <link href="/cms/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/cms/assets/css/blog-home.css" rel="stylesheet">
+    <script src="/cms/assets/js/jquery.js" type='text/javascript'></script>
 
 </head>
 
