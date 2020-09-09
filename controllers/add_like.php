@@ -15,8 +15,6 @@ function add_like()
     $query->execute();
     $post = $query->get_result();
 
-    var_dump($post);
-
     if ($post->num_rows === 0) {
         View::alert_Failed("Something went wrong. Unable to add a like for an unpublished post");
     } else {
