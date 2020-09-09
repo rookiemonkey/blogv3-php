@@ -5,7 +5,6 @@
     require __DIR__ . '../../controllers/reset_password.php';
     require __DIR__ . '../../controllers/register.php';
     require __DIR__ . '../../controllers/login.php';
-    include __DIR__ . '../../controllers/logout.php';
 
     class Controller {
         public static function add_comment() { 
@@ -34,12 +33,6 @@
         public static function login($username, $password) {
             if(isset($_POST['login']) || isset($_POST['submit_register'])) { 
                 login_user($username, $password); 
-            }
-        }
-
-        public static function logout() {
-            if(isset($_GET['logout'])) {
-                logout();
             }
         }
     }

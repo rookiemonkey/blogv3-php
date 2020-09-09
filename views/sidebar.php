@@ -65,7 +65,7 @@
                             $category_id = $row["cat_id"];
                     ?>
                         <li>
-                            <a href="/cms/category.php?c_id=<?php echo $category_id; ?>">
+                            <a href="/cms/category/<?php echo $category_id; ?>">
                                 <?php echo $category_title; ?>
                             </a>
                         </li>

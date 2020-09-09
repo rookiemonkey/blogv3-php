@@ -1,7 +1,7 @@
 <?php require 'vendor/autoload.php'; ?>
 <?php View::MainHeader(); ?>
 <?php View::Navigation(); ?>
-<?php Condition::protect_forgot('GET'); ?>
+<?php Condition::protect_forgot(); ?>
 
 <div class="container">
     <div class="form-gap"></div>

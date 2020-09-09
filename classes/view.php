@@ -33,7 +33,7 @@
         }
 
         public static function Post() {
-            if(isset($_GET['p_id']) && $_SESSION['role'] === 'admin') { 
+            if(isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
                 render_post_admin(); 
             }
 

@@ -5,7 +5,6 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-
             <h1 class="page-header">
                 What's the latest?   
                 <small>Discover interesting contents</small>

@@ -1,6 +1,5 @@
 <?php
 
-    require __DIR__ . '/../../admin/controllers/user_logout.php';
     require __DIR__ . '/../../admin/controllers/user_create.php';
     require __DIR__ . '/../../admin/controllers/user_delete.php';
     require __DIR__ . '/../../admin/controllers/user_update.php';
@@ -9,12 +8,6 @@
     require __DIR__ . '/../../admin/controllers/user_updateToSubscriber.php';
 
     class AdminUsers {
-        public static function logout() {
-            if(isset($_GET['logout'])) {
-                logout();
-            }
-        }
-
         public static function create() { 
             AdminUtilities::isAdmin();
             create_user(); 

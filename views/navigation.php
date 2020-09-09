@@ -22,11 +22,9 @@
                         </li>
                 <?php } ?>
 
-                <?php if (Utility::isLoggedIn())  { 
-                    Controller::logout();
-                ?>
+                <?php if (Utility::isLoggedIn())  {  ?>
                         <li>
-                            <a href='?logout=true'>
+                            <a href='/cms/api/logout.php'>
                                 Logout
                             </a>
                         </li>
@@ -46,8 +44,16 @@
                         </li>
                 <?php } ?>
 
+                        <li>
+                            <a href='/cms/contact'>
+                                Contact
+                            </a>
+                        </li>
                 <?php
-                    if(Utility::isLoggedIn() && Utility::isAdmin()) {
+                    if(Utility::isLoggedIn() && 
+                    Utility::isAdmin() && 
+                    isset($_GET['p_id'])
+                ) {
                 ?>
                         <li>
                             <a href="/cms/admin/posts.php?source=edit_post&p_id=<?php echo $_GET['p_id']; ?>">Edit Post</a>

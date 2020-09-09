@@ -35,8 +35,7 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href='/cms/admin/index.php?logout=true'>
-                        <?php AdminUsers::logout(); ?>
+                    <a href='/cms/logout.php'>
                         <i class="fa fa-fw fa-power-off"></i> 
                         Log Out
                     </a>

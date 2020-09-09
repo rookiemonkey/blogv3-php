@@ -1,9 +1,8 @@
 <?php
 
     class Condition extends Controller {
-        public static function protect_forgot($method) {
-            $request = $_SERVER['REQUEST_METHOD'] === strtoupper($method);
-            if(!$request && !isset($_GET['token'])) {
+        public static function protect_forgot() {
+            if(!isset($_GET['token']) || isset($_SESSION['username'])) {
                 header("Location: index");
             }
         }

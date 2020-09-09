@@ -29,7 +29,7 @@
             $post_content = substr($row["post_content"], 0, 200);
             $post_image = $row["post_image"];  
 ?>
-        <h2>
+        <h2>  
             <a href="/cms/post/<?php echo $post_id ?>">
                 <?php echo $post_title ?>
             </a>

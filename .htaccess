@@ -1,8 +1,10 @@
 RewriteEngine on
 
-#$1 is a variabled that will be replaced by those inside ()
+# $1 is a variable that will be replaced by those inside () regex
 
-RewriteRule ^(index|contact|registration|login|forgot)$ $1.php [NC,L]
+RewriteRule ^(index|contact|registration|login)$ $1.php [NC,L]
+
+RewriteRule ^(forgot)$ $1.php?token=. [NC,L]
 
 RewriteRule ^post/(\d+)$ post.php?p_id=$1
 

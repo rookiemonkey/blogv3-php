@@ -24,7 +24,7 @@
                             <label for="subject" class="sr-only">Message</label>
                             <textarea class="form-control" name="body" placeholder="Message" rows="7"></textarea>
                         </div>              
-                        <input type="submit" name="submit_contact" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Register">
+                        <input type="submit" name="submit_contact" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Submit">
                     </form> 
                  
                 </div>
