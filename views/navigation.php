@@ -14,6 +14,12 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
 
+                <li>
+                    <a>
+                        Good day! <?php echo Utility::sanitize($_SESSION['username']); ?>
+                    </a>
+                </li>
+
                 <?php if (Utility::isAdmin()) { ?>
                     <li>
                         <a href='/cms/admin/index.php'>
