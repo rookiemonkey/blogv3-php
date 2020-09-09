@@ -1,11 +1,12 @@
 <?php
 
-    function isAdmin() {
+function isAdmin()
+{
 
-        $isAuthorized = $_SESSION['role'] === 'admin';
+    $isAuthorized = $_SESSION['role'] === 'admin';
 
-        if(!$isAuthorized) { header('Location: /cms/index'); die(); }
-
+    if (!$isAuthorized) {
+        header('Location: /cms/index');
+        die();
     }
-
-?>
+}

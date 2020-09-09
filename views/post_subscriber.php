@@ -34,8 +34,6 @@ function render_post_subscriber()
         $post_content = Utility::sanitize($row["post_content"]);
         $post_image = Utility::sanitize($row["post_image"]);
         $post_likes = Utility::sanitize($row["post_likes"]);
-        $isOwner = $post_author === $_SESSION['username'];
-
 ?>
         <h1 class="page-header">
             <?php echo $post_title ?>
@@ -91,7 +89,11 @@ function render_post_subscriber()
                 Likes: <?php echo $post_likes ?>
             </button>
 
-            <?php if (Utility::isLoggedIn() && isset($_GET['p_id']) && $isOwner) { ?>
+            <?php if (
+                Utility::isLoggedIn() &&
+                isset($_GET['p_id']) &&
+                $post_author === $_SESSION['username']
+            ) { ?>
                 <button type="button" class="btn btn-warning">
                     <a id='btn_edit' href="/cms/subscriber/posts.php?source=edit_post&p_id=<?php echo Utility::sanitize($_GET['p_id']); ?>">
                         Edit Post

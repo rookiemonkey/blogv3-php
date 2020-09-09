@@ -1,17 +1,16 @@
 <?php
 
-    function render_categoryOptions_create() {
-        $mysqli = AdminModel::Provide_Database();
-            
-        $query = $mysqli->prepare("SELECT * FROM categories");
-        $query->execute();
-        $categories = $query->get_result();
+function render_categoryOptions_create()
+{
+    $mysqli = AdminModel::Provide_Database();
 
-        while($row = $categories->fetch_assoc()) {
-            echo "<option value='{$row['cat_id']}'>{$row['cat_title']}</option>";
-        }
+    $query = $mysqli->prepare("SELECT * FROM categories");
+    $query->execute();
+    $categories = $query->get_result();
 
-        $query->close();
+    while ($row = $categories->fetch_assoc()) {
+        echo "<option value='{$row['cat_id']}'>{$row['cat_title']}</option>";
     }
 
-?>
+    $query->close();
+}

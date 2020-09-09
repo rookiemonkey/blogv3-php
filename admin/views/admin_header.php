@@ -20,7 +20,15 @@ AdminCondition::Protect_Admin();
     <link href="assets/css/sb-admin.css" rel="stylesheet">
     <link href="assets/css/loader.css" rel="stylesheet">
     <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
+
+    <?php if (isset($_GET['source'])) {
+        if ($_GET['source'] === 'add_post' || $_GET['source'] === 'edit_post') {
+    ?>
+            <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
+    <?php
+        }
+    }
+    ?>
 
 </head>
 

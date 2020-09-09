@@ -11,23 +11,25 @@ function update_current_user()
         $user_username = Utility::sanitize($_POST['user_username']);
         $user_email = Utility::sanitize($_POST['user_email']);
         $user_password = Utility::sanitize($_POST['user_password']);
-        $user_role = 'subscriber';
         $user_avatar = "test+image+page";
 
         // prepare statement and query
-        $query = $mysqli->prepare("UPDATE users SET user_firstname = ?, user_lastname = ?, user_username = ?, user_role = ?, user_email = ?, user_password = ?, user_avatar = ? WHERE user_username = ?");
+        $query = $mysqli->prepare("UPDATE users SET user_firstname = ?, user_lastname = ?, user_username = ?, user_email = ?, user_password = ?, user_avatar = ? WHERE user_username = ?");
 
-        $query->bind_param('ssssssss', $user_firstname, $user_lastname, $user_username, $user_role, $user_email, $user_password, $user_avatar, $current_user);
+        $query->bind_param('sssssss', $user_firstname, $user_lastname, $user_username, $user_email, $user_password, $user_avatar, $current_user);
 
         $result = $query->execute();
 
+        $result_code = $query->errno;
+
         $query->close();
 
-        // check if query is successfull
         if ($result) {
-            AdminUtilities::alert_Success('Succesfully updated your details. Please relogin');
+            AdminUtilities::alert_Success('Succesfully updated your details.');
+        } else if (!$result && $result_code == 1062) {
+            AdminUtilities::alert_Failed('Username/Email already exist. Please provide a unique username and email address');
         } else {
-            AdminUtilities::alert_Failed('');
+            AdminUtilities::alert_Failed();
         }
     }
 }

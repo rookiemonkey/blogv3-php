@@ -20,9 +20,9 @@ class AdminUtilities
         isAdmin();
     }
 
-    public static function alert_Failed()
+    public static function alert_Failed($message = 'Something went wrong. Please try again later')
     {
-        render_alert_failed();
+        render_alert_failed($message);
     }
 
     public static function alert_Success($message)

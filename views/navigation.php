@@ -14,11 +14,13 @@
         <div class="collapse navbar-collapse" id="dropdown_navigation">
             <ul class="nav navbar-nav">
 
-                <li>
-                    <a>
-                        Good day! <?php echo Utility::sanitize($_SESSION['username']); ?>
-                    </a>
-                </li>
+                <?php if (isset($_SESSION['username'])) { ?>
+                    <li>
+                        <a>
+                            Good day! <?php echo Utility::sanitize($_SESSION['username']); ?>
+                        </a>
+                    </li>
+                <?php } ?>
 
                 <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') { ?>
                     <li>
