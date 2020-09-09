@@ -1,4 +1,5 @@
 <?php
+    require '../vendor/autoload.php';
     $mysqli = Model::Provide_Database();
     session_start();
 

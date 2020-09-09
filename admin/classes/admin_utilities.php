@@ -1,7 +1,6 @@
 <?php
 
     require __DIR__ . '/../../admin/utilities/isAdmin.php';
-    require __DIR__ . '/../../admin/utilities/setOnlineUsers.php';
     require __DIR__ . '/../../admin/utilities/renderAlert_success.php';
     require __DIR__ . '/../../admin/utilities/renderAlert_failed.php';
     require __DIR__ . '/../../admin/utilities/renderAlert_tablenoresult.php';

@@ -1,12 +1,13 @@
 <?php
+
+    require '../vendor/autoload.php';
+    $mysqli = Model::Provide_Database();
     
     /**
      * an endpoint for loadUsersOnline ajax call
      * query the database and a row for logged in users
      */
     if(isset($_GET['onlineusers'])) {
-        include '../includes/database.php';
-
         // query number of users online
         $query = $mysqli->prepare("SELECT * FROM users_online");
         $query->execute();
