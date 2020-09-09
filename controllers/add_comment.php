@@ -15,7 +15,7 @@ function add_comment()
         // check if the post is published before adding the comment
         $statement = "SELECT post_id FROM posts WHERE post_id = ? AND post_status = ?";
         $query = $mysqli->prepare($statement);
-        $query->bind_param("ii", $comment_post, $comment_post_status);
+        $query->bind_param("is", $comment_post, $comment_post_status);
         $query->execute();
         $post = $query->get_result();
 
