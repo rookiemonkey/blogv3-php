@@ -27,14 +27,13 @@
                 <?php echo $post_title ?>    
                 <small>by <?php echo $post_author ?></small>
                 <?php
-                if($post_status === 'draft') {
-                    echo '<span class="badge" style="background-color: #f0ad4e">Draft</span>';
-                }
-                else {
-                    echo '<span class="badge" style="background-color: #5cb85c">Published</span>';
-                }
+                    if($post_status === 'draft') {
+                        echo '<span class="badge" style="background-color: #f0ad4e">Draft</span>';
+                    }
+                    else {
+                        echo '<span class="badge" style="background-color: #5cb85c">Published</span>';
+                    }
                 ?>
-                
             </h1>
 
             <p>
@@ -43,7 +42,7 @@
             </p>
 
             <div class="alert alert-warning" role="alert">
-                <b>IMPORTANT!</b> This is an Admin's view. Hence, view counts are not counted and adding comments and likes are also disabled.
+                <b>IMPORTANT!</b> This is an Admin's view. Hence, view counts are not counted and adding comments and likes are also disabled. If you want to add likes and comments, Please use your subscriber account.
             </div>
 
             <hr>
@@ -64,26 +63,6 @@
                     $results = $isLiked->get_result();
                     $isLiked->close();
 
-                ?>
-
-                <?php
-                    if(Utility::isLoggedIn()) {
-                        if($results->num_rows === 0) {
-                ?>
-                        <button id="btn_like" type="button" class="btn btn-primary" data-toggle="thumbsup" title="Give me a like Please!">
-                            <i class="glyphicon glyphicon-thumbs-up"></i>
-                            Like
-                        </button>
-                <?php
-                        } else {
-                ?>
-                        <button id="btn_like" type="button" class="btn btn-primary" data-toggle="thumbsup" title="You've already given me a like">
-                            <i class="glyphicon glyphicon-thumbs-up"></i>
-                            Unlike
-                        </button>
-                <?php
-                        }
-                    }
                 ?>
                 
                 <button class="btn btn-info">

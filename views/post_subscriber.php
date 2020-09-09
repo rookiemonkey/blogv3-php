@@ -23,7 +23,7 @@
         }
 
         if($posts->num_rows === 0) {
-            View::alert_Failed('Post not found.');
+            header('Location: /cms/index');
         }
 
         while($row = $posts->fetch_assoc()) { 

@@ -9,7 +9,7 @@
             <?php View::Post(); ?>
             <?php Controller::add_like(); ?>
 
-            <?php if(Utility::isLoggedIn()) { ?>
+            <?php if(Utility::isLoggedIn() && $_SESSION['role'] !== 'admin') { ?>
                 <div class="well">
 
                     <?php Controller::add_comment(); ?>

@@ -9,6 +9,13 @@
                 What's the latest?   
                 <small>Discover interesting contents</small>
             </h1>
+
+            <?php if(isset($_SESSION['role']) && $_SESSION['role'] === 'admin') { ?>
+                <div class="alert alert-warning" role="alert">
+                    <b>IMPORTANT!</b> Posts are being viewed as an admin. These includes both drafts and unplublished posts.
+                </div>
+            <?php } ?>
+
             <?php View::Posts(); ?>
 
             <ul class="pager">

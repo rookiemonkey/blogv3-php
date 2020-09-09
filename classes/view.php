@@ -5,7 +5,8 @@
     require __DIR__ . '../../views/search_byTags.php';
     require __DIR__ . '../../views/comments.php';
     require __DIR__ . '../../views/pagination.php';
-    require __DIR__ . '../../views/posts.php';
+    require __DIR__ . '../../views/posts_subscriber.php';
+    require __DIR__ . '../../views/posts_admin.php';
     require __DIR__ . '../../views/post_subscriber.php';
     require __DIR__ . '../../views/post_admin.php';
     require __DIR__ . '../../views/alert_Failed.php';
@@ -43,7 +44,13 @@
         }
 
         public static function Posts() { 
-            render_posts();
+            if(isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+                render_posts_admin(); 
+            }
+
+            else {
+                render_posts_subscriber();
+            }
         }
 
         public static function Pagination($needButtons) {

@@ -8,13 +8,17 @@
 
     class Controller {
         public static function add_comment() { 
-            if(isset($_POST['create_comment']) && isset($_SESSION['username'])) { 
+            if(isset($_POST['create_comment']) && 
+            isset($_SESSION['username']) && 
+            $_SESSION['role'] !== 'admin') { 
                 add_comment(); 
             } 
         }
 
         public static function add_like() {
-            if(isset($_POST['likedby'])) { 
+            if(isset($_POST['likedby']) && 
+            isset($_SESSION['username']) &&
+            $_SESSION['role'] !== 'admin') {  
                 add_like(); 
             }
         }

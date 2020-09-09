@@ -1,19 +1,18 @@
 <?php
 
-    function render_posts() {
+    function render_posts_admin() {
         $mysqli = Model::Provide_Database();
         $vars = View::Pagination(false);
 
         $page_1 = $vars['page_1'];
         $post_per_page = $vars['post_per_page'];    
-        $post_status = 'published';
         $post_order = 'ASC';
 
-        $stmt = "SELECT * FROM posts WHERE post_status = ? ORDER BY ? LIMIT ?, ?";
+        $stmt = "SELECT * FROM posts ORDER BY ? LIMIT ?, ?";
 
         $query = $mysqli->prepare($stmt);
 
-        $query->bind_param('ssii', $post_status, $post_order, $page_1, $post_per_page);
+        $query->bind_param('sii', $post_order, $page_1, $post_per_page);
 
         $query->execute();
 
@@ -27,11 +26,20 @@
             $post_author = Utility::sanitize($row["post_author"]);
             $post_date = Utility::sanitize($row["post_date"]);
             $post_content = Utility::sanitize(substr($row["post_content"], 0, 200));
-            $post_image = Utility::sanitize($row["post_image"]);  
+            $post_image = Utility::sanitize($row["post_image"]); 
+            $post_status = Utility::sanitize($row["post_status"]); 
 ?>
         <h2>  
             <a href="/cms/post/<?php echo $post_id ?>">
                 <?php echo $post_title ?>
+                <?php
+                    if($post_status === 'draft') {
+                        echo '<span class="badge" style="background-color: #f0ad4e">Draft</span>';
+                    }
+                    else {
+                        echo '<span class="badge" style="background-color: #5cb85c">Published</span>';
+                    }
+                ?>
             </a>
         </h2>
 
