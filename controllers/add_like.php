@@ -8,19 +8,21 @@ function add_like()
     $user_id = intval($_POST['likedby']);
     $post_status = 'published';
 
-    // check if the post is published before adding the comment
+    // check if the post is published before adding a like
     $statement = "SELECT post_id FROM posts WHERE post_id = ? AND post_status = ?";
     $query = $mysqli->prepare($statement);
     $query->bind_param("is", $post_id, $post_status);
     $query->execute();
     $post = $query->get_result();
 
+    var_dump($post);
+
     if ($post->num_rows === 0) {
-        View::alert_Failed("Something went wrong. Unable to add a lik for an unpublished post");
+        View::alert_Failed("Something went wrong. Unable to add a like for an unpublished post");
     } else {
 
         // check if the user already liked the post
-        $isLiked = $mysqli->prepare("SELECT post_id FROM likes WHERE like_postid = ? AND like_userid = ?");
+        $isLiked = $mysqli->prepare("SELECT * FROM likes WHERE like_postid = ? AND like_userid = ?");
         $isLiked->bind_param('ii', $post_id, $user_id);
         $isLiked->execute();
         $results = $isLiked->get_result();
