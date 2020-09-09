@@ -17,5 +17,5 @@
     $query->execute();
     $query->close();
 
-    header('Location: ../index.php');
+    header('Location: /cms/index');
 ?>

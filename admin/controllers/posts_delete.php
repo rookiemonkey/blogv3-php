@@ -15,7 +15,7 @@
             // check if query is successfull
             if($result) { 
                 // refresh the page
-                header("Location: posts.php");
+                header("Location: /cms/admin/posts.php");
             }
             else { 
                 AdminUtilities::alert_Failed();

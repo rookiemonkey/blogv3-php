@@ -16,10 +16,10 @@
                 // refresh the page
                 if(isset($_GET['comments_of_post'])) {
                     $post_id = $_GET['comments_of_post'];
-                    header("Location: comments.php?comments_of_post={$post_id}");
+                    header("Location: /cms/admin/comments.php?comments_of_post={$post_id}");
                 }
                 else {
-                    header("Location: comments.php");
+                    header("Location: /cms/admin/comments.php");
                 }
             }
             else {

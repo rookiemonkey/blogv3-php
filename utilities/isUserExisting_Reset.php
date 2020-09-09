@@ -14,7 +14,7 @@
         $query->close();
 
         if($users->num_rows === 0) {
-            header('Location: index');
+            header('Location: /cms/index');
         }
     }
 ?>

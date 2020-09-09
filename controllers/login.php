@@ -51,11 +51,11 @@
                     $_SESSION['role'] = $db_user_role;
 
                     if($db_user_role === 'admin') {
-                        header('Location: admin');
+                        header('Location: /cms/admin/index.php');
                     }
 
                     else {
-                        header('Location: index');
+                        header("Location: /cms/index");
                     }
                 }
             }

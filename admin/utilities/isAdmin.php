@@ -4,7 +4,7 @@
 
         $isAuthorized = $_SESSION['role'] === 'admin';
 
-        if(!$isAuthorized) { header('Location: index.php'); die(); }
+        if(!$isAuthorized) { header('Location: /cms/index'); die(); }
 
     }
 

@@ -5,7 +5,7 @@
         $vars = View::Pagination(false);
 
         if(!isset($_GET["author"])) {
-            header('Location: index');
+            header('Location: /cms/index');
         }
 
         $page_1 = intval($vars['page_1']);
@@ -51,7 +51,7 @@
             <hr>
 
                 <a href="/cms/post/<?php echo $post_id ?>">
-                    <img class="img-responsive" src="/cms/assets/images/<?php echo $post_image ?>.png" alt="<?php echo $post_title ?>">
+                    <img class="img-responsive" src="/cms/assets/images/<?php echo $post_image ?>" alt="<?php echo $post_title ?>">
                 </a>
 
             <hr>

@@ -4,10 +4,7 @@
     use PHPMailer\PHPMailer\Exception;
 
     // Load Composer's autoloader
-    require 'vendor/autoload.php';
-
-    // Instantiation and passing `true` enables exceptions
-    $mail = new PHPMailer(true);
+    require __DIR__ . '/../vendor/autoload.php';
 
     function toEmailContactRequest() {
         if(isset($_POST['submit_contact'])) {
@@ -16,7 +13,8 @@
             $email = $_POST['email'];
 
             try {
-                global $mail;
+                // Instantiation and passing `true` enables exceptions
+                $mail = new PHPMailer(true);
                 
                 // Server settings
                 $mail->isSMTP();                                          // Send using SMTP
@@ -37,13 +35,21 @@
                 $mail->Subject = $subject;
                 $mail->Body    = "<p>${message} Contact me on: ${email}</p>";
 
-
                 // Send the Email
                 $mail->send();
 
-            } catch (Exception $e) {
+                // destroy the instance of the mail
+                unset($mail);
+
+                View::alert_Success('Successfully sent your contact request!');
+
+            } 
+            
+            catch (Exception $e) {
 
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+
+                View::alert_Failed('Something went wrong. Please try again later');
 
             }
         }

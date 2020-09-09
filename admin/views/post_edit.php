@@ -11,7 +11,7 @@
         $post_row = $post->fetch_assoc();
         $query->close();
         
-        if(!$post_row ) { header('Location: posts.php'); }
+        if(!$post_row ) { header('Location: /cms/admin/posts.php'); }
 
 ?>
 

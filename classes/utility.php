@@ -28,7 +28,7 @@
         }
 
         public static function toEmail_Contact() { 
-            toEmailContactRequest(); 
+                toEmailContactRequest();
         }
         
         public static function generate_resetToken() { 

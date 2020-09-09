@@ -8,11 +8,15 @@
 
     class Controller {
         public static function add_comment() { 
-            if(isset($_POST['create_comment'])) { add_comment(); } 
+            if(isset($_POST['create_comment']) && isset($_SESSION['username'])) { 
+                add_comment(); 
+            } 
         }
 
         public static function add_like() {
-            if(isset($_POST['likedby'])) { add_like(); }
+            if(isset($_POST['likedby'])) { 
+                add_like(); 
+            }
         }
 
         public static function reset_password($method) {

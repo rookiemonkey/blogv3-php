@@ -5,7 +5,7 @@
         $vars = View::Pagination(false);
 
         if(!isset($_GET['c_id'])) {
-            header('Location: index');
+            header('Location: /cms/index');
         }
 
         $page_1 = $vars['page_1'];
@@ -32,7 +32,7 @@
             $post_title = Utility::sanitize($row["post_title"]);
             $post_author =  Utility::sanitize($row["post_author"]);
             $post_date =  Utility::sanitize($row["post_date"]);
-            $post_content =  Utility::sanitizesubstr($row["post_content"], 0, 200);
+            $post_content =  Utility::sanitize(substr($row["post_content"], 0, 200));
             $post_image =  Utility::sanitize($row["post_image"]);   
 ?>
         <h2>

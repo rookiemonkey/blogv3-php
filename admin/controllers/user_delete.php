@@ -13,7 +13,7 @@
             
             // check if query is successfull
             if($result) { 
-                header("Location: users.php");
+                header("Location: /cms/admin/users.php");
             }
             else { 
                 AdminUtilities::alert_Failed();

@@ -85,7 +85,9 @@
                     }
                 ?>
                 
-                Likes: <?php echo $post_likes ?>
+                <button class="btn btn-info">
+                    Likes: <?php echo $post_likes ?>
+                </button>
             </div>
 
             <hr>

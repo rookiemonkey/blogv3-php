@@ -20,7 +20,7 @@
                 $query->close();
 
                 if($result) { 
-                    header("Location: categories.php");
+                    header("Location: /cms/admin/categories.php");
                 }
                 
                 else {  

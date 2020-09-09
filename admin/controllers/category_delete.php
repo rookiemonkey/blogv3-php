@@ -14,7 +14,7 @@
 
             if($result) { 
                 // refresh the page, alert box is working but DOM doesn't update
-                header("Location: categories.php");
+                header("Location: /cms/admin/categories.php");
             }
             
             else { 

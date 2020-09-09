@@ -12,7 +12,7 @@
         $user_row = $user->fetch_assoc();
         $query->close();
         
-        if(!$user_row ) { header('Location: users.php'); die(); }
+        if(!$user_row ) { header('Location: /cms/admin/users.php'); die(); }
     
 ?>
 

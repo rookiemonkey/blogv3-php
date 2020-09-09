@@ -16,7 +16,7 @@
 
                 <?php if (Utility::isAdmin()) { ?>
                         <li>
-                            <a href='/cms/admin'>
+                            <a href='/cms/admin/index.php'>
                                 Admin
                             </a>
                         </li>

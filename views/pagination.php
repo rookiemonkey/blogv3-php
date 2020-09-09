@@ -33,7 +33,7 @@
         // a float instead of an integer
         $page_last = intval(ceil($total_num / $post_per_page));
 
-            
+
         // render the pagination buttons if needed
         if($needButtons) {
             if($page > 1) {

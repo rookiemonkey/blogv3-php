@@ -9,7 +9,6 @@
                 What's the latest?   
                 <small>Discover interesting contents</small>
             </h1>
-
             <?php View::Posts(); ?>
 
             <ul class="pager">

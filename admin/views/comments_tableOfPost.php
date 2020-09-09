@@ -31,7 +31,6 @@
                     <td><?php echo Utility::sanitize($row['comment_date']); ?></td>
                     <td><?php echo Utility::sanitize($row['comment_author']); ?></td>
                     <td><?php echo Utility::sanitize($row['comment_content']); ?></td>
-                    <td><?php echo Utility::sanitize($row['comment_email']) ?></td>
                     <td>
                         <a href='../post.php?p_id=<?php echo $post_row['post_id'] ?>'>
                             <?php Utility::sanitize($post_row['post_title']); ?>
