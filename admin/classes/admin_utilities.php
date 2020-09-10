@@ -22,12 +22,12 @@ class AdminUtilities
 
     public static function alert_Failed($message = 'Something went wrong. Please try again later')
     {
-        render_alert_failed($message);
+        renderalert_failed($message);
     }
 
     public static function alert_Success($message)
     {
-        render_alert_success($message);
+        renderalert_success($message);
     }
 
     public static function alert_NoResults($message)

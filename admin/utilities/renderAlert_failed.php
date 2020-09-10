@@ -1,6 +1,6 @@
 <?php
 
-function render_alert_failed($message)
+function renderalert_failed($message)
 {
 ?>
     <div class='alert alert-danger'>

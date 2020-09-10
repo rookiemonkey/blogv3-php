@@ -37,7 +37,7 @@
 
     <div class="form-group">
         <label for="post_image">Post Image</label>
-        <input type="file" name="image">
+        <input type="file" name="image" accept="image/png, image/jpeg">
     </div>
 
     <div class="form-group">

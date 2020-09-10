@@ -16,6 +16,9 @@ function update_post()
         // check if user uploaded a new image
         if (strlen(($_FILES['image']['tmp_name'])) > 0) {
             $newimage = Utility::toUploadUpdate($oldimage, $_FILES, 'posts');
+            if (!$newimage) {
+                return null;
+            }
         } else {
             $newimage = $oldimage;
         }

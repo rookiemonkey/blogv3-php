@@ -1,6 +1,6 @@
 <?php
 
-function render_alert_success($message)
+function renderalert_success($message)
 {
 ?>
     <div class='alert alert-success'>
