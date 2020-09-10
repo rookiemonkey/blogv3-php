@@ -8,7 +8,7 @@
         </button>
         <a class="navbar-brand" href="../index.php">
             CMS Admin
-        </a>
+        </a>    
     </div>
 
     <ul class="nav navbar-right top-nav">
@@ -43,7 +43,7 @@
         </li>
     </ul>
 
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <div class="collapse navbar-collapse navbar-ex1-collapse" id="navigation_bar">
         <ul class="nav navbar-nav side-nav">
             <li>
                 <a href="index.php">
@@ -98,7 +98,7 @@
                     Categories
                 </a>
             </li>
-            <li class="active">
+            <li>
                 <a href="./comments.php">
                     <i class="fa fa-fw fa-file"></i>
                     Comments
