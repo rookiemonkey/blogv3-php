@@ -25,14 +25,7 @@ function render_comments()
 ?>
         <div class="media">
             <a class="pull-left">
-                <?php
-                if ($users['user_avatar'] === 'https://res.cloudinary.com/promises/image/upload/v1596613153/global_default_image.png') {
-                ?>
-                    <img class="media-object" src="https://res.cloudinary.com/promises/image/upload/v1596613153/global_default_image.png" style="width: 64px; height:64px; border-radius: 20px" />
-                <?php } else { ?>
-                    <img src="/cms/assets/images/avatars/<?php echo Utility::sanitize($users['user_avatar']) ?>" style="width: 64px; height:64px; border-radius: 20px" />
-                <?php } ?>
-
+                <?php View::Avatar($users['user_avatar'], '64px'); ?>
             </a>
             <div class="media-body">
                 <h4 class="media-heading"><?php echo $comment_author; ?>
