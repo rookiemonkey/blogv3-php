@@ -18,6 +18,13 @@
                     <li>
                         <a>
                             Good day! <?php echo Utility::sanitize($_SESSION['username']); ?>
+                            <?php
+                            if ($_SESSION['avatar'] === 'https://res.cloudinary.com/promises/image/upload/v1596613153/global_default_image.png') {
+                            ?>
+                                <img src="https://res.cloudinary.com/promises/image/upload/v1596613153/global_default_image.png" style="width: 20px; height:20px; border-radius: 20px" />
+                            <?php } else { ?>
+                                <img src="/cms/assets/images/avatars/<?php echo Utility::sanitize($_SESSION['avatar']) ?>" style="width: 20px; height:20px; border-radius: 20px" />
+                            <?php } ?>
                         </a>
                     </li>
                 <?php } ?>
