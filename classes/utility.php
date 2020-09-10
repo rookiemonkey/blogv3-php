@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__ . '../../utilities/toUpload.php';
+require __DIR__ . '../../utilities/toUploadUpdate.php';
 require __DIR__ . '../../utilities/toEmailContactRequest.php';
 require __DIR__ . '../../utilities/toEmailPasswordReset.php';
 require __DIR__ . '../../utilities/toRegisterUser.php';
@@ -68,5 +69,10 @@ class Utility
     public static function toUpload($file, $path)
     {
         return toUpload($file, $path);
+    }
+
+    public static function toUploadUpdate($oldimage, $file, $path)
+    {
+        return toUploadUpdate($oldimage, $file, $path);
     }
 }
