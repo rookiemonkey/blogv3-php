@@ -17,8 +17,8 @@
                 <?php if (isset($_SESSION['username'])) { ?>
                     <li>
                         <a>
-                            Good day! <?php echo Utility::sanitize($_SESSION['username']); ?>
                             <?php View::Avatar($_SESSION['avatar'], '24px'); ?>
+                            Good day! <?php echo Utility::sanitize($_SESSION['username']); ?>
                         </a>
                     </li>
                 <?php } ?>

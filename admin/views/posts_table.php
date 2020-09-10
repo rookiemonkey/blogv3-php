@@ -38,7 +38,7 @@ function read_posts()
             <td><?php echo Utility::sanitize($row['post_views']); ?></td>
             <td><?php echo Utility::sanitize($row['post_author']); ?></td>
             <td>
-                <a href='../post.php?p_id=<?php echo $row['post_id'] ?>'>
+                <a href='/cms/post/<?php echo $row['post_id'] ?>'>
                     <?php echo Utility::sanitize($row['post_title']); ?>
                 </a>
             </td>
@@ -49,7 +49,7 @@ function read_posts()
             </td>
             <td><?php echo Utility::sanitize($row['post_tags']); ?></td>
             <td>
-                <a href="../admin/comments.php?comments_of_post=<?php echo Utility::sanitize($row['post_id']) ?>">
+                <a href="/cms/admin/comments.php?comments_of_post=<?php echo Utility::sanitize($row['post_id']) ?>">
                     <?php echo Utility::sanitize($row['post_comment_count']); ?>
                 </a>
             </td>
@@ -59,7 +59,7 @@ function read_posts()
                 </a>
             </td>
             <td>
-                <a href='./posts.php?source=edit_post&p_id=<?php echo Utility::sanitize($row['post_id']); ?>'>
+                <a href='/cms/admin/posts.php?source=edit_post&p_id=<?php echo Utility::sanitize($row['post_id']); ?>'>
                     Edit
                 </a>
             </td>
