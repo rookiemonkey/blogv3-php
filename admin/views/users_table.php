@@ -24,7 +24,7 @@ function read_users()
             <td><?php echo Utility::sanitize($row['user_firstname']); ?></td>
             <td><?php echo Utility::sanitize($row['user_lastname']); ?></td>
             <td><?php echo Utility::sanitize($row['user_email']); ?></td>
-            <td><?php View::Avatar($row['user_avatar'], '30px') ?></td>
+            <td><?php View::Avatar($row['user_avatar'], '25px') ?></td>
             <td><?php echo Utility::sanitize($row['user_role']); ?></td>
             <td>
                 <a href='./users.php?admin=<?php echo Utility::sanitize($row['user_id']); ?>'>
