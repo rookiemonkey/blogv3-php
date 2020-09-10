@@ -45,7 +45,7 @@ function read_posts()
             <td><?php echo Utility::sanitize($post_category_row['cat_title']); ?></td>
             <td><?php echo Utility::sanitize($row['post_status']); ?></td>
             <td>
-                <img src='/cms/assets/images/<?php echo Utility::sanitize($row['post_image']); ?>' alt='<?php echo Utility::sanitize($row['post_title']); ?>' width='100' />
+                <img src='/cms/assets/images/posts/<?php echo Utility::sanitize($row['post_image']); ?>' alt='<?php echo Utility::sanitize($row['post_title']); ?>' width='100' />
             </td>
             <td><?php echo Utility::sanitize($row['post_tags']); ?></td>
             <td>

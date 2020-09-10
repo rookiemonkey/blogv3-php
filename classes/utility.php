@@ -1,5 +1,6 @@
 <?php
 
+require __DIR__ . '../../utilities/toUpload.php';
 require __DIR__ . '../../utilities/toEmailContactRequest.php';
 require __DIR__ . '../../utilities/toEmailPasswordReset.php';
 require __DIR__ . '../../utilities/toRegisterUser.php';
@@ -62,5 +63,10 @@ class Utility
     public static function sanitize($string)
     {
         return stripslashes(strip_tags($string));
+    }
+
+    public static function toUpload($file, $path)
+    {
+        return toUpload($file, $path);
     }
 }
