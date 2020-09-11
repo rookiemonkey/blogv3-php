@@ -3,7 +3,7 @@
 function search_tags_subscriber()
 {
     $mysqli = Model::Provide_Database();
-    $vars = View::Pagination(false);
+    $vars = View::Pagination();
 
     $page_1 = intval($vars['page_1']);
     $post_per_page = intval($vars['post_per_page']);

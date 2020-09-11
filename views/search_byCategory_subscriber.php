@@ -3,7 +3,7 @@
 function search_category_subscriber()
 {
     $mysqli = Model::Provide_Database();
-    $vars = View::Pagination(false);
+    $vars = View::Pagination();
 
     if (!isset($_GET['c_id'])) {
         header('Location: /cms/index');

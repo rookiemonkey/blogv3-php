@@ -21,7 +21,7 @@
 
             <ul class="pager">
 
-                <?php View::Pagination(true); ?>
+                <?php View::Pagination(true, 'index'); ?>
 
             </ul>
 

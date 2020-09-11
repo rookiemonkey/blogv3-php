@@ -75,9 +75,9 @@ class View
         }
     }
 
-    public static function Pagination($needButtons)
+    public static function Pagination($needButtons = false, $path = false)
     {
-        return Pagination($needButtons);
+        return Pagination($needButtons, $path);
     }
 
     public static function Comments()

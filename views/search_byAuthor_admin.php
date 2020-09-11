@@ -3,7 +3,7 @@
 function search_author_admin()
 {
     $mysqli = Model::Provide_Database();
-    $vars = View::Pagination(false);
+    $vars = View::Pagination();
 
     if (!isset($_GET["author"])) {
         header('Location: /cms/index');

@@ -3,7 +3,7 @@
 function render_posts_admin()
 {
     $mysqli = Model::Provide_Database();
-    $vars = View::Pagination(false);
+    $vars = View::Pagination();
 
     $page_1 = $vars['page_1'];
     $post_per_page = $vars['post_per_page'];
