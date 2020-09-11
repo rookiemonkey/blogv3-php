@@ -53,11 +53,6 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input type="password" id="password" class="form-control" name="user_password" value="<?php echo Utility::sanitize($user_row['user_password']); ?>" required readonly>
-                                </div>
-
-                                <div class="form-group">
                                     <input type="submit" name="update_user" value="Update User">
                                 </div>
 

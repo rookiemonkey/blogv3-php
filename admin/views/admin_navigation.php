@@ -8,7 +8,7 @@
         </button>
         <a class="navbar-brand" href="../index.php">
             CMS Admin
-        </a>    
+        </a>
     </div>
 
     <ul class="nav navbar-right top-nav">
@@ -32,6 +32,12 @@
                         <?php echo Utility::sanitize($_SESSION['firstname']); ?>
                     </a>
                 </li>
+                <li>
+                    <a href="profile.php">
+                        <i class="fa fa-fw fa-dashboard"></i>
+                        Manage Profile
+                    </a>
+                </li>
                 <li class="divider"></li>
                 <li>
                     <a href='/cms/api/logout.php'>
@@ -50,9 +56,6 @@
                     <i class="fa fa-fw fa-dashboard"></i>
                     Dashboard
                 </a>
-            </li>
-            <li>
-                <a href="profile.php"><i class="fa fa-fw fa-dashboard"></i> Profile</a>
             </li>
             <li>
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo">

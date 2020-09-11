@@ -10,13 +10,11 @@ function update_current_user()
         $user_lastname = Utility::sanitize($_POST['user_lastname']);
         $user_username = Utility::sanitize($_POST['user_username']);
         $user_email = Utility::sanitize($_POST['user_email']);
-        $user_password = Utility::sanitize($_POST['user_password']);
-        $user_avatar = "test+image+page";
 
         // prepare statement and query
-        $query = $mysqli->prepare("UPDATE users SET user_firstname = ?, user_lastname = ?, user_username = ?, user_email = ?, user_password = ?, user_avatar = ? WHERE user_username = ?");
+        $query = $mysqli->prepare("UPDATE users SET user_firstname = ?, user_lastname = ?, user_username = ?, user_email = ? WHERE user_username = ?");
 
-        $query->bind_param('sssssss', $user_firstname, $user_lastname, $user_username, $user_email, $user_password, $user_avatar, $current_user);
+        $query->bind_param('sssss', $user_firstname, $user_lastname, $user_username, $user_email, $current_user);
 
         $result = $query->execute();
 
