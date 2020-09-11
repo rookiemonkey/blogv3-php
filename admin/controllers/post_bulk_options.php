@@ -27,6 +27,13 @@ function bulk_options_posts()
                     break;
 
                 case 'delete':
+
+                    // delete comments associated to the post
+                    $stmnt = "DELETE FROM comments WHERE comment_post = ?";
+                    $query = $mysqli->prepare($stmnt);
+                    $query->bind_param("i", $post_id);
+                    $query->close();
+
                     $stmnt = "DELETE FROM posts WHERE post_id = ?";
                     $query = $mysqli->prepare($stmnt);
                     $query->bind_param("i", $post_id);
