@@ -15,6 +15,7 @@
 
                     <?php AdminUsers::update_Current(); ?>
                     <?php AdminUsers::update_CurrentPassword(); ?>
+                    <?php AdminUsers::update_CurrentAvatar(); ?>
 
                     <?php
 
@@ -59,6 +60,65 @@
 
                             </form>
 
+                            <!-- CHANGE PASSWORD MODAL -->
+                            <div class="modal fade" tabindex="-1" role="dialog" id="change_password">
+                                <div class="modal-dialog modal-sm" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h3 class="modal-title">Change Password</h3>
+                                        </div>
+                                        <form action='' method="POST">
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <input type="password" name="new_password" placeholder="New Password" style="width: 100%" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" name="confirm_password" placeholder="Confirm Password" style="width: 100%" required>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                <input type="submit" name="update_password" value="Update" class="btn btn-primary">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CHANGE AVATAR MODAL -->
+                            <div class="modal fade" tabindex="-1" role="dialog" id="change_avatar">
+                                <div class="modal-dialog modal-sm" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h3 class="modal-title">Change Avatar</h3>
+                                        </div>
+                                        <form action="" method="POST" enctype="multipart/form-data">
+                                            <div class="modal-body">
+                                                <h5>Current Avatar:</h5>
+                                                <div style="display:flex; justify-content:center">
+                                                    <?php View::Avatar($user_row['user_avatar'], '200px'); ?>
+                                                </div>
+
+                                                <input type='text' name='oldimage' value='<?php echo Utility::sanitize($user_row['user_avatar']); ?>' style="position:absolute; left: 500%" />
+
+                                                <input type="file" name="image" accept="image/png, image/jpeg" />
+
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" name="default" id="default">
+                                                    <label class="form-check-label" for="default">Use default avatar</label>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                <input type="submit" name="update_avatar" value="Update" class="btn btn-primary">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
                     <?php
                         }
                     }
@@ -73,55 +133,6 @@
                     </button>
 
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="modal fade" tabindex="-1" role="dialog" id="change_password">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title">Change Password</h3>
-            </div>
-            <form action='' method="POST">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input type="password" name="new_password" placeholder="New Password" style="width: 100%" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" name="confirm_password" placeholder="Confirm Password" style="width: 100%" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <input type="submit" name="update_password" value="Update" class="btn btn-primary">
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="modal fade" tabindex="-1" role="dialog" id="change_avatar">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title">Change Avatar</h3>
-            </div>
-            <div class="modal-body">
-                <h5>Modal Body</h5>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <a>
-                    <button type="button" class="btn btn-primary">Confirm</button>
-                </a>
             </div>
         </div>
     </div>

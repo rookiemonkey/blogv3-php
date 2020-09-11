@@ -5,6 +5,7 @@ require __DIR__ . '/../../admin/controllers/user_delete.php';
 require __DIR__ . '/../../admin/controllers/user_update.php';
 require __DIR__ . '/../../admin/controllers/user_updateCurrent.php';
 require __DIR__ . '/../../admin/controllers/user_updateCurrentPassword.php';
+require __DIR__ . '/../../admin/controllers/user_updateCurrentAvatar.php';
 require __DIR__ . '/../../admin/controllers/user_updateToAdmin.php';
 require __DIR__ . '/../../admin/controllers/user_updateToSubscriber.php';
 
@@ -36,6 +37,11 @@ class AdminUsers
     public static function update_CurrentPassword()
     {
         update_current_user_password();
+    }
+
+    public static function update_CurrentAvatar()
+    {
+        update_current_user_avatar();
     }
 
     public static function update_ToAdmin()
