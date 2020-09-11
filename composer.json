@@ -11,7 +11,8 @@
     "autoload": {
         "classmap": [
             "classes",
-            "admin/classes"
+            "admin/classes",
+            "subscriber/classes"
         ]
     },
     "require": {
