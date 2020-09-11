@@ -58,22 +58,29 @@ function Pagination($needButtons, $path)
 
         // search route
         if ($path && $path === 'search') {
-            // var_dump($_POST['search']);
-            // if ($page > 1) {
-            //     echo "<li class='previous'><a href='search.php?page=1'><< Start</a></li>";
-            // }
+            $search = '';
 
-            // for ($i = 1; $i <= $page_last; $i++) {
-            //     if ($i === $page - 1 && $page - 1 !== 0) {
-            //         echo "<li class='previous'><a href='search.php?page={$i}'>Previous</a></li>";
-            //     } else if ($i === $page + 1 && $page + 1 <= $page_last) {
-            //         echo "<li class='next'><a href='search.php?page={$i}'>Next</a></li>";
-            //     }
-            // }
+            if (isset($_POST['search'])) {
+                $search = Utility::sanitize($_POST['search']);
+            } else {
+                $search = Utility::sanitize($_GET['search']);
+            }
 
-            // if ($page < $page_last && $page_last !== 1) {
-            //     echo "<li class='next'><a href='search.php?page={$page_last}'>Last >></a></li>";
-            // }
+            if ($page > 1) {
+                echo "<li class='previous'><a href='search.php?page=1&search={$search}'><< Start</a></li>";
+            }
+
+            for ($i = 1; $i <= $page_last; $i++) {
+                if ($i === $page - 1 && $page - 1 !== 0) {
+                    echo "<li class='previous'><a href='search.php?page={$i}&search={$search}'>Previous</a></li>";
+                } else if ($i === $page + 1 && $page + 1 <= $page_last) {
+                    echo "<li class='next'><a href='search.php?page={$i}&search={$search}'>Next</a></li>";
+                }
+            }
+
+            if ($page < $page_last && $page_last !== 1) {
+                echo "<li class='next'><a href='search.php?page={$page_last}&search={$search}'>Last >></a></li>";
+            }
         }
 
         // author route

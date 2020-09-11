@@ -48,7 +48,7 @@ class View
 
     public static function search_byTags()
     {
-        if (isset($_POST["submit"])) {
+        if (isset($_POST["submit"]) || isset($_GET['search'])) {
             if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
                 search_tags_admin();
             } else {

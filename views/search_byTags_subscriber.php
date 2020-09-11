@@ -5,11 +5,19 @@ function search_tags_subscriber()
     $mysqli = Model::Provide_Database();
     $vars = View::Pagination();
 
+    $post_status = 'published';
     $page_1 = intval($vars['page_1']);
     $post_per_page = intval($vars['post_per_page']);
-    $sanitized = Utility::sanitize($_POST['search']);
+    $sanitized = '';
+
+    // conditional assignment to giveway pagination
+    if (isset($_POST['search'])) {
+        $sanitized = Utility::sanitize($_POST['search']);
+    } else {
+        $sanitized = Utility::sanitize($_GET['search']);
+    }
+
     $search =  "%{$sanitized}%";
-    $post_status = 'published';
 
     $stmt = "SELECT * FROM posts WHERE post_status = ? AND post_tags LIKE ? LIMIT ?, ?";
 

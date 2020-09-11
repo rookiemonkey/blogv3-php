@@ -8,7 +8,18 @@
 
             <h1 class="page-header">
                 Tag Search
-                <small>Term: '<?php echo Utility::sanitize($_POST['search']); ?>'</small>
+                <small>Term: '
+                    <?php
+                    $search = '';
+
+                    if (isset($_POST['search'])) {
+                        $search = Utility::sanitize($_POST['search']);
+                    } else {
+                        $search = Utility::sanitize($_GET['search']);
+                    }
+                    echo $search;
+                    ?>'
+                </small>
             </h1>
 
             <!-- REMINDER FOR ADMIN VIEW -->
