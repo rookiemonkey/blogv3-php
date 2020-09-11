@@ -18,6 +18,9 @@ function getRandomImage($path)
     // extract the response
     $response_injson = $response->getBody();
 
+    // purge the client since we dont need it anymore
+    unset($client);
+
     // parse the response into associative array
     $response_parsed = json_decode($response_injson);
 
