@@ -1,19 +1,23 @@
 <?php
 
-function render_posts_admin()
+function search_author_admin()
 {
     $mysqli = Model::Provide_Database();
     $vars = View::Pagination(false);
 
-    $page_1 = $vars['page_1'];
-    $post_per_page = $vars['post_per_page'];
-    $post_order = 'ASC';
+    if (!isset($_GET["author"])) {
+        header('Location: /cms/index');
+    }
 
-    $stmt = "SELECT * FROM posts ORDER BY ? LIMIT ?, ?";
+    $page_1 = intval($vars['page_1']);
+    $post_per_page = intval($vars['post_per_page']);
+    $author =  "%{$_GET['author']}%";
+
+    $stmt = "SELECT * FROM posts WHERE post_author LIKE ? LIMIT ?, ?";
 
     $query = $mysqli->prepare($stmt);
 
-    $query->bind_param('sii', $post_order, $page_1, $post_per_page);
+    $query->bind_param('sii', $author, $page_1, $post_per_page);
 
     $query->execute();
 
@@ -21,13 +25,17 @@ function render_posts_admin()
 
     $query->close();
 
+    if ($posts->num_rows === 0) {
+        View::alert_Failed('No Results Found');
+    }
+
     while ($row = $posts->fetch_assoc()) {
         $post_id = Utility::sanitize($row["post_id"]);
-        $post_title = Utility::sanitize($row["post_title"]);
-        $post_author = Utility::sanitize($row["post_author"]);
-        $post_date = Utility::sanitize($row["post_date"]);
-        $post_content = Utility::sanitize(substr($row["post_content"], 0, 200));
-        $post_image = Utility::sanitize($row["post_image"]);
+        $post_title = Utility::sanitize($row['post_title']);
+        $post_image = Utility::sanitize($row['post_image']);
+        $post_author = Utility::sanitize($row['post_author']);
+        $post_date = Utility::sanitize($row['post_date']);
+        $post_content = Utility::sanitize($row['post_content']);
         $post_status = Utility::sanitize($row["post_status"]);
 ?>
         <h2>
@@ -44,9 +52,9 @@ function render_posts_admin()
         </h2>
 
         <p class="lead">
-            by <a href="/cms/author/<?php echo $post_author ?>">
+            by <span>
                 <?php echo $post_author ?>
-            </a>
+            </span>
 
             <small class="pull-right">
                 <span class="glyphicon glyphicon-time"></span>
@@ -55,13 +63,14 @@ function render_posts_admin()
         </p>
 
         <hr>
-        <!-- the image name on database should match the one on the file system -->
+
         <a href="/cms/post/<?php echo $post_id ?>">
             <img class="img-responsive" src="/cms/assets/images/posts/<?php echo $post_image ?>" alt="<?php echo $post_title ?>">
         </a>
+
         <hr>
 
-        <p><?php echo $post_content . '...' ?></p>
+        <p><?php echo $post_content ?></p>
 
         <a class="btn btn-primary" href="/cms/post/<?php echo $post_id ?>">
             Read More

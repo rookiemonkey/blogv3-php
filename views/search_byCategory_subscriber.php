@@ -1,19 +1,22 @@
 <?php
 
-function render_posts_admin()
+function search_category_subscriber()
 {
     $mysqli = Model::Provide_Database();
     $vars = View::Pagination(false);
 
+    if (!isset($_GET['c_id'])) {
+        header('Location: /cms/index');
+    }
+
     $page_1 = $vars['page_1'];
     $post_per_page = $vars['post_per_page'];
-    $post_order = 'ASC';
+    $category_id = $_GET['c_id'];
+    $post_status = 'published';
 
-    $stmt = "SELECT * FROM posts ORDER BY ? LIMIT ?, ?";
+    $query = $mysqli->prepare("SELECT * FROM posts WHERE post_category_id = ? AND post_status = ? LIMIT ?, ?");
 
-    $query = $mysqli->prepare($stmt);
-
-    $query->bind_param('sii', $post_order, $page_1, $post_per_page);
+    $query->bind_param('isii', $category_id, $post_status, $page_1, $post_per_page);
 
     $query->execute();
 
@@ -21,25 +24,21 @@ function render_posts_admin()
 
     $query->close();
 
+    if ($posts->num_rows === 0) {
+        View::alert_Failed('No Results Found');
+    }
+
     while ($row = $posts->fetch_assoc()) {
         $post_id = Utility::sanitize($row["post_id"]);
         $post_title = Utility::sanitize($row["post_title"]);
-        $post_author = Utility::sanitize($row["post_author"]);
-        $post_date = Utility::sanitize($row["post_date"]);
-        $post_content = Utility::sanitize(substr($row["post_content"], 0, 200));
-        $post_image = Utility::sanitize($row["post_image"]);
-        $post_status = Utility::sanitize($row["post_status"]);
+        $post_author =  Utility::sanitize($row["post_author"]);
+        $post_date =  Utility::sanitize($row["post_date"]);
+        $post_content =  Utility::sanitize(substr($row["post_content"], 0, 200));
+        $post_image =  Utility::sanitize($row["post_image"]);
 ?>
         <h2>
             <a href="/cms/post/<?php echo $post_id ?>">
                 <?php echo $post_title ?>
-                <?php
-                if ($post_status === 'draft') {
-                    echo '<span class="badge" style="background-color: #f0ad4e">Draft</span>';
-                } else {
-                    echo '<span class="badge" style="background-color: #5cb85c">Published</span>';
-                }
-                ?>
             </a>
         </h2>
 

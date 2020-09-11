@@ -1,21 +1,24 @@
 <?php
 
-function search_tags()
+function search_author_subscriber()
 {
     $mysqli = Model::Provide_Database();
     $vars = View::Pagination(false);
 
+    if (!isset($_GET["author"])) {
+        header('Location: /cms/index');
+    }
+
     $page_1 = intval($vars['page_1']);
     $post_per_page = intval($vars['post_per_page']);
-    $sanitized = Utility::sanitize($_POST['search']);
-    $search =  "%{$sanitized}%";
+    $author =  "%{$_GET['author']}%";
     $post_status = 'published';
 
-    $stmt = "SELECT * FROM posts WHERE post_status = ? AND post_tags LIKE ? LIMIT ?, ?";
+    $stmt = "SELECT * FROM posts WHERE post_status = ? AND post_author LIKE ? LIMIT ?, ?";
 
     $query = $mysqli->prepare($stmt);
 
-    $query->bind_param('ssii', $post_status, $search, $page_1, $post_per_page);
+    $query->bind_param('ssii', $post_status, $author, $page_1, $post_per_page);
 
     $query->execute();
 
@@ -28,6 +31,7 @@ function search_tags()
     }
 
     while ($row = $posts->fetch_assoc()) {
+        $post_id = Utility::sanitize($row["post_id"]);
         $post_title = Utility::sanitize($row['post_title']);
         $post_image = Utility::sanitize($row['post_image']);
         $post_author = Utility::sanitize($row['post_author']);
@@ -40,15 +44,14 @@ function search_tags()
             </a>
         </h2>
 
-        <p class="lead">
-            by <a href="/cms/author/<?php echo $post_author ?>">
-                <?php echo $post_author ?>
-            </a>
-        </p>
-
         <p>
             <span class="glyphicon glyphicon-time"></span>
             Posted on <?php echo $post_date ?>
+
+            <small class="pull-right">
+                <span class="glyphicon glyphicon-time"></span>
+                Posted on <?php echo $post_date ?>
+            </small>
         </p>
 
         <hr>

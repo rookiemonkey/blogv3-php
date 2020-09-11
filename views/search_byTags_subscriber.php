@@ -1,22 +1,21 @@
 <?php
 
-function search_category()
+function search_tags_subscriber()
 {
     $mysqli = Model::Provide_Database();
     $vars = View::Pagination(false);
 
-    if (!isset($_GET['c_id'])) {
-        header('Location: /cms/index');
-    }
-
-    $page_1 = $vars['page_1'];
-    $post_per_page = $vars['post_per_page'];
-    $category_id = $_GET['c_id'];
+    $page_1 = intval($vars['page_1']);
+    $post_per_page = intval($vars['post_per_page']);
+    $sanitized = Utility::sanitize($_POST['search']);
+    $search =  "%{$sanitized}%";
     $post_status = 'published';
 
-    $query = $mysqli->prepare("SELECT * FROM posts WHERE post_category_id = ? AND post_status = ? LIMIT ?, ?");
+    $stmt = "SELECT * FROM posts WHERE post_status = ? AND post_tags LIKE ? LIMIT ?, ?";
 
-    $query->bind_param('isii', $category_id, $post_status, $page_1, $post_per_page);
+    $query = $mysqli->prepare($stmt);
+
+    $query->bind_param('ssii', $post_status, $search, $page_1, $post_per_page);
 
     $query->execute();
 
@@ -29,12 +28,12 @@ function search_category()
     }
 
     while ($row = $posts->fetch_assoc()) {
-        $post_id = Utility::sanitize($row["post_id"]);
-        $post_title = Utility::sanitize($row["post_title"]);
-        $post_author =  Utility::sanitize($row["post_author"]);
-        $post_date =  Utility::sanitize($row["post_date"]);
-        $post_content =  Utility::sanitize(substr($row["post_content"], 0, 200));
-        $post_image =  Utility::sanitize($row["post_image"]);
+        $post_id = Utility::sanitize($row['post_id']);
+        $post_title = Utility::sanitize($row['post_title']);
+        $post_image = Utility::sanitize($row['post_image']);
+        $post_author = Utility::sanitize($row['post_author']);
+        $post_date = Utility::sanitize($row['post_date']);
+        $post_content = Utility::sanitize($row['post_content']);
 ?>
         <h2>
             <a href="/cms/post/<?php echo $post_id ?>">
@@ -46,21 +45,22 @@ function search_category()
             by <a href="/cms/author/<?php echo $post_author ?>">
                 <?php echo $post_author ?>
             </a>
-        </p>
 
-        <p>
-            <span class="glyphicon glyphicon-time"></span>
-            Posted on <?php echo $post_date ?>
+            <small class="pull-right">
+                <span class="glyphicon glyphicon-time"></span>
+                Posted on <?php echo $post_date ?>
+            </small>
         </p>
 
         <hr>
-        <!-- the image name on database should match the one on the file system -->
+
         <a href="/cms/post/<?php echo $post_id ?>">
             <img class="img-responsive" src="/cms/assets/images/posts/<?php echo $post_image ?>" alt="<?php echo $post_title ?>">
         </a>
+
         <hr>
 
-        <p><?php echo $post_content . '...' ?></p>
+        <p><?php echo $post_content ?></p>
 
         <a class="btn btn-primary" href="/cms/post/<?php echo $post_id ?>">
             Read More

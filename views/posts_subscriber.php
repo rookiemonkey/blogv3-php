@@ -41,7 +41,7 @@ function render_posts_subscriber()
                 <?php echo $post_author ?>
             </a>
 
-            <small>
+            <small class="pull-right">
                 <span class="glyphicon glyphicon-time"></span>
                 Posted on <?php echo $post_date ?>
             </small>

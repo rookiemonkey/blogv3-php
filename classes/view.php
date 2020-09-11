@@ -1,8 +1,11 @@
 <?php
 
-require __DIR__ . '../../views/search_byAuthor.php';
-require __DIR__ . '../../views/search_byCategory.php';
-require __DIR__ . '../../views/search_byTags.php';
+require __DIR__ . '../../views/search_byAuthor_admin.php';
+require __DIR__ . '../../views/search_byAuthor_subscriber.php';
+require __DIR__ . '../../views/search_byCategory_admin.php';
+require __DIR__ . '../../views/search_byCategory_subscriber.php';
+require __DIR__ . '../../views/search_byTags_admin.php';
+require __DIR__ . '../../views/search_byTags_subscriber.php';
 require __DIR__ . '../../views/avatar.php';
 require __DIR__ . '../../views/comments.php';
 require __DIR__ . '../../views/pagination.php';
@@ -27,18 +30,30 @@ class View
 
     public static function search_byAuthor()
     {
-        search_author();
+        if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+            search_author_admin();
+        } else {
+            search_author_subscriber();
+        }
     }
 
     public static function search_byCategory()
     {
-        search_category();
+        if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+            search_category_admin();
+        } else {
+            search_category_subscriber();
+        }
     }
 
     public static function search_byTags()
     {
         if (isset($_POST["submit"])) {
-            search_tags();
+            if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+                search_tags_admin();
+            } else {
+                search_tags_subscriber();
+            }
         }
     }
 
