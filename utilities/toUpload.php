@@ -2,6 +2,11 @@
 
 function toUpload($file, $path)
 {
+    // check if user uploaded
+    if (!$file['image']['tmp_name']) {
+        return null;
+    }
+
     $post_image         = $file['image']['name'];
     $post_image_temp    = $file['image']['tmp_name'];
     $post_image_mime    = $file['image']['type'];

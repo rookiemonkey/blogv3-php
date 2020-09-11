@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__ . '/../../admin/utilities/isAdmin.php';
+require __DIR__ . '/../../admin/utilities/getRandomImage.php';
 require __DIR__ . '/../../admin/utilities/renderAlert_success.php';
 require __DIR__ . '/../../admin/utilities/renderAlert_failed.php';
 require __DIR__ . '/../../admin/utilities/renderAlert_tablenoresult.php';
@@ -73,5 +74,10 @@ class AdminUtilities
     public static function render_RoleOptionsEdit($post_row)
     {
         render_roleOptions_edit($post_row);
+    }
+
+    public static function getRandomImage($path)
+    {
+        return getRandomImage($path);
     }
 }

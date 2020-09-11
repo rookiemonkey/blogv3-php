@@ -17,8 +17,10 @@ function create_post()
         $post_date          = date("Y-m-d");
 
         $post_image_recreated_name = Utility::toUpload($_FILES, 'posts');
+        $post_image_status = $post_image_recreated_name;
+
         if (!$post_image_recreated_name) {
-            return null;
+            $post_image_recreated_name = AdminUtilities::getRandomImage('posts');
         }
 
         $statement = "INSERT INTO posts (post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status, post_views, post_likes) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
@@ -32,7 +34,9 @@ function create_post()
         $query->close();
 
         // check if query is successfull
-        if ($result) {
+        if ($result && !$post_image_status) {
+            AdminUtilities::alert_Success("Succesfully added a post. However, since you did not uploaded any images, we've looked for a random post image for you. You can change it whenever you want just by editing the post.");
+        } else if ($result) {
             AdminUtilities::alert_Success("Succesfully added a post");
         } else {
             AdminUtilities::alert_Failed();
