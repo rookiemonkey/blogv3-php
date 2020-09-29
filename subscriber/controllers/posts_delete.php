@@ -14,7 +14,29 @@ function delete_post()
 
         $query->bind_param("s", $post_id);
 
+        $query->execute();
+
         $query->close();
+
+
+        // delete the image associated to the post
+        $stmnt = "SELECT post_image FROM posts WHERE post_id = ?";
+
+        $query = $mysqli->prepare($stmnt);
+
+        $query->bind_param("s", $post_id);
+
+        $query->execute();
+
+        $results = $query->get_result();
+
+        $row = $results->fetch_assoc();
+
+        $image = $_SERVER['DOCUMENT_ROOT'] . "/cms/assets/images/posts/" . $row['post_image'];
+
+        if (file_exists($image)) {
+            unlink($image);
+        }
 
 
         // proceed in deleting the post

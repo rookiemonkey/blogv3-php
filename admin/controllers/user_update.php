@@ -11,14 +11,13 @@ function update_user()
         $user_username = Utility::sanitize($_POST['user_username']);
         $user_role = Utility::sanitize($_POST['user_role']);
         $user_email = Utility::sanitize($_POST['user_email']);
-        $user_avatar = "test+image+page";
 
         // prepare statement and query
-        $stmt = "UPDATE users SET user_firstname = ?, user_lastname = ?, user_username = ?, user_role = ?, user_email = ?, user_avatar = ? WHERE user_id = ?";
+        $stmt = "UPDATE users SET user_firstname = ?, user_lastname = ?, user_username = ?, user_role = ?, user_email = ? WHERE user_id = ?";
 
         $query = $mysqli->prepare($stmt);
 
-        $query->bind_param('ssssssi', $user_firstname, $user_lastname, $user_username, $user_role, $user_email, $user_avatar, $user_id);
+        $query->bind_param('sssssi', $user_firstname, $user_lastname, $user_username, $user_role, $user_email, $user_id);
 
         $result = $query->execute();
 

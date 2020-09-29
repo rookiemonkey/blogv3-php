@@ -43,9 +43,9 @@
                 </div>
             </div>
         </div>
+
+        <hr>
+
+        <?php View::MainFooter(); ?>
     </div>
 </section>
-
-<hr>
-
-<?php View::MainFooter(); ?>

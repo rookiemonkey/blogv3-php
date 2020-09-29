@@ -53,7 +53,7 @@ if (isset($_GET['p_id'])) {
         </div>
 
         <div class="form-group">
-            <label for="post_image">Post Image</label>
+            <label for="post_image">Post Image</label> <br />
             <img width="100" src="/cms/assets/images/posts/<?php echo Utility::sanitize($post_row["post_image"]); ?>" alt="<?php echo Utility::sanitize($post_row["post_title"]); ?>">
             <input type='file' name='image' accept="image/png, image/jpeg" />
             <input type='text' name='post_oldimage' value='<?php echo Utility::sanitize($post_row["post_image"]); ?>' style="position:absolute; left: 500%" />
