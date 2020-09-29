@@ -6,7 +6,7 @@ function create_post()
         $mysqli = AdminModel::Provide_Database();
 
         $post_title        = Utility::sanitize($_POST['post_title']);
-        $post_author       = Utility::sanitize($_POST['post_author']);
+        $post_author       = Utility::sanitize($_SESSION['username']);
         $post_category_id  = Utility::sanitize($_POST['post_category_id']);
         $post_status       = Utility::sanitize($_POST['post_status']);
         $post_tags         = Utility::sanitize($_POST['post_tags']);
@@ -20,7 +20,7 @@ function create_post()
         $post_image_status = $post_image_recreated_name;
 
         if (!$post_image_recreated_name) {
-            $post_image_recreated_name = AdminUtilities::getRandomImage('posts');
+            $post_image_recreated_name = SubscriberUtilities::getRandomImage('posts');
         }
 
         $statement = "INSERT INTO posts (post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status, post_views, post_likes) VALUES (?,?,?,?,?,?,?,?,?,?,?)";

@@ -1,6 +1,6 @@
 <?php
 
-function render_categoryOptions_edit($post_row)
+function render_categoryOptions_edit_SUB($post_row)
 {
     $mysqli = AdminModel::Provide_Database();
 

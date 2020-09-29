@@ -1,6 +1,6 @@
 <?php
 
-function render_modal($id, $action, $message, $link)
+function render_modal_SUB($id, $action, $message, $link)
 {
 ?>
     <div class="modal fade" tabindex="-1" role="dialog" id="myModal_<?php echo Utility::sanitize($id) ?>">

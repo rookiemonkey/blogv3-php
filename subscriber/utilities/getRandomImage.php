@@ -2,7 +2,7 @@
 
 use GuzzleHttp\Client;
 
-function getRandomImage($path)
+function getRandomImage_SUB($path)
 {
     $client = new Client();
 

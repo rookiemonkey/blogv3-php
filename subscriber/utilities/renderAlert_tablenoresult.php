@@ -1,6 +1,6 @@
 <?php
 
-function render_alert_tablenoresult($message)
+function render_alert_tablenoresult_SUB($message)
 {
 ?>
     <div class="jumbotron">

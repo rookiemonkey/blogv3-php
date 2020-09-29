@@ -1,6 +1,6 @@
 <?php
 
-function render_categoryOptions_create()
+function render_categoryOptions_create_SUB()
 {
     $mysqli = AdminModel::Provide_Database();
 

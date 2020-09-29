@@ -16,16 +16,6 @@
         </select>
     </div>
 
-
-    <div class="form-group">
-        <label for="users" style="display: block;">Users</label>
-        <select name="post_author" id="">
-
-            <?php SubscriberUtilities::render_AuthorOptionsCreate(); ?>
-
-        </select>
-    </div>
-
     <div class="form-group">
         <label for="post_status" style="display: block;">Post Status</label>
         <select name="post_status" id="">

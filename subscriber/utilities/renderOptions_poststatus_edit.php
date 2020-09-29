@@ -1,6 +1,6 @@
 <?php
 
-function render_poststatusOptions_edit($post_row)
+function render_poststatusOptions_edit_SUB($post_row)
 {
     if ($post_row["post_status"] === 'draft') {
         echo '<option value="draft" selected="selected">Draft</option>';
