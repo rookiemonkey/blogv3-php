@@ -8,7 +8,7 @@ require __DIR__ . '/../../subscriber/utilities/renderModal_delete.php';
 require __DIR__ . '/../../subscriber/utilities/renderOptions_author_create.php';
 require __DIR__ . '/../../subscriber/utilities/renderOptions_poststatus_edit.php';
 require __DIR__ . '/../../subscriber/utilities/renderOptions_category_edit.php';
-require __DIR__ . '/../../subscriber/utilities/renderOptions_poststatus_edit.php';
+require __DIR__ . '/../../subscriber/utilities/renderOptions_category_create.php';
 
 class SubscriberUtilities
 {

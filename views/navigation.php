@@ -26,7 +26,15 @@
                 <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') { ?>
                     <li>
                         <a href='/cms/admin/index.php'>
-                            Admin
+                            Dashboard
+                        </a>
+                    </li>
+                <?php } ?>
+
+                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'subscriber') { ?>
+                    <li>
+                        <a href='/cms/subscriber/posts.php'>
+                            Dashboard
                         </a>
                     </li>
                 <?php } ?>

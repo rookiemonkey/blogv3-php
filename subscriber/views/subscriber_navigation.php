@@ -52,12 +52,6 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse" id="navigation_bar">
         <ul class="nav navbar-nav side-nav">
             <li>
-                <a href="index.php">
-                    <i class="fa fa-fw fa-dashboard"></i>
-                    <span>&nbsp;</span>Dashboard
-                </a>
-            </li>
-            <li>
                 <a href="./posts.php">
                     <i class="glyphicon glyphicon-list-alt"></i>
                     <span>&nbsp;</span>All Posts
