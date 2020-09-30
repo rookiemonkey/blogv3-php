@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/../../model/database.php';
+require_once __DIR__ . '/../../model/database.php';
 
 class SubscriberModel
 {

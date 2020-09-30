@@ -4,7 +4,8 @@
 
     <?php
     $mysqli = SubscriberModel::Provide_Database();
-    $query = $mysqli->prepare("SELECT * FROM posts");
+    $query = $mysqli->prepare("SELECT * FROM posts WHERE post_author = ?");
+    $query->bind_param('s', $_SESSION['username']);
     $query->execute();
     $posts = $query->get_result();
     $query->close();

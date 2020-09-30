@@ -18,6 +18,8 @@
         SubscriberView::CommentsTable();
         SubscriberView::CommentsTableOfPost();
         SubscriberComments::delete();
+        SubscriberComments::unapprove();
+        SubscriberComments::approve();
         ?>
 
     </tbody>

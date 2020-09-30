@@ -13,6 +13,7 @@ function read_posts()
     // render a message if no available post
     if ($posts->num_rows === 0) {
         AdminUtilities::alert_NoResults("There are no available posts");
+        return null;
     }
 
     // loop into the results and render

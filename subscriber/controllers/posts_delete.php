@@ -3,7 +3,7 @@
 function delete_post()
 {
     if (isset($_GET['delete'])) {
-        $mysqli = AdminModel::Provide_Database();
+        $mysqli = SubscriberModel::Provide_Database();
         $post_id = $_GET['delete'];
         $post_id = mysqli_real_escape_string($mysqli, $post_id);
 
@@ -54,7 +54,7 @@ function delete_post()
         // check if query is successfull
         if ($result) {
             // refresh the page
-            header("Location: /cms/admin/posts.php");
+            header("Location: /cms/subscriber/posts.php");
         } else {
             AdminUtilities::alert_Failed();
         }
