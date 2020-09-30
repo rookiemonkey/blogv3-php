@@ -67,8 +67,8 @@ function login_user($username, $password)
 
                 if ($db_user_role === 'admin') {
                     header('Location: /cms/admin/index.php');
-                } else {
-                    header("Location: /cms/index");
+                } else if ($db_user_role === 'subscriber') {
+                    header("Location: /cms/subscriber/posts.php");
                 }
             }
         }

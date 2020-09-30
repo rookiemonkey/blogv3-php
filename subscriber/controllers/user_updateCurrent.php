@@ -23,11 +23,11 @@ function update_current_user()
         $query->close();
 
         if ($result) {
-            AdminUtilities::alert_Success('Succesfully updated your details.');
+            SubscriberUtilities::alert_Success('Succesfully updated your details. Please relogin to update your session');
         } else if (!$result && $result_code == 1062) {
-            AdminUtilities::alert_Failed('Username/Email already exist. Please provide a unique username and email address');
+            SubscriberUtilities::alert_Failed('Username/Email already exist. Please provide a unique username and email address');
         } else {
-            AdminUtilities::alert_Failed();
+            SubscriberUtilities::alert_Failed();
         }
     }
 }

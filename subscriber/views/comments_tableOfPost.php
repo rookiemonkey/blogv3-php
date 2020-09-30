@@ -16,6 +16,7 @@ function read_comments_ofpost()
         // render a message if no available post
         if ($comments->num_rows === 0) {
             SubscriberUtilities::alert_NoResults("There are no comments for this post");
+            return null;
         }
 
         // loop into the results and render

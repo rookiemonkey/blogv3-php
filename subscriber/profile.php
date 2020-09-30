@@ -28,6 +28,10 @@
                         $user = $query->get_result();
                         $query->close();
 
+                        if (!isset($_POST['update_user']) && $user->num_rows === 0) {
+                            SubscriberUtilities::alert_Success('Succesfully updated your details. Please relogin to update your session');
+                        }
+
                         while ($user_row = $user->fetch_assoc()) {
 
                     ?>
@@ -119,18 +123,19 @@
                                 </div>
                             </div>
 
+
+                            <button class="btn btn-sm btn-info pull-right m4" style="margin: 0px 5px;" data-target="#change_avatar" data-toggle="modal">
+                                Change Avatar
+                            </button>
+
+                            <button class="btn  btn-sm btn-info pull-right m4" style="margin: 0px 5px;" data-target="#change_password" data-toggle="modal">
+                                Change Password
+                            </button>
+
                     <?php
                         }
                     }
                     ?>
-
-                    <button class="btn btn-sm btn-info pull-right m4" style="margin: 0px 5px;" data-target="#change_avatar" data-toggle="modal">
-                        Change Avatar
-                    </button>
-
-                    <button class="btn  btn-sm btn-info pull-right m4" style="margin: 0px 5px;" data-target="#change_password" data-toggle="modal">
-                        Change Password
-                    </button>
 
                 </div>
             </div>
