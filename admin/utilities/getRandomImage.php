@@ -43,11 +43,11 @@ function getRandomImage($path)
 
     // generate random name and upload location
     $post_image_randomname = md5(uniqid()) . '.jpg';
-    define("UPLOAD_LOCATION", $_SERVER['DOCUMENT_ROOT'] . "/cms/assets/images/{$path}/$post_image_randomname");
+    define("UPLOAD_LOCATION", $_SERVER['DOCUMENT_ROOT'] . "/assets/images/{$path}/$post_image_randomname");
 
     // create the directory if the folder doesn't exists
-    if (!file_exists($_SERVER['DOCUMENT_ROOT'] . "/cms/assets/images/{$path}")) {
-        mkdir($_SERVER['DOCUMENT_ROOT'] . "/cms/assets/images/{$path}");
+    if (!file_exists($_SERVER['DOCUMENT_ROOT'] . "/assets/images/{$path}")) {
+        mkdir($_SERVER['DOCUMENT_ROOT'] . "/assets/images/{$path}");
     }
 
     // create a dummy jpg that will be overwr   itten

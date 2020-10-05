@@ -8,7 +8,7 @@ function render_avatar($dependency, $size)
 ?>
         <img src=<?php echo $default; ?> style="width: <?php echo $size ?>; height:<?php echo $size ?>; border-radius: 20px" />
     <?php } else { ?>
-        <img src="/cms/assets/images/avatars/<?php echo $dependency ?>" style="width: <?php echo $size ?>; height:<?php echo $size ?>; border-radius: 20px" />
+        <img src="/assets/images/avatars/<?php echo $dependency ?>" style="width: <?php echo $size ?>; height:<?php echo $size ?>; border-radius: 20px" />
 <?php
     }
 }

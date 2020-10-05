@@ -35,7 +35,7 @@ $(document).ready(function () {
 
 // response comes from functions.php
 function loadUsersOnline() {
-    $.get("/cms/api/online.php?onlineusers=true", function (data) {
+    $.get("/api/online.php?onlineusers=true", function (data) {
         $('.usersonline')
             .text(data)
     })

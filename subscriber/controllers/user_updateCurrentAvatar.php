@@ -25,7 +25,7 @@ function update_current_user_avatar()
             $user_avatar = "https://res.cloudinary.com/promises/image/upload/v1596613153/global_default_image.png";
 
             // purge the old image to free space
-            define("UPLOAD_LOCATION", $_SERVER['DOCUMENT_ROOT'] . "/cms/assets/images/avatars/");
+            define("UPLOAD_LOCATION", $_SERVER['DOCUMENT_ROOT'] . "/assets/images/avatars/");
 
             if (file_exists(UPLOAD_LOCATION . $oldimage)) {
                 unlink(UPLOAD_LOCATION . $oldimage);

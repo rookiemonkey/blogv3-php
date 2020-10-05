@@ -1,20 +1,20 @@
 <?php
 
-    function isUserExisting_Reset() {
-        $mysqli = Model::Provide_Database();
-        
-        $query = $mysqli->prepare("SELECT user_email, user_token FROM users WHERE user_email = ? AND user_token = ?");
+function isUserExisting_Reset()
+{
+    $mysqli = Model::Provide_Database();
 
-        $query->bind_param('ss', $_GET['email'], $_GET['token']);
+    $query = $mysqli->prepare("SELECT user_email, user_token FROM users WHERE user_email = ? AND user_token = ?");
 
-        $query->execute();
+    $query->bind_param('ss', $_GET['email'], $_GET['token']);
 
-        $users = $query->get_result();
+    $query->execute();
 
-        $query->close();
+    $users = $query->get_result();
 
-        if($users->num_rows === 0) {
-            header('Location: /cms/index');
-        }
+    $query->close();
+
+    if ($users->num_rows === 0) {
+        header('Location: /index');
     }
-?>
+}

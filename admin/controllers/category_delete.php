@@ -19,7 +19,7 @@ function delete_category()
 
         if ($result) {
             // refresh the page, alert box is working but DOM doesn't update
-            header("Location: /cms/admin/categories.php");
+            header("Location: /admin/categories.php");
         } else {
             AdminUtilities::alert_Failed();
         }

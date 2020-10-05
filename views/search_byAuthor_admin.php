@@ -6,7 +6,7 @@ function search_author_admin()
     $vars = View::Pagination();
 
     if (!isset($_GET["author"])) {
-        header('Location: /cms/index');
+        header('Location: /index');
     }
 
     $page_1 = intval($vars['page_1']);
@@ -39,7 +39,7 @@ function search_author_admin()
         $post_status = Utility::sanitize($row["post_status"]);
 ?>
         <h2>
-            <a href="/cms/post/<?php echo $post_id ?>">
+            <a href="/post/<?php echo $post_id ?>">
                 <?php echo $post_title ?>
                 <?php
                 if ($post_status === 'draft') {
@@ -64,15 +64,15 @@ function search_author_admin()
 
         <hr>
 
-        <a href="/cms/post/<?php echo $post_id ?>">
-            <img class="img-responsive" src="/cms/assets/images/posts/<?php echo $post_image ?>" alt="<?php echo $post_title ?>">
+        <a href="/post/<?php echo $post_id ?>">
+            <img class="img-responsive" src="/assets/images/posts/<?php echo $post_image ?>" alt="<?php echo $post_title ?>">
         </a>
 
         <hr>
 
         <p><?php echo $post_content ?></p>
 
-        <a class="btn btn-primary" href="/cms/post/<?php echo $post_id ?>">
+        <a class="btn btn-primary" href="/post/<?php echo $post_id ?>">
             Read More
             <span class="glyphicon glyphicon-chevron-right">
             </span>

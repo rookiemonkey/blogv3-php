@@ -37,7 +37,7 @@ function read_comments()
             <td><?php echo Utility::sanitize($row['comment_content']); ?></td>
             <td><?php echo Utility::sanitize($row['comment_status']); ?></td>
             <td>
-                <a href='/cms/post.php?p_id=<?php echo Utility::sanitize($post_row['post_id']); ?>'>
+                <a href='/post.php?p_id=<?php echo Utility::sanitize($post_row['post_id']); ?>'>
                     <?php echo Utility::sanitize($post_row['post_title']); ?>
                 </a>
             </td>

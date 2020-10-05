@@ -16,10 +16,10 @@ $mysqli = Model::Provide_Database();
 
     <title>Blog</title>
 
-    <link href="/cms/assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/cms/assets/css/blog-home.css" rel="stylesheet">
-    <script src="/cms/assets/js/jquery.js" type='text/javascript'></script>
-    <script src="/cms/assets/js/bootstrap.min.js"></script>
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/blog-home.css" rel="stylesheet">
+    <script src="/assets/js/jquery.js" type='text/javascript'></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
 
 </head>
 

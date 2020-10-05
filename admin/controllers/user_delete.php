@@ -16,7 +16,7 @@ function delete_user()
 
         // check if query is successfull
         if ($result) {
-            header("Location: /cms/admin/users.php");
+            header("Location: /admin/users.php");
         } else {
             AdminUtilities::alert_Failed();
         }

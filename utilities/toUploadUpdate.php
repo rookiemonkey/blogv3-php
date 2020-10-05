@@ -69,12 +69,12 @@ function toUploadUpdate($oldimage, $file, $path)
     }
 
     // // create the directory if the folder doesn't exists
-    if (!file_exists($_SERVER['DOCUMENT_ROOT'] . "/cms/assets/images/{$path}")) {
-        mkdir($_SERVER['DOCUMENT_ROOT'] . "/cms/assets/images/{$path}");
+    if (!file_exists($_SERVER['DOCUMENT_ROOT'] . "/assets/images/{$path}")) {
+        mkdir($_SERVER['DOCUMENT_ROOT'] . "/assets/images/{$path}");
     }
 
     // // move the recreated temp image from reacted_path to local path
-    define("UPLOAD_LOCATION", $_SERVER['DOCUMENT_ROOT'] . "/cms/assets/images/{$path}/");
+    define("UPLOAD_LOCATION", $_SERVER['DOCUMENT_ROOT'] . "/assets/images/{$path}/");
     copy($post_image_recreated_path, (UPLOAD_LOCATION . $post_image_recreated_name));
 
     // // Delete the recreated temp image to free space

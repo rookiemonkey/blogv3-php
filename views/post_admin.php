@@ -47,7 +47,7 @@ function render_post_admin()
 
         <hr>
         <!-- the image name on database should match the one on the file system -->
-        <img class="img-responsive" src="/cms/assets/images/posts/<?php echo $post_image ?>" alt="<?php echo $post_title ?>">
+        <img class="img-responsive" src="/assets/images/posts/<?php echo $post_image ?>" alt="<?php echo $post_title ?>">
         <hr>
 
         <p>
@@ -60,7 +60,7 @@ function render_post_admin()
             </button>
 
             <button type="button" class="btn btn-warning">
-                <a id='btn_edit' href="/cms/admin/posts.php?source=edit_post&p_id=<?php echo Utility::sanitize($_GET['p_id']); ?>">
+                <a id='btn_edit' href="/admin/posts.php?source=edit_post&p_id=<?php echo Utility::sanitize($_GET['p_id']); ?>">
                     Edit Post
                 </a>
             </button>

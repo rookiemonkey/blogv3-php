@@ -13,7 +13,7 @@ if (isset($_GET['u_id'])) {
     $query->close();
 
     if (!$user_row) {
-        header('Location: /cms/admin/users.php');
+        header("Location: /admin/users.php");
         die();
     }
 

@@ -86,38 +86,38 @@ function Pagination($needButtons, $path)
         // author route
         if ($path && $path === 'author') {
             if ($page > 1) {
-                echo "<li class='previous'><a href='/cms/author.php?page=1&author={$_GET['author']}'><< Start</a></li>";
+                echo "<li class='previous'><a href='/author.php?page=1&author={$_GET['author']}'><< Start</a></li>";
             }
 
             for ($i = 1; $i <= $page_last; $i++) {
                 if ($i === $page - 1 && $page - 1 !== 0) {
-                    echo "<li class='previous'><a href='/cms/author.php?page={$i}&author={$_GET['author']}'>Previous</a></li>";
+                    echo "<li class='previous'><a href='/author.php?page={$i}&author={$_GET['author']}'>Previous</a></li>";
                 } else if ($i === $page + 1 && $page + 1 <= $page_last) {
-                    echo "<li class='next'><a href='/cms/author.php?page={$i}&author={$_GET['author']}'>Next</a></li>";
+                    echo "<li class='next'><a href='/author.php?page={$i}&author={$_GET['author']}'>Next</a></li>";
                 }
             }
 
             if ($page < $page_last && $page_last !== 1) {
-                echo "<li class='next'><a href='/cms/author.php?page={$page_last}&author={$_GET['author']}}'>Last >></a></li>";
+                echo "<li class='next'><a href='/author.php?page={$page_last}&author={$_GET['author']}}'>Last >></a></li>";
             }
         }
 
         // category route
         if ($path && $path === 'category') {
             if ($page > 1) {
-                echo "<li class='previous'><a href='/cms/category.php?page=1&c_id={$_GET['c_id']}'><< Start</a></li>";
+                echo "<li class='previous'><a href='/category.php?page=1&c_id={$_GET['c_id']}'><< Start</a></li>";
             }
 
             for ($i = 1; $i <= $page_last; $i++) {
                 if ($i === $page - 1 && $page - 1 !== 0) {
-                    echo "<li class='previous'><a href='/cms/category.php?page={$i}&c_id={$_GET['c_id']}'>Previous</a></li>";
+                    echo "<li class='previous'><a href='/category.php?page={$i}&c_id={$_GET['c_id']}'>Previous</a></li>";
                 } else if ($i === $page + 1 && $page + 1 <= $page_last) {
-                    echo "<li class='next'><a href='/cms/category.php?page={$i}&c_id={$_GET['c_id']}'>Next</a></li>";
+                    echo "<li class='next'><a href='/category.php?page={$i}&c_id={$_GET['c_id']}'>Next</a></li>";
                 }
             }
 
             if ($page < $page_last && $page_last !== 1) {
-                echo "<li class='next'><a href='/cms/category.php?page={$page_last}&c_id={$_GET['c_id']}'>Last >></a></li>";
+                echo "<li class='next'><a href='/category.php?page={$page_last}&c_id={$_GET['c_id']}'>Last >></a></li>";
             }
         }
     }

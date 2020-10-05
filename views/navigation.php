@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/cms/">Logo</a>
+            <a class="navbar-brand" href="/">Logo</a>
         </div>
 
         <div class="collapse navbar-collapse" id="dropdown_navigation">
@@ -25,7 +25,7 @@
 
                 <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') { ?>
                     <li>
-                        <a href='/cms/admin/index.php'>
+                        <a href='/admin/index.php'>
                             Dashboard
                         </a>
                     </li>
@@ -33,7 +33,7 @@
 
                 <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'subscriber') { ?>
                     <li>
-                        <a href='/cms/subscriber/posts.php'>
+                        <a href='/subscriber/posts.php'>
                             Dashboard
                         </a>
                     </li>
@@ -41,7 +41,7 @@
 
                 <?php if (Utility::isLoggedIn()) {  ?>
                     <li>
-                        <a href='/cms/api/logout.php'>
+                        <a href='/api/logout.php'>
                             Logout
                         </a>
                     </li>
@@ -49,20 +49,20 @@
 
                 <?php if (!Utility::isLoggedIn()) { ?>
                     <li>
-                        <a href='/cms/registration'>
+                        <a href='/registration'>
                             Register
                         </a>
                     </li>
 
                     <li>
-                        <a href='/cms/login'>
+                        <a href='/login'>
                             Login
                         </a>
                     </li>
                 <?php } ?>
 
                 <li>
-                    <a href='/cms/contact'>
+                    <a href='/contact'>
                         Contact
                     </a>
                 </li>

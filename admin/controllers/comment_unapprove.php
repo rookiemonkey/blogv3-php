@@ -22,9 +22,9 @@ function unapprove_comment()
             // refresh the page
             if (isset($_GET['comments_of_post'])) {
                 $post_id = $_GET['comments_of_post'];
-                header("Location: /cms/admin/comments.php?comments_of_post={$post_id}");
+                header("Location: /admin/comments.php?comments_of_post={$post_id}");
             } else {
-                header("Location: /cms/admin/comments.php");
+                header("Location: /admin/comments.php");
             }
         } else {
             AdminUtilities::alert_Failed();

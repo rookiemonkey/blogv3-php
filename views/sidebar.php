@@ -3,17 +3,17 @@
 <div class="col-md-4">
 
     <?php
-        if(isset($_POST['login'])) {
-            Controller::login($_POST['username'], $_POST['password']); 
-        }
-        
-        if(!isset($_SESSION['username'])){
+    if (isset($_POST['login'])) {
+        Controller::login($_POST['username'], $_POST['password']);
+    }
+
+    if (!isset($_SESSION['username'])) {
     ?>
         <div class="well">
             <h4>
                 Login
                 <small>
-                    <a href="/cms/forgot?token=<?php echo uniqid(); ?>">
+                    <a href="/forgot?token=<?php echo uniqid(); ?>">
                         Forgot Password?
                     </a>
                 </small>
@@ -32,16 +32,16 @@
             </form>
         </div>
     <?php
-        }
+    }
     ?>
 
     <div class="well">
         <h4>Blog Search <small>via tags</small></h4>
-        <form action="/cms/search" method="POST">
+        <form action="/search" method="POST">
             <div class="input-group">
                 <input name="search" type="text" class="form-control">
                 <span class="input-group-btn">
-                    <button name="submit" type="submit" class="btn btn-default" >
+                    <button name="submit" type="submit" class="btn btn-default">
                         <span class="glyphicon glyphicon-search"></span>
                     </button>
                 </span>
@@ -53,25 +53,25 @@
         <h4>Blog Categories</h4>
         <div class="row">
             <div class="col-lg-12">
-                <ul class="list-unstyled">  
+                <ul class="list-unstyled">
 
                     <?php
-                        $query = $mysqli->prepare("SELECT * FROM categories");
-                        $query->execute();
-                        $catogories = $query->get_result();
+                    $query = $mysqli->prepare("SELECT * FROM categories");
+                    $query->execute();
+                    $catogories = $query->get_result();
 
-                        while($row = $catogories->fetch_assoc()) {
-                            $category_title = $row["cat_title"];
-                            $category_id = $row["cat_id"];
+                    while ($row = $catogories->fetch_assoc()) {
+                        $category_title = $row["cat_title"];
+                        $category_id = $row["cat_id"];
                     ?>
                         <li>
-                            <a href="/cms/category/<?php echo Utility::sanitize($category_id); ?>">
+                            <a href="/category/<?php echo Utility::sanitize($category_id); ?>">
                                 <?php echo Utility::sanitize($category_title); ?>
                             </a>
                         </li>
                     <?php
-                        }
-                    ?> 
+                    }
+                    ?>
 
                 </ul>
             </div>

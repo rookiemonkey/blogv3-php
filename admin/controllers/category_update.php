@@ -23,7 +23,7 @@ function update_category()
             $query->close();
 
             if ($result) {
-                header("Location: /cms/admin/categories.php");
+                header("Location: /admin/categories.php");
             } else {
                 AdminUtilities::alert_Failed();
             }

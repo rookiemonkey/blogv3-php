@@ -32,7 +32,7 @@ function delete_post()
 
         $row = $results->fetch_assoc();
 
-        $image = $_SERVER['DOCUMENT_ROOT'] . "/cms/assets/images/posts/" . $row['post_image'];
+        $image = $_SERVER['DOCUMENT_ROOT'] . "/assets/images/posts/" . $row['post_image'];
 
         if (file_exists($image)) {
             unlink($image);
@@ -53,7 +53,7 @@ function delete_post()
         // check if query is successfull
         if ($result) {
             // refresh the page
-            header("Location: /cms/admin/posts.php");
+            header("Location: /admin/posts.php");
         } else {
             AdminUtilities::alert_Failed();
         }

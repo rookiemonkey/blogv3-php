@@ -1,9 +1,9 @@
 <?php
 ob_start();
-define("DB_HOST", "localhost");
-define("DB_USERNAME", "root");
-define("DB_PASSWORD", "");
-define("DB_DBNAME", "blog");
+define("DB_HOST", "remotemysql.com");
+define("DB_USERNAME", "Jqy9cWVl4A");
+define("DB_PASSWORD", "TXCPU3PGRh");
+define("DB_DBNAME", "Jqy9cWVl4A");
 
 function Initialize_Database()
 {

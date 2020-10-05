@@ -21,9 +21,9 @@ function approve_comment()
             // refresh the page
             if (isset($_GET['comments_of_post'])) {
                 $post_id = $_GET['comments_of_post'];
-                header("Location: /cms/subscriber/comments.php?comments_of_post={$post_id}");
+                header("Location: /subscriber/comments.php?comments_of_post={$post_id}");
             } else {
-                header("Location: /cms/subscriber/comments.php");
+                header("Location: /subscriber/comments.php");
             }
         } else {
             AdminUtilities::alert_Failed();

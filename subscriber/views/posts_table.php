@@ -41,18 +41,18 @@ function read_posts()
             <td><?php echo Utility::sanitize($row['post_views']); ?></td>
             <td><?php echo Utility::sanitize($row['post_author']); ?></td>
             <td>
-                <a href='/cms/post/<?php echo $row['post_id'] ?>'>
+                <a href='/post/<?php echo $row['post_id'] ?>'>
                     <?php echo Utility::sanitize($row['post_title']); ?>
                 </a>
             </td>
             <td><?php echo Utility::sanitize($post_category_row['cat_title']); ?></td>
             <td><?php echo Utility::sanitize($row['post_status']); ?></td>
             <td>
-                <img src='/cms/assets/images/posts/<?php echo Utility::sanitize($row['post_image']); ?>' alt='<?php echo Utility::sanitize($row['post_title']); ?>' width='100' />
+                <img src='/assets/images/posts/<?php echo Utility::sanitize($row['post_image']); ?>' alt='<?php echo Utility::sanitize($row['post_title']); ?>' width='100' />
             </td>
             <td><?php echo Utility::sanitize($row['post_tags']); ?></td>
             <td>
-                <a href="/cms/subscriber/comments.php?comments_of_post=<?php echo Utility::sanitize($row['post_id']) ?>">
+                <a href="/subscriber/comments.php?comments_of_post=<?php echo Utility::sanitize($row['post_id']) ?>">
                     <?php echo Utility::sanitize($row['post_comment_count']); ?>
                 </a>
             </td>
@@ -62,7 +62,7 @@ function read_posts()
                 </a>
             </td>
             <td>
-                <a href='/cms/subscriber/posts.php?source=edit_post&p_id=<?php echo Utility::sanitize($row['post_id']); ?>'>
+                <a href='/subscriber/posts.php?source=edit_post&p_id=<?php echo Utility::sanitize($row['post_id']); ?>'>
                     Edit
                 </a>
             </td>

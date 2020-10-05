@@ -17,7 +17,7 @@ function update_user_toAdmin()
 
         // check if query is successfull
         if ($result) {
-            header("Location: /cms/admin/users.php");
+            header("Location: /admin/users.php");
         } else {
             AdminUtilities::alert_Failed();
         }

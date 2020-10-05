@@ -40,7 +40,7 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href='/cms/api/logout.php'>
+                    <a href='/api/logout.php'>
                         <i class="fa fa-fw fa-power-off"></i>
                         Log Out
                     </a>
